@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from copy import deepcopy
-import time
 from typing import Any
 
 from engine.llm.gemini_client import GeminiJsonClient, LLMResponseError
@@ -11,45 +9,8 @@ from engine.modules.module3 import build_module3_placeholder
 from engine.ontology.extractor import extract_structured_patent, generate_module1_report
 from engine.ontology.loader import load_all_knowledge
 from engine.patent.parser import PatentParseError, parse_patent_pdf
-from engine.patent.retriever import normalize_patent_number, retrieve_patent_by_number
+from engine.patent.retriever import retrieve_patent_by_number
 from engine.reports.generator import build_fallback_module1_report
-
-
-_ANALYSIS_CACHE: dict[tuple, tuple[float, dict]] = {}
-_ANALYSIS_CACHE_TTL = 6 * 60 * 60
-
-
-def _cache_get(key: tuple | None) -> dict | None:
-    if key is None:
-        return None
-    item = _ANALYSIS_CACHE.get(key)
-    if not item:
-        return None
-    created, value = item
-    if time.time() - created > _ANALYSIS_CACHE_TTL:
-        _ANALYSIS_CACHE.pop(key, None)
-        return None
-    result = deepcopy(value)
-    result["cache_hit"] = True
-    return result
-
-
-def _cache_put(key: tuple | None, value: dict) -> None:
-    if key is None:
-        return
-    _ANALYSIS_CACHE[key] = (time.time(), deepcopy(value))
-
-
-def _quality_summary(raw_patent: dict, structured: dict | None = None) -> dict[str, Any]:
-    diagnostics = raw_patent.get("parser_diagnostics") or {}
-    return {
-        "source_ready": True,
-        "claim_count": int(diagnostics.get("claim_count") or 0),
-        "independent_claim_count": int(diagnostics.get("independent_claim_count") or 0),
-        "figure_count": len(raw_patent.get("figures") or []),
-        "grounded_fact_count": len(_collect_evidence(structured or {})) if structured else 0,
-        "validation_warning_count": len((structured or {}).get("validation_warnings", []) or []),
-    }
 
 
 def _module1_with_parsed_basics(parsed: dict, fallback_id: str) -> dict:
@@ -121,8 +82,6 @@ def analyze_patent(
     gemini_api_key: str | None = None,
     gemini_model: str = "gemini-3.7-flash",
     report_model: str | None = None,
-    fallback_model: str | None = None,
-    max_retries: int = 2,
 ) -> dict:
     """Patent number/PDF -> Raw Patent -> Ontology -> Module 1 service entry point.
 
@@ -131,22 +90,6 @@ def analyze_patent(
     patent to the frozen PSD vocabulary and generates an explanation report.
     """
     display_id = patent_number or uploaded_file_name or "Uploaded Patent"
-    cache_key = None
-    if patent_number and uploaded_file_bytes is None and gemini_api_key:
-        try:
-            cache_key = (
-                normalize_patent_number(patent_number),
-                gemini_model,
-                report_model or gemini_model,
-                fallback_model or "",
-                int(max_retries),
-                "v0.7-grounded",
-            )
-        except Exception:
-            cache_key = None
-        cached = _cache_get(cache_key)
-        if cached is not None:
-            return cached
 
     # PDF takes precedence when both inputs are supplied; otherwise retrieve the
     # public patent page directly from the publication/grant number.
@@ -182,22 +125,16 @@ def analyze_patent(
             f"{source.get('text_char_count') or 0:,} characters, claims {diagnostics.get('claim_count', 0)}개."
         )
 
-    claim_count = int(diagnostics.get("claim_count") or 0)
-    independent_count = int(diagnostics.get("independent_claim_count") or 0)
-    if claim_count == 0 or independent_count == 0:
-        failure_status = "Claim parsing failed" if claim_count == 0 else "Independent claim validation failed"
-        failure_message = (
-            "청구항을 식별하지 못했습니다." if claim_count == 0
-            else "청구항은 확인했지만 독립청구항을 안정적으로 판별하지 못했습니다."
-        )
+    if diagnostics.get("claim_count", 0) == 0:
         return {
             "title": f"{parsed_id} · PSD Patent Analysis",
             "patent_number": parsed_id,
             "primary_technology": "Claim analysis unavailable",
-            "status": failure_status,
+            "status": "Claim parsing failed",
             "overview": (
-                parser_overview + " " + failure_message
-                + " Claim Element/Relation/Constraint 기반 Ontology 분석과 Module 1 전체 보고서는 실행하지 않았습니다."
+                parser_overview
+                + " 청구항을 식별하지 못해 Claim Element/Relation/Constraint 기반 Ontology 분석과 Module 1 전체 보고서는 실행하지 않았습니다. "
+                + "Raw Patent JSON의 Parser Diagnostics를 확인하거나 다른 PDF/특허번호 입력을 사용해 주세요."
             ),
             "raw_patent": raw_patent,
             "structured_patent": None,
@@ -207,8 +144,6 @@ def analyze_patent(
             "module3": build_module3_placeholder(),
             "evidence": [],
             "analysis_error": None,
-            "quality": _quality_summary(raw_patent),
-            "cache_hit": False,
         }
 
     if not gemini_api_key:
@@ -235,25 +170,13 @@ def analyze_patent(
                 }
             ],
             "analysis_error": None,
-            "quality": _quality_summary(raw_patent),
-            "cache_hit": False,
         }
 
-    llm = GeminiJsonClient(
-        gemini_api_key,
-        model=gemini_model,
-        fallback_model=fallback_model,
-        max_retries=max_retries,
-    )
+    llm = GeminiJsonClient(gemini_api_key, model=gemini_model)
     kb = load_all_knowledge()
     try:
         structured, trace = extract_structured_patent(raw_patent=raw_patent, knowledge_base=kb, llm=llm)
-        report_llm = llm if not report_model or report_model == gemini_model else GeminiJsonClient(
-            gemini_api_key,
-            model=report_model,
-            fallback_model=fallback_model,
-            max_retries=max_retries,
-        )
+        report_llm = llm if not report_model or report_model == gemini_model else GeminiJsonClient(gemini_api_key, model=report_model)
         try:
             module1_report = generate_module1_report(structured_patent=structured, llm=report_llm)
             report_mode = "LLM explanation"
@@ -269,7 +192,7 @@ def analyze_patent(
             primary = next((x for x in structured.get("technology_assignments", []) if x.get("technology_name")), None)
         primary_technology = primary.get("technology_name") if primary else "분류 미확정"
 
-        result_value = {
+        return {
             "title": f"{parsed_id} · PSD Patent Analysis",
             "patent_number": parsed_id,
             "primary_technology": primary_technology,
@@ -288,12 +211,7 @@ def analyze_patent(
             "evidence": _collect_evidence(structured),
             "analysis_trace": trace,
             "analysis_error": None,
-            "quality": _quality_summary(raw_patent, structured),
-            "cache_hit": False,
         }
-        if report_mode == "LLM explanation":
-            _cache_put(cache_key, result_value)
-        return result_value
     except LLMResponseError as exc:
         return {
             "title": f"{parsed_id} · PSD Patent Analysis",
@@ -309,8 +227,6 @@ def analyze_patent(
             "module3": build_module3_placeholder(),
             "evidence": [],
             "analysis_error": str(exc),
-            "quality": _quality_summary(raw_patent),
-            "cache_hit": False,
         }
 
 
@@ -320,8 +236,6 @@ def analyze_related_patents(
     gemini_api_key: str | None,
     gemini_model: str = "gemini-3.7-flash",
     report_model: str | None = None,
-    fallback_model: str | None = None,
-    max_retries: int = 2,
     top_n: int = 5,
 ) -> dict:
     """Module 2 public service entry point.
@@ -334,7 +248,5 @@ def analyze_related_patents(
         gemini_api_key=gemini_api_key or "",
         gemini_model=gemini_model,
         report_model=report_model,
-        fallback_model=fallback_model,
-        max_retries=max_retries,
         top_n=top_n,
     )

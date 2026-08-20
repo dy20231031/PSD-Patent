@@ -63,15 +63,3 @@ def test_service_blocks_claim_ontology_when_claims_zero(monkeypatch):
     assert result["status"] == "Claim parsing failed"
     assert result["structured_patent"] is None
     assert result["module1_report"] is None
-
-
-def test_service_blocks_when_independent_claim_is_not_detected(monkeypatch):
-    dependent_only = {
-        **RAW_RETRIEVED,
-        "claims": [{"claim_id": "C2", "claim_number": 2, "claim_type": "dependent", "depends_on": [1], "text": "The device of claim 1, wherein..."}],
-        "parser_diagnostics": {"claim_count": 1, "independent_claim_count": 0, "dependent_claim_count": 1, "warnings": []},
-    }
-    monkeypatch.setattr("engine.app_service.retrieve_patent_by_number", lambda number: dependent_only)
-    result = analyze_patent("US88888888B2", None, gemini_api_key="fake")
-    assert result["status"] == "Independent claim validation failed"
-    assert result["module1_report"] is None

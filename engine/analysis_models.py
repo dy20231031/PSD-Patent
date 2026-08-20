@@ -194,8 +194,6 @@ class Module1Report(StrictModel):
 
 class CandidateOntologyFingerprint(StrictModel):
     publication_number: str
-    psd_relevance: str
-    psd_relevance_reason: str
     technology_ids: list[str]
     architecture_ids: list[str]
     problem_ids: list[str]

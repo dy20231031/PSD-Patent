@@ -25,9 +25,7 @@ Rules:
 5. function_ids, claim_element_ids and relation_ids should primarily reflect independent-claim facts.
 6. solution_summary: 1-2 concise Korean sentences explaining the candidate's solution mechanism.
 7. claim_focus: one concise Korean sentence describing the independent claim's main structural/relational focus.
-8. Classify psd_relevance as exactly high, medium, or low. high = explicitly automotive/vehicle power sliding door or its direct drive/guide/latch subsystem; medium = generic sliding-door technology strongly transferable to PSD; low = unrelated domains such as elevators, building doors, windows/sunroofs, liftgates only, or generic machinery without a sliding-door connection.
-9. psd_relevance_reason: one concise Korean sentence grounded in the supplied candidate text.
-10. Do not make infringement, novelty or legal-scope conclusions.
+8. Do not make infringement, novelty or legal-scope conclusions.
 """.strip()
 
 
@@ -150,10 +148,6 @@ def _same_family_likely(target_raw: dict, candidate_raw: dict) -> bool:
     cm = candidate_raw.get("metadata") or {}
     if not tm or not cm:
         return False
-    t_family = str(tm.get("family_id") or "").strip()
-    c_family = str(cm.get("family_id") or "").strip()
-    if t_family and c_family:
-        return t_family == c_family
     t_priority = (tm.get("priority_date") or "")[:10]
     c_priority = (cm.get("priority_date") or "")[:10]
     if not t_priority or t_priority != c_priority:
@@ -259,10 +253,8 @@ def analyze_related_patents(
     gemini_api_key: str,
     gemini_model: str = "gemini-3.7-flash",
     report_model: str | None = None,
-    fallback_model: str | None = None,
-    max_retries: int = 2,
     top_n: int = 5,
-    max_candidate_analysis: int = 10,
+    max_candidate_analysis: int = 8,
 ) -> dict:
     """Run Module 2: search -> lightweight ontology fingerprint -> rerank -> compare."""
     structured = target_result.get("structured_patent")
@@ -318,19 +310,13 @@ def analyze_related_patents(
             warnings.append(f"{candidate['publication_number']} 원문 조회 실패: {exc}")
             continue
         if _same_family_likely(raw_target, raw):
-            warnings.append(f"{candidate['publication_number']}: 분석 대상과 동일 Patent Family로 제외")
             continue
-        if any(_same_family_likely(existing.get("raw_patent") or {}, raw) for existing in detailed):
-            warnings.append(f"{candidate['publication_number']}: 이미 확보한 후보와 동일 Patent Family로 중복 제외")
-            continue
-        independent_claims = [c for c in raw.get("claims", []) if c.get("claim_type") == "independent"]
-        if not independent_claims:
-            warnings.append(f"{candidate['publication_number']}: 독립청구항을 확인하지 못해 후보 분석에서 제외")
+        if not raw.get("claims"):
+            warnings.append(f"{candidate['publication_number']}: 청구항을 확인하지 못해 후보 분석에서 제외")
             continue
         detail = dict(candidate)
         detail["raw_patent"] = raw
         detail["comparison_context"] = _candidate_context(raw)
-        detail["representative_figure"] = (raw.get("figures") or [None])[0]
         detailed.append(detail)
 
     if not detailed:
@@ -343,12 +329,7 @@ def analyze_related_patents(
             "warnings": warnings,
         }
 
-    llm = GeminiJsonClient(
-        gemini_api_key,
-        model=gemini_model,
-        fallback_model=fallback_model,
-        max_retries=max_retries,
-    )
+    llm = GeminiJsonClient(gemini_api_key, model=gemini_model)
     candidate_input = {
         "candidate_patents": [x["comparison_context"] for x in detailed],
         "controlled_vocabularies": json.loads(_catalog_context(kb)),
@@ -376,14 +357,6 @@ def analyze_related_patents(
     for fp in fp_data.get("candidates", []):
         normalized, fp_warnings = _normalize_fingerprint(fp, allowed)
         warnings.extend(fp_warnings)
-        relevance = str(normalized.get("psd_relevance") or "low").lower().strip()
-        if relevance not in {"high", "medium", "low"}:
-            relevance = "low"
-            warnings.append(f"{normalized.get('publication_number')}: invalid PSD relevance normalized to low")
-        normalized["psd_relevance"] = relevance
-        if relevance == "low":
-            warnings.append(f"{normalized.get('publication_number')}: PSD relevance low로 후보에서 제외")
-            continue
         fp_by_number[normalized["publication_number"].upper()] = normalized
 
     scored_input: list[dict[str, Any]] = []
@@ -409,12 +382,7 @@ def analyze_related_patents(
             "warnings": warnings,
         }
 
-    report_llm = llm if not report_model or report_model == gemini_model else GeminiJsonClient(
-        gemini_api_key,
-        model=report_model,
-        fallback_model=fallback_model,
-        max_retries=max_retries,
-    )
+    report_llm = llm if not report_model or report_model == gemini_model else GeminiJsonClient(gemini_api_key, model=report_model)
     comparison_payload = {
         "target_patent": _target_compact(structured),
         "selection_weights": DEFAULT_WEIGHTS,
@@ -460,14 +428,7 @@ def analyze_related_patents(
             "publication_date": item.get("publication_date") or (item.get("comparison_context") or {}).get("publication_date") or "",
             "source_url": item.get("source_url") or f"https://patents.google.com/patent/{number}/en",
             "score": item.get("score", 0.0),
-            "relatedness_level": (
-                "높음" if float(item.get("score", 0.0)) >= 60 else
-                "중간" if float(item.get("score", 0.0)) >= 35 else "낮음"
-            ),
             "score_breakdown": item.get("score_breakdown") or {},
-            "psd_relevance": (item.get("fingerprint") or {}).get("psd_relevance") or "medium",
-            "psd_relevance_reason": (item.get("fingerprint") or {}).get("psd_relevance_reason") or "",
-            "representative_figure": item.get("representative_figure"),
             "solution_summary": (item.get("fingerprint") or {}).get("solution_summary") or "",
             "claim_focus": (item.get("fingerprint") or {}).get("claim_focus") or "",
             "selection_reason": narrative.get("selection_reason") or "",

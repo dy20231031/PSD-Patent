@@ -3,7 +3,6 @@ from __future__ import annotations
 import re
 from copy import deepcopy
 from typing import Any
-from urllib.parse import urljoin
 
 import requests
 from bs4 import BeautifulSoup
@@ -127,132 +126,6 @@ def _extract_google_claims(soup: BeautifulSoup) -> list[dict[str, Any]]:
     return parsed.get("claims", [])
 
 
-
-
-def _extract_family_id(soup: BeautifulSoup) -> str | None:
-    # Google Patents renders a visible "Family ID=..." block. The exact HTML
-    # wrapper has changed over time, so use visible text rather than a brittle
-    # selector and fall back to common metadata/attribute spellings.
-    text = _clean_text(soup.get_text(" ", strip=True))
-    match = re.search(r"\bFamily\s+ID\s*=\s*(\d{3,})\b", text, re.I)
-    if match:
-        return match.group(1)
-    for attr_name in ("family", "familyId", "family_id"):
-        node = soup.find(attrs={attr_name: True})
-        if node:
-            value = str(node.get(attr_name) or "").strip()
-            digits = re.search(r"\d{3,}", value)
-            if digits:
-                return digits.group(0)
-    return None
-
-
-def _extract_figure_caption_map(text: str) -> dict[int, str]:
-    """Extract concise FIG. N description sentences from the specification."""
-    compact = re.sub(r"\s+", " ", text or " ").strip()
-    captions: dict[int, str] = {}
-    # Prefer the first concise sentence for each figure. On Google Patents this
-    # is normally the BRIEF DESCRIPTION OF THE DRAWINGS entry.
-    pattern = re.compile(
-        r"\bFIG(?:URE)?\.?\s*(\d+)[A-Z]?\s+([^.;]{8,420}(?:[.;]|$))",
-        re.I,
-    )
-    for match in pattern.finditer(compact):
-        number = int(match.group(1))
-        sentence = _clean_text(match.group(2)).strip(" ;.")
-        if number not in captions and sentence:
-            captions[number] = sentence
-    return captions
-
-
-def _figure_number_from_node(node, image_url: str, fallback_index: int) -> int | None:
-    probes = [
-        node.get("alt") if hasattr(node, "get") else None,
-        node.get("title") if hasattr(node, "get") else None,
-        node.get("id") if hasattr(node, "get") else None,
-        image_url,
-    ]
-    for probe in probes:
-        value = str(probe or "")
-        match = re.search(r"(?:FIG(?:URE)?\.?\s*|imgf|fig)(\d+)", value, re.I)
-        if match:
-            try:
-                return int(match.group(1))
-            except ValueError:
-                pass
-    # PatentImages drawing assets commonly end D00000, D00001, ... in figure
-    # order. Use that only as a fallback because alt/id are more authoritative.
-    match = re.search(r"-D(\d{5})\.(?:png|gif|jpe?g|tiff?)", image_url, re.I)
-    if match:
-        return int(match.group(1)) + 1
-    return fallback_index if fallback_index > 0 else None
-
-
-def _extract_google_figures(
-    soup: BeautifulSoup,
-    *,
-    description_text: str,
-    source_url: str | None,
-    max_figures: int = 24,
-) -> list[dict[str, Any]]:
-    captions = _extract_figure_caption_map(description_text)
-    candidates = list(soup.select('img[src*="patentimages.storage.googleapis.com"]'))
-    candidates += list(soup.select('img[data-src*="patentimages.storage.googleapis.com"]'))
-
-    # Some page generations expose drawing URLs through metadata rather than a
-    # conventional image gallery. Add them as synthetic nodes.
-    meta_urls: list[str] = []
-    for meta in soup.select('meta[itemprop="image"], meta[property="og:image"]'):
-        value = meta.get("content")
-        if value and "patentimages.storage.googleapis.com" in value:
-            meta_urls.append(str(value))
-
-    figures: list[dict[str, Any]] = []
-    seen: set[str] = set()
-    for index, node in enumerate(candidates, start=1):
-        raw_url = node.get("src") or node.get("data-src")
-        if not raw_url:
-            continue
-        image_url = urljoin(source_url or GOOGLE_PATENTS_BASE, str(raw_url))
-        if image_url in seen:
-            continue
-        seen.add(image_url)
-        number = _figure_number_from_node(node, image_url, index)
-        caption = captions.get(number or -1)
-        alt = _clean_text(str(node.get("alt") or ""))
-        if not caption and alt and len(alt) > 4 and alt.lower() not in {"image", "figure"}:
-            caption = alt
-        figures.append(
-            {
-                "figure_number": number,
-                "label": f"FIG. {number}" if number else f"Figure {index}",
-                "image_url": image_url,
-                "caption": caption,
-                "source_url": source_url,
-            }
-        )
-        if len(figures) >= max_figures:
-            break
-
-    for raw_url in meta_urls:
-        image_url = urljoin(source_url or GOOGLE_PATENTS_BASE, raw_url)
-        if image_url in seen or len(figures) >= max_figures:
-            continue
-        seen.add(image_url)
-        index = len(figures) + 1
-        number = _figure_number_from_node({}, image_url, index)
-        figures.append(
-            {
-                "figure_number": number,
-                "label": f"FIG. {number}" if number else f"Figure {index}",
-                "image_url": image_url,
-                "caption": captions.get(number or -1),
-                "source_url": source_url,
-            }
-        )
-    return figures
-
-
 def _extract_title(soup: BeautifulSoup, number: str) -> str | None:
     title = _meta_content(soup, "DC.title", "citation_title")
     if not title:
@@ -342,7 +215,6 @@ def parse_google_patents_html(html: str, *, patent_number: str, source_url: str 
         or _visible_info_value(soup, "Publication date")
     )
     legal_status = _visible_info_value(soup, "Legal status")
-    family_id = _extract_family_id(soup)
 
     # Feed the description through the same section splitter used for PDFs, then
     # replace claims with the structured HTML claims (more reliable than text regex).
@@ -379,16 +251,8 @@ def parse_google_patents_html(html: str, *, patent_number: str, source_url: str 
             "publication_date": publication_date,
             "inventors": inventors,
             "legal_status": legal_status,
-            "family_id": family_id,
         },
     )
-
-    raw["figures"] = _extract_google_figures(
-        soup,
-        description_text=(raw.get("figure_description") or description),
-        source_url=source_url,
-    )
-    raw["parser_diagnostics"]["figure_count"] = len(raw["figures"])
 
     if claims:
         raw["claims"] = claims

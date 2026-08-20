@@ -1,91 +1,38 @@
-.github/
-.github/workflows/
-.github/workflows/quality-check.yml
-.gitignore
-.streamlit/
-.streamlit/config.toml
-.streamlit/secrets.toml.example
-GITHUB_UPLOAD_GUIDE.md
-KNOWLEDGE_BUILD_REPORT.md
-MODULE1_V03_GEMINI_IMPLEMENTATION_REPORT.md
-PARSER_IMPLEMENTATION_REPORT.md
-PROJECT_TREE.txt
-README.md
-STREAMLIT_SECRETS_SETUP.md
-UPDATE_V03_COMMANDS.txt
-UPDATE_V04_COMMANDS.txt
-UPDATE_V05_COMMANDS.txt
-UPDATE_V06_COMMANDS.txt
-UPDATE_V07_COMMANDS.txt
-V04_IMPLEMENTATION_REPORT.md
-V05_DEPLOYMENT_UI_REPORT.md
-V06_MODULE2_IMPLEMENTATION_REPORT.md
-V07_RELIABILITY_VISUAL_UI_REPORT.md
-engine/
-engine/__init__.py
-engine/analysis_models.py
-engine/app_service.py
-engine/llm/
-engine/llm/__init__.py
-engine/llm/gemini_client.py
-engine/modules/
-engine/modules/__init__.py
-engine/modules/module1.py
-engine/modules/module2.py
-engine/modules/module3.py
-engine/ontology/
-engine/ontology/__init__.py
-engine/ontology/extractor.py
-engine/ontology/grounding.py
-engine/ontology/loader.py
-engine/ontology/mapper.py
-engine/ontology/prompt_context.py
-engine/ontology/validator.py
-engine/patent/
-engine/patent/__init__.py
-engine/patent/context_router.py
-engine/patent/parser.py
-engine/patent/retriever.py
-engine/reports/
-engine/reports/__init__.py
-engine/reports/figures.py
-engine/reports/generator.py
-engine/retrieval/
-engine/retrieval/__init__.py
-engine/retrieval/patent_search.py
-engine/retrieval/reranker.py
-engine/schemas.py
-knowledge/
-knowledge/README.md
-knowledge/claim_elements.json
-knowledge/constraints.json
-knowledge/effects_design_attributes.json
-knowledge/functions.json
-knowledge/ontology_meta.json
-knowledge/problems.json
-knowledge/relations.json
-knowledge/states_modes.json
-knowledge/taxonomy.json
-requirements.txt
-sample_data/
-sample_data/sample_patent.json
-streamlit_app.py
-tests/
-tests/conftest.py
-tests/test_analysis_schemas.py
-tests/test_app_service.py
-tests/test_context_router.py
-tests/test_deployment_ui.py
-tests/test_extractor_pipeline.py
-tests/test_figure_selection.py
-tests/test_gemini_client.py
-tests/test_grounding.py
-tests/test_knowledge_json.py
-tests/test_module2_pipeline.py
-tests/test_ontology_mapper.py
-tests/test_patent_parser.py
-tests/test_patent_retriever.py
-tests/test_related_patent_search.py
-tests/test_related_reranker.py
-tests/test_report_fallback.py
-tests/test_structure.py
+PSD-Patent-Intelligence/
+├── .github/workflows/quality-check.yml
+├── .streamlit/
+│   ├── config.toml
+│   └── secrets.toml.example
+├── engine/
+│   ├── analysis_models.py
+│   ├── app_service.py
+│   ├── schemas.py
+│   ├── llm/
+│   │   ├── __init__.py
+│   │   └── gemini_client.py
+│   ├── modules/
+│   │   ├── module1.py
+│   │   ├── module2.py
+│   │   └── module3.py
+│   ├── ontology/
+│   │   ├── extractor.py
+│   │   ├── loader.py
+│   │   ├── mapper.py
+│   │   ├── prompt_context.py
+│   │   └── validator.py
+│   ├── patent/
+│   │   ├── context_router.py
+│   │   ├── parser.py
+│   │   └── retriever.py
+│   ├── reports/generator.py
+│   └── retrieval/
+├── knowledge/
+├── sample_data/
+├── tests/
+├── MODULE1_V03_GEMINI_IMPLEMENTATION_REPORT.md
+├── V04_IMPLEMENTATION_REPORT.md
+├── UPDATE_V04_COMMANDS.txt
+├── STREAMLIT_SECRETS_SETUP.md
+├── README.md
+├── requirements.txt
+└── streamlit_app.py

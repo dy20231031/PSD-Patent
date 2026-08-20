@@ -1,9 +1,0 @@
-unzip -o PSD-Patent-Intelligence-v0.7-combined-update.zip -d .
-rm PSD-Patent-Intelligence-v0.7-combined-update.zip
-
-pip install -r requirements.txt pytest
-python -m pytest
-
-git add .
-git commit -m "Improve reliability and add visual patent report"
-git push

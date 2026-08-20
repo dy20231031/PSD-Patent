@@ -19,22 +19,14 @@ GOOGLE_PATENT_HTML = """
 <dt>Publication date</dt><dd>2020-09-15</dd>
 <dt>Legal status</dt><dd>Active</dd>
 </dl>
-<div>Family ID=12345678</div>
 <section itemprop="abstract"><h2>Abstract</h2><div>A cable pulley structure improves durability.</div></section>
 <section itemprop="description"><h2>Description</h2>
 BACKGROUND ART
 A conventional power sliding door cable may be damaged.
 SUMMARY
 A circular arc connecting unit suppresses cable damage.
-BRIEF DESCRIPTION OF THE DRAWINGS
-FIG. 1 is a perspective view of the sliding door drive assembly.
-FIG. 2 is an exploded view of the pulley and spring member.
 DETAILED DESCRIPTION
 A case accommodates a drum, a pulley, and a spring member.
-</section>
-<section itemprop="images">
-<img id="fig1" src="https://patentimages.storage.googleapis.com/a/US10774572B2-D00000.png" alt="FIG. 1">
-<img id="fig2" src="https://patentimages.storage.googleapis.com/b/US10774572B2-D00001.png" alt="FIG. 2">
 </section>
 <section itemprop="claims" itemscope>
 <h2>Claims (3)</h2>
@@ -66,10 +58,6 @@ def test_parse_google_patents_html_structured_claims():
     assert parsed["metadata"]["title"] == "Opening-closing body driving device"
     assert parsed["metadata"]["applicant"] == "Mitsuba Corp"
     assert parsed["metadata"]["inventors"] == ["Yoshitaka Urano"]
-    assert parsed["metadata"]["family_id"] == "12345678"
-    assert len(parsed["figures"]) == 2
-    assert parsed["figures"][0]["figure_number"] == 1
-    assert "perspective view" in parsed["figures"][0]["caption"]
     assert len(parsed["claims"]) == 3
     assert parsed["claims"][1]["depends_on"] == [1]
     assert parsed["claims"][2]["depends_on"] == [2]

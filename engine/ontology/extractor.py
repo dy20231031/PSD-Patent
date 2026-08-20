@@ -11,7 +11,6 @@ from engine.analysis_models import (
 )
 from engine.llm.gemini_client import GeminiJsonClient
 from engine.ontology.mapper import normalize_ontology_extraction
-from engine.ontology.grounding import enforce_reporting_grounding
 from engine.ontology.prompt_context import (
     build_claim_knowledge_context,
     build_problem_effect_context,
@@ -192,14 +191,12 @@ def extract_structured_patent(
         "source_file": raw_patent.get("metadata", {}).get("filename"),
         "source_url": raw_patent.get("source", {}).get("source_url"),
     }
-    normalized, grounding_warnings = enforce_reporting_grounding(normalized)
 
     trace = {
         "model": llm.model,
         "claim_context": {k: v for k, v in claim_context.items() if k != "text"},
         "problem_effect_context": {k: v for k, v in problem_context.items() if k != "text"},
         "normalization_warning_count": len(warnings),
-        "grounding_warning_count": len(grounding_warnings),
     }
     normalized["analysis_trace"] = trace
     return normalized, trace

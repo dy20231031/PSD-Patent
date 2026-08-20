@@ -1,8 +1,6 @@
 from __future__ import annotations
 
 import json
-import random
-import time
 from typing import Any
 
 
@@ -14,74 +12,21 @@ class LLMResponseError(RuntimeError):
     """Raised when a model response cannot be parsed/validated."""
 
 
-_TRANSIENT_STATUS_CODES = {429, 500, 502, 503, 504}
-_TRANSIENT_MARKERS = (
-    "RESOURCE_EXHAUSTED",
-    "UNAVAILABLE",
-    "INTERNAL",
-    "DEADLINE_EXCEEDED",
-    "TOO MANY REQUESTS",
-    "HIGH DEMAND",
-)
-
-
-def _status_code(exc: Exception) -> int | None:
-    for attr in ("status_code", "code"):
-        value = getattr(exc, attr, None)
-        try:
-            if callable(value):
-                value = value()
-            if value is not None:
-                code = int(value)
-                if 100 <= code <= 599:
-                    return code
-        except Exception:
-            pass
-    text = str(exc).upper()
-    for code in _TRANSIENT_STATUS_CODES:
-        if str(code) in text:
-            return code
-    return None
-
-
-def _is_transient(exc: Exception) -> bool:
-    code = _status_code(exc)
-    if code in _TRANSIENT_STATUS_CODES:
-        return True
-    upper = str(exc).upper()
-    return any(marker in upper for marker in _TRANSIENT_MARKERS)
-
-
 class GeminiJsonClient:
-    """Google Gemini API wrapper with structured output, retry and fallback.
+    """Google Gemini API wrapper for JSON-schema constrained output.
 
-    Temporary provider errors (429/5xx/high demand) are retried with short
-    exponential backoff. If the primary model remains unavailable, an optional
-    fallback model is tried automatically. This prevents a single transient 503
-    from collapsing the whole patent report.
+    Uses the official ``google-genai`` SDK and the Gemini Developer API.
+    The dependency is imported lazily so PDF parsing/tests still work even
+    when the API package/key is not configured.
     """
 
     provider = "gemini"
 
-    def __init__(
-        self,
-        api_key: str,
-        model: str = "gemini-3.7-flash",
-        *,
-        fallback_model: str | None = None,
-        max_retries: int = 2,
-        base_delay: float = 1.25,
-    ) -> None:
+    def __init__(self, api_key: str, model: str = "gemini-3.7-flash") -> None:
         if not api_key or not api_key.strip():
             raise LLMConfigurationError("GEMINI_API_KEY가 설정되지 않았습니다.")
         self.api_key = api_key.strip()
         self.model = (model or "gemini-3.7-flash").strip()
-        fallback = (fallback_model or "").strip()
-        self.fallback_model = fallback if fallback and fallback != self.model else None
-        self.max_retries = max(0, min(int(max_retries), 4))
-        self.base_delay = max(0.0, float(base_delay))
-        self.last_model_used: str | None = None
-        self.last_attempt_count: int = 0
 
     def _sdk(self):
         try:
@@ -96,9 +41,6 @@ class GeminiJsonClient:
         genai = self._sdk()
         return genai.Client(api_key=self.api_key)
 
-    def _call(self, *, client, model: str, contents: str, config: dict[str, Any]):
-        return client.models.generate_content(model=model, contents=contents, config=config)
-
     def generate_json(
         self,
         *,
@@ -108,6 +50,13 @@ class GeminiJsonClient:
         json_schema: dict[str, Any],
         model: str | None = None,
     ) -> dict[str, Any]:
+        """Generate a JSON object that follows ``json_schema``.
+
+        Gemini's ``response_json_schema`` accepts standard JSON Schema. We keep
+        the schema name in the system instruction for traceability, while the
+        schema itself is supplied only through the API config (not duplicated in
+        the prompt), following Google Gen AI SDK guidance.
+        """
         client = self._client()
         target_model = (model or self.model).strip()
         system_instruction = (
@@ -115,53 +64,20 @@ class GeminiJsonClient:
             + f"\n\nInternal output contract name: {schema_name}. "
               "Return only data conforming to the configured JSON schema."
         )
-        config = {
-            "system_instruction": system_instruction,
-            "response_mime_type": "application/json",
-            "response_json_schema": json_schema,
-        }
+        try:
+            response = client.models.generate_content(
+                model=target_model,
+                contents=input_text,
+                config={
+                    "system_instruction": system_instruction,
+                    "response_mime_type": "application/json",
+                    "response_json_schema": json_schema,
+                    "temperature": 0.1,
+                },
+            )
+        except Exception as exc:  # SDK/provider exceptions vary by version/status
+            raise LLMResponseError(f"Gemini API 호출에 실패했습니다: {exc}") from exc
 
-        models = [target_model]
-        if self.fallback_model and self.fallback_model not in models:
-            models.append(self.fallback_model)
-
-        last_exc: Exception | None = None
-        total_attempts = 0
-        for model_name in models:
-            for attempt in range(self.max_retries + 1):
-                total_attempts += 1
-                try:
-                    response = self._call(
-                        client=client,
-                        model=model_name,
-                        contents=input_text,
-                        config=config,
-                    )
-                    self.last_model_used = model_name
-                    self.last_attempt_count = total_attempts
-                    return self._parse_response(response)
-                except Exception as exc:  # provider exception types vary by SDK version
-                    last_exc = exc
-                    transient = _is_transient(exc)
-                    if not transient:
-                        self.last_attempt_count = total_attempts
-                        raise LLMResponseError(f"Gemini API 호출에 실패했습니다: {exc}") from exc
-                    if attempt < self.max_retries:
-                        delay = self.base_delay * (2 ** attempt)
-                        if delay > 0:
-                            delay += random.uniform(0, min(0.35, delay * 0.1))
-                            time.sleep(delay)
-                        continue
-                    break
-
-        self.last_attempt_count = total_attempts
-        fallback_note = f" / fallback={self.fallback_model}" if self.fallback_model else ""
-        raise LLMResponseError(
-            f"Gemini API 호출이 재시도 후에도 실패했습니다 (primary={target_model}{fallback_note}): {last_exc}"
-        ) from last_exc
-
-    @staticmethod
-    def _parse_response(response) -> dict[str, Any]:
         parsed = getattr(response, "parsed", None)
         if isinstance(parsed, dict):
             return parsed
