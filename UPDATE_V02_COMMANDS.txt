@@ -1,0 +1,13 @@
+# Apply the v0.2 update ZIP in GitHub Codespaces
+
+unzip -o PSD-Patent-Intelligence-v0.2-update.zip -d .
+rm PSD-Patent-Intelligence-v0.2-update.zip
+pip install -r requirements.txt pytest
+python -m pytest
+
+git add .
+git commit -m "Add ontology-based Module 1 end-to-end analysis"
+git push
+
+# Expected offline test result for this package: 13 passed
+# After deploy, configure Streamlit App settings > Secrets using STREAMLIT_SECRETS_SETUP.md.

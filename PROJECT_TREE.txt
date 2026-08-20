@@ -1,56 +1,35 @@
 PSD-Patent-Intelligence/
-├── .github/
-│   └── workflows/
-│       └── quality-check.yml
+├── .github/workflows/quality-check.yml
 ├── .streamlit/
 │   ├── config.toml
 │   └── secrets.toml.example
 ├── engine/
-│   ├── modules/
+│   ├── analysis_models.py
+│   ├── app_service.py
+│   ├── schemas.py
+│   ├── llm/
 │   │   ├── __init__.py
+│   │   └── openai_client.py
+│   ├── modules/
 │   │   ├── module1.py
 │   │   ├── module2.py
 │   │   └── module3.py
 │   ├── ontology/
-│   │   ├── __init__.py
+│   │   ├── extractor.py
 │   │   ├── loader.py
 │   │   ├── mapper.py
+│   │   ├── prompt_context.py
 │   │   └── validator.py
 │   ├── patent/
-│   │   ├── __init__.py
 │   │   ├── context_router.py
 │   │   └── parser.py
-│   ├── reports/
-│   │   ├── __init__.py
-│   │   └── generator.py
-│   ├── retrieval/
-│   │   ├── __init__.py
-│   │   ├── patent_search.py
-│   │   └── reranker.py
-│   ├── __init__.py
-│   ├── app_service.py
-│   └── schemas.py
+│   ├── reports/generator.py
+│   └── retrieval/
 ├── knowledge/
-│   ├── claim_elements.json
-│   ├── constraints.json
-│   ├── effects_design_attributes.json
-│   ├── functions.json
-│   ├── ontology_meta.json
-│   ├── problems.json
-│   ├── README.md
-│   ├── relations.json
-│   ├── states_modes.json
-│   └── taxonomy.json
 ├── sample_data/
-│   └── sample_patent.json
 ├── tests/
-│   ├── conftest.py
-│   ├── test_app_service.py
-│   ├── test_knowledge_json.py
-│   └── test_structure.py
-├── .gitignore
-├── GITHUB_UPLOAD_GUIDE.md
-├── PROJECT_TREE.txt
+├── MODULE1_V02_IMPLEMENTATION_REPORT.md
+├── STREAMLIT_SECRETS_SETUP.md
 ├── README.md
 ├── requirements.txt
 └── streamlit_app.py

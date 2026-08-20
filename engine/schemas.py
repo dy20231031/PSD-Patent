@@ -4,6 +4,48 @@ from typing import Any
 from pydantic import BaseModel, Field
 
 
+class RawPatentSource(BaseModel):
+    input_type: str
+    filename: str | None = None
+    page_count: int | None = None
+    text_char_count: int = 0
+    average_chars_per_page: float | None = None
+    extraction_method: str
+    ocr_used: bool = False
+    warnings: list[str] = Field(default_factory=list)
+
+
+class RawPatentMetadata(BaseModel):
+    publication_number: str | None = None
+    publication_number_raw: str | None = None
+    title: str | None = None
+    applicant: str | None = None
+    filename: str | None = None
+    pdf_metadata: dict[str, str] = Field(default_factory=dict)
+
+
+class RawClaim(BaseModel):
+    claim_id: str
+    claim_number: int
+    claim_type: str
+    depends_on: list[int] = Field(default_factory=list)
+    text: str
+
+
+class RawPatent(BaseModel):
+    schema_version: str = "raw-patent-v0.1"
+    source: RawPatentSource
+    metadata: RawPatentMetadata
+    abstract: str = ""
+    background: str = ""
+    summary: str = ""
+    figure_description: str = ""
+    description: str = ""
+    claims: list[RawClaim] = Field(default_factory=list)
+    parser_diagnostics: dict[str, Any] = Field(default_factory=dict)
+    raw_text: str = ""
+
+
 class Evidence(BaseModel):
     evidence_id: str
     source_scope: str
