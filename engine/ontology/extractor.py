@@ -128,7 +128,7 @@ def extract_structured_patent(
     knowledge_base: dict[str, dict],
     llm: GeminiJsonClient,
 ) -> tuple[dict, dict[str, Any]]:
-    """Run the v0.3 Gemini ontology extraction pipeline.
+    """Run the v0.4 Gemini ontology extraction pipeline.
 
     Returns `(structured_patent, trace)` where trace records context sizes and
     provider/model metadata for debugging without storing secrets.
@@ -189,6 +189,7 @@ def extract_structured_patent(
         "title": raw_patent.get("metadata", {}).get("title"),
         "applicant": raw_patent.get("metadata", {}).get("applicant"),
         "source_file": raw_patent.get("metadata", {}).get("filename"),
+        "source_url": raw_patent.get("source", {}).get("source_url"),
     }
 
     trace = {

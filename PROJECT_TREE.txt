@@ -22,13 +22,16 @@ PSD-Patent-Intelligence/
 │   │   └── validator.py
 │   ├── patent/
 │   │   ├── context_router.py
-│   │   └── parser.py
+│   │   ├── parser.py
+│   │   └── retriever.py
 │   ├── reports/generator.py
 │   └── retrieval/
 ├── knowledge/
 ├── sample_data/
 ├── tests/
 ├── MODULE1_V03_GEMINI_IMPLEMENTATION_REPORT.md
+├── V04_IMPLEMENTATION_REPORT.md
+├── UPDATE_V04_COMMANDS.txt
 ├── STREAMLIT_SECRETS_SETUP.md
 ├── README.md
 ├── requirements.txt

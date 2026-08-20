@@ -1,0 +1,8 @@
+unzip -o PSD-Patent-Intelligence-v0.6-combined-update.zip -d .
+rm PSD-Patent-Intelligence-v0.6-combined-update.zip
+pip install -r requirements.txt pytest
+python -m pytest
+
+git add .
+git commit -m "Add Module 2 ontology-based related patent analysis"
+git push

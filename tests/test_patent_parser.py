@@ -37,7 +37,7 @@ CLAIMS
 def test_parse_patent_text_sections_and_claims():
     parsed = parse_patent_text(SAMPLE_PATENT_TEXT, filename="sample.pdf")
 
-    assert parsed["schema_version"] == "raw-patent-v0.1"
+    assert parsed["schema_version"] == "raw-patent-v0.2"
     assert parsed["metadata"]["publication_number"] == "US10774572B2"
     assert parsed["metadata"]["title"] == "Power Sliding Door Cable Tension Device"
     assert parsed["metadata"]["applicant"] == "Example Mobility Corp."
@@ -55,6 +55,54 @@ def test_parse_patent_text_sections_and_claims():
     assert claims[2]["claim_type"] == "dependent"
     assert claims[2]["depends_on"] == [1]
     assert claims[3]["claim_type"] == "independent"
+    assert parsed["parser_diagnostics"]["claim_detection_strategy"] == "explicit_claims_heading"
+
+
+def test_claims_count_heading_and_invention_claimed_preamble():
+    text = """
+ABSTRACT
+A door drive system.
+DESCRIPTION
+Long description content.
+THE INVENTION CLAIMED IS:
+1. An opening-closing body driving device comprising a case, a drum, and a cable configured to move a sliding door.
+2. The opening-closing body driving device according to claim 1, wherein the cable is guided by a pulley.
+3. The opening-closing body driving device according to claim 2, wherein the pulley is rotatably supported by a holder.
+"""
+    parsed = parse_patent_text(text)
+    assert len(parsed["claims"]) == 3
+    assert parsed["claims"][1]["depends_on"] == [1]
+    assert parsed["claims"][2]["depends_on"] == [2]
+    assert parsed["parser_diagnostics"]["claim_detection_strategy"] in {"explicit_claims_heading", "claim_preamble"}
+
+
+def test_claims_count_parenthetical_heading():
+    text = """
+ABSTRACT
+A door apparatus.
+CLAIMS (3)
+1. A sliding door apparatus comprising a motor and a drive cable configured to move a sliding door.
+2. The sliding door apparatus of claim 1, wherein the drive cable is wound on a drum.
+3. The sliding door apparatus of claim 1, wherein a guide pulley guides the drive cable.
+"""
+    parsed = parse_patent_text(text)
+    assert [c["claim_number"] for c in parsed["claims"]] == [1, 2, 3]
+    assert parsed["parser_diagnostics"]["claim_heading_or_preamble"].upper().startswith("CLAIMS")
+
+
+def test_tail_number_sequence_fallback_when_heading_is_lost():
+    description = "\n".join(["Detailed description paragraph about a vehicle sliding door and drive unit."] * 50)
+    text = f"""
+ABSTRACT
+A vehicle sliding door drive.
+{description}
+1. A power sliding door system comprising a motor, a drum, and a cable configured to move a sliding door along a guide rail.
+2. The power sliding door system according to claim 1, wherein the cable is wound on the drum.
+3. The power sliding door system according to claim 2, wherein a pulley guides the cable.
+"""
+    parsed = parse_patent_text(text)
+    assert len(parsed["claims"]) == 3
+    assert parsed["parser_diagnostics"]["claim_detection_strategy"] == "tail_number_sequence"
 
 
 def test_korean_claim_dependency_detection():
@@ -89,3 +137,4 @@ def test_image_only_or_blank_pdf_returns_warning_instead_of_crashing():
     assert parsed["source"]["ocr_used"] is False
     assert parsed["source"]["warnings"]
     assert parsed["claims"] == []
+    assert parsed["parser_diagnostics"]["claim_detection_strategy"] == "not_found"

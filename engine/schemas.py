@@ -13,6 +13,8 @@ class RawPatentSource(BaseModel):
     extraction_method: str
     ocr_used: bool = False
     warnings: list[str] = Field(default_factory=list)
+    source_url: str | None = None
+    provider: str | None = None
 
 
 class RawPatentMetadata(BaseModel):
@@ -22,6 +24,12 @@ class RawPatentMetadata(BaseModel):
     applicant: str | None = None
     filename: str | None = None
     pdf_metadata: dict[str, str] = Field(default_factory=dict)
+    application_number: str | None = None
+    priority_date: str | None = None
+    filing_date: str | None = None
+    publication_date: str | None = None
+    inventors: list[str] = Field(default_factory=list)
+    legal_status: str | None = None
 
 
 class RawClaim(BaseModel):

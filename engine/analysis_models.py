@@ -190,3 +190,35 @@ class Module1Report(StrictModel):
     technology_classification: str
     core_technology_summary: str
     evidence_note: str
+
+
+class CandidateOntologyFingerprint(StrictModel):
+    publication_number: str
+    technology_ids: list[str]
+    architecture_ids: list[str]
+    problem_ids: list[str]
+    function_ids: list[str]
+    claim_element_ids: list[str]
+    relation_ids: list[str]
+    solution_summary: str
+    claim_focus: str
+
+
+class CandidateBatchExtraction(StrictModel):
+    candidates: list[CandidateOntologyFingerprint]
+
+
+class RelatedPatentNarrative(StrictModel):
+    publication_number: str
+    selection_reason: str
+    shared_problem: str
+    common_points: list[str]
+    differences: list[str]
+    technical_development: str
+
+
+class Module2Report(StrictModel):
+    overview: str
+    selection_method: str
+    related_patents: list[RelatedPatentNarrative]
+    comparison_summary: str
