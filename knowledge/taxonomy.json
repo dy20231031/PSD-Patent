@@ -1,0 +1,1942 @@
+{
+  "schema_version": "1.0",
+  "knowledge_type": "psd_taxonomy",
+  "source_document": {
+    "file_name": "PSD_Core_Taxonomy_v1.4.docx",
+    "version": "1.4",
+    "sha256": "db64fc140df4b3e4d6628e18fb9e37abf29dee39f8524d446bb02874289f7402"
+  },
+  "generated_at": "2026-08-21T01:36:00+09:00",
+  "counts": {
+    "technology_nodes": 73,
+    "architecture_axes": 5,
+    "architecture_values": 18
+  },
+  "technology_nodes": [
+    {
+      "record_type": "technology",
+      "id": "T1",
+      "name": "Door Kinematics & Guidance",
+      "parent_id": null,
+      "level": 1,
+      "definition": "Door 이동 궤적, Rail/Roller, 지지·안내",
+      "scope": "Door 이동 궤적, Rail/Roller, 지지·안내",
+      "importance": "Core"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2",
+      "name": "Drive & Power Transmission",
+      "parent_id": null,
+      "level": 1,
+      "definition": "Motor, Reduction, Cable, Drum, Pulley, Tension, Belt, Clutch",
+      "scope": "Motor, Reduction, Cable, Drum, Pulley, Tension, Belt, Clutch",
+      "importance": "Focus ★★★"
+    },
+    {
+      "record_type": "technology",
+      "id": "T3",
+      "name": "Latch, Cinching & Release",
+      "parent_id": null,
+      "level": 1,
+      "definition": "Latch/Striker, Cinching, Release, Locking",
+      "scope": "Latch/Striker, Cinching, Release, Locking",
+      "importance": "Core"
+    },
+    {
+      "record_type": "technology",
+      "id": "T4",
+      "name": "Sensing & State Detection",
+      "parent_id": null,
+      "level": 1,
+      "definition": "위치·속도·부하·장애물·환경 상태 검출",
+      "scope": "위치·속도·부하·장애물·환경 상태 검출",
+      "importance": "Core"
+    },
+    {
+      "record_type": "technology",
+      "id": "T5",
+      "name": "Control, Safety & Diagnostics",
+      "parent_id": null,
+      "level": 1,
+      "definition": "개폐·속도/Torque·Assist·Anti-pinch·진단/보호",
+      "scope": "개폐·속도/Torque·Assist·Anti-pinch·진단/보호",
+      "importance": "Core+"
+    },
+    {
+      "record_type": "technology",
+      "id": "T6",
+      "name": "Power & Electrical Interface",
+      "parent_id": null,
+      "level": 1,
+      "definition": "전원, Motor Driver, Wire Harness, Connector/Signal",
+      "scope": "전원, Motor Driver, Wire Harness, Connector/Signal",
+      "importance": "Core"
+    },
+    {
+      "record_type": "technology",
+      "id": "T7",
+      "name": "User Interface & Manual Operation",
+      "parent_id": null,
+      "level": 1,
+      "definition": "Local/Remote/Hands-free 입력, Warning, Manual/Emergency",
+      "scope": "Local/Remote/Hands-free 입력, Warning, Manual/Emergency",
+      "importance": "Core"
+    },
+    {
+      "record_type": "technology",
+      "id": "T1.1",
+      "name": "Rail / Track Architecture",
+      "parent_id": "T1",
+      "level": 2,
+      "definition": "Door 이동 경로를 형성하는 Rail/Track 구조",
+      "representative_claim_elements": [
+        "Guide Rail",
+        "Track"
+      ],
+      "representative_patents": [
+        "JP2023178564A",
+        "JP2024168683A"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T1.2",
+      "name": "Roller / Roller Arm Guidance",
+      "parent_id": "T1",
+      "level": 2,
+      "definition": "Rail과 접촉하여 Door를 지지·안내하는 Roller계 구조",
+      "representative_claim_elements": [
+        "Roller",
+        "Roller Arm"
+      ],
+      "representative_patents": [
+        "JP7077855B2",
+        "US10443288B2"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T1.3",
+      "name": "Door Trajectory / Motion Geometry",
+      "parent_id": "T1",
+      "level": 2,
+      "definition": "Swing-out, sliding, curved-section 등 Door 운동 궤적 설계",
+      "representative_claim_elements": [
+        "Rail",
+        "Roller Arm"
+      ],
+      "representative_patents": [
+        "US20110061304A1",
+        "JP6915329B2"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T1.4",
+      "name": "Door Hold / Stop",
+      "parent_id": "T1",
+      "level": 2,
+      "definition": "Full-open 위치 유지 또는 Door 이동 한계 규정",
+      "representative_claim_elements": [
+        "Stopper",
+        "Hold Mechanism"
+      ],
+      "representative_patents": [
+        "Discovery 보완"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.1",
+      "name": "Drive Source",
+      "parent_id": "T2",
+      "level": 2,
+      "definition": "전동 구동력을 생성하는 구동원 및 Actuator 구조",
+      "representative_claim_elements": [
+        "Motor",
+        "Motor Unit"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.2",
+      "name": "Reduction / Torque Conversion",
+      "parent_id": "T2",
+      "level": 2,
+      "definition": "감속·Torque 증대 또는 전달비를 조절하는 구조",
+      "representative_claim_elements": [
+        "Reducer",
+        "Gear Train"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.3",
+      "name": "Cable Drive",
+      "parent_id": "T2",
+      "level": 2,
+      "definition": "Cable을 이용해 구동력을 Door로 전달하는 구조",
+      "representative_claim_elements": [
+        "Drive Cable"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.4",
+      "name": "Drum / Winding Mechanism",
+      "parent_id": "T2",
+      "level": 2,
+      "definition": "Cable 권취·해제 및 Drum geometry를 이용한 전달 구조",
+      "representative_claim_elements": [
+        "Drum",
+        "Winding Groove"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.5",
+      "name": "Pulley / Cable Guidance",
+      "parent_id": "T2",
+      "level": 2,
+      "definition": "Pulley 및 Guide를 이용한 Cable 방향·경로 관리 구조",
+      "representative_claim_elements": [
+        "Guide Pulley",
+        "Guide Block"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.6",
+      "name": "Tension / Slack Management",
+      "parent_id": "T2",
+      "level": 2,
+      "definition": "Cable/Belt 장력 유지 및 신장·Slack 보상 구조",
+      "representative_claim_elements": [
+        "Tensioner",
+        "Tension Pulley"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.7",
+      "name": "Belt Drive",
+      "parent_id": "T2",
+      "level": 2,
+      "definition": "Belt를 이용한 동력전달 및 Door interface 구조",
+      "representative_claim_elements": [
+        "Drive Belt",
+        "Belt Pulley"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.8",
+      "name": "Clutch / Power Coupling",
+      "parent_id": "T2",
+      "level": 2,
+      "definition": "동력계의 선택적 결합·분리 구조",
+      "representative_claim_elements": [
+        "Clutch",
+        "Coupling"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.9",
+      "name": "Hybrid / Multi-path Transmission",
+      "parent_id": "T2",
+      "level": 2,
+      "definition": "Cable/Belt/Drum/Gear 등 복수 전달경로 결합",
+      "representative_claim_elements": [
+        "복합 Drive Unit"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.3.1",
+      "name": "Cable Transmission",
+      "parent_id": "T2.3",
+      "level": 3,
+      "definition": "Cable 인장력으로 구동력을 전달",
+      "notes": {
+        "기존 Taxonomy에서 이동된 요소": "Opening/Closing Cable → role attribute"
+      }
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.3.2",
+      "name": "Cable Routing & Direction Change",
+      "parent_id": "T2.3",
+      "level": 3,
+      "definition": "Cable 경로 형성 및 진행방향 전환",
+      "notes": {
+        "기존 Taxonomy에서 이동된 요소": "Cable Path / Direction Change"
+      }
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.3.3",
+      "name": "Cable-Door Interface",
+      "parent_id": "T2.3",
+      "level": 3,
+      "definition": "Cable과 Door/Roller Arm 사이의 구동력 전달 interface",
+      "notes": {
+        "기존 Taxonomy에서 이동된 요소": "Cable End / Holder는 Component Dictionary"
+      }
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.3.4",
+      "name": "Cable Protection & Interference Prevention",
+      "parent_id": "T2.3",
+      "level": 3,
+      "definition": "Cable 이탈·마찰·상호간섭·오염 방지",
+      "notes": {
+        "기존 Taxonomy에서 이동된 요소": "Protector / Separation Wall은 Claim Element"
+      }
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.4.1",
+      "name": "Drum Architecture",
+      "parent_id": "T2.4",
+      "level": 3,
+      "definition": "Single / multiple drum 등 Drum 구성방식",
+      "notes": {
+        "구분": "개수는 architecture property"
+      }
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.4.2",
+      "name": "Winding Geometry",
+      "parent_id": "T2.4",
+      "level": 3,
+      "definition": "Groove·권취면 등 Cable을 수용하는 Drum geometry",
+      "notes": {
+        "구분": "Winding Groove는 Structural Feature"
+      }
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.4.3",
+      "name": "Variable-diameter Transmission",
+      "parent_id": "T2.4",
+      "level": 3,
+      "definition": "서로 다른 직경/유효반경을 이용해 전달특성 변화",
+      "notes": {
+        "구분": "Large/Small은 Portion size attribute"
+      }
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.5.1",
+      "name": "Guide-Pulley Architecture",
+      "parent_id": "T2.5",
+      "level": 3,
+      "definition": "Cable 방향 및 경로를 형성하는 Pulley 구조",
+      "representative_patents": [
+        "JP4747471B2"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.5.2",
+      "name": "Pulley Support / Mounting",
+      "parent_id": "T2.5",
+      "level": 3,
+      "definition": "Holder/Bracket/Housing 등을 통한 Pulley 지지·장착",
+      "representative_patents": [
+        "JP7077855B2",
+        "JP2016188541A"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.5.3",
+      "name": "Pulley Position Adjustment",
+      "parent_id": "T2.5",
+      "level": 3,
+      "definition": "Slot/guide 구조를 이용한 Pulley 위치 조정",
+      "representative_patents": [
+        "JP5012010B2"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.5.4",
+      "name": "Cable Guide / Protector",
+      "parent_id": "T2.5",
+      "level": 3,
+      "definition": "Guide Block, Protector, Partition 등을 이용한 Cable 관리",
+      "representative_patents": [
+        "JP7604988B2",
+        "JP5125234B2"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.5.5",
+      "name": "Pulley Damping Structure",
+      "parent_id": "T2.5",
+      "level": 3,
+      "definition": "Pulley/Cable 진동·충격을 저감하는 기계 구조",
+      "representative_patents": [
+        "JP5207678B2"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.6.1",
+      "name": "Fixed Adjustment",
+      "parent_id": "T2.6",
+      "level": 3,
+      "definition": "조립·설정 단계에서 위치 조정으로 장력을 설정"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.6.2",
+      "name": "Movable-Pulley Tension",
+      "parent_id": "T2.6",
+      "level": 3,
+      "definition": "Pulley 이동량을 이용해 장력 변화 흡수"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.6.3",
+      "name": "Spring-loaded Tension",
+      "parent_id": "T2.6",
+      "level": 3,
+      "definition": "Spring/elastic force로 지속적 장력 부여"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.6.4",
+      "name": "Automatic Slack Compensation",
+      "parent_id": "T2.6",
+      "level": 3,
+      "definition": "Cable 신장·처짐에 따른 여유 길이를 자동 보상"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.6.5",
+      "name": "Belt Tension Management",
+      "parent_id": "T2.6",
+      "level": 3,
+      "definition": "Belt계 장력 유지 및 보상"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.7.1",
+      "name": "Belt Transmission",
+      "parent_id": "T2.7",
+      "level": 3,
+      "definition": "Belt 자체를 이용한 동력전달"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.7.2",
+      "name": "Belt Pulley Architecture",
+      "parent_id": "T2.7",
+      "level": 3,
+      "definition": "Drive/Driven pulley를 이용한 Belt 구동"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.7.3",
+      "name": "Belt-Door Interface",
+      "parent_id": "T2.7",
+      "level": 3,
+      "definition": "Belt 운동을 Door에 전달하는 연결구조"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.7.4",
+      "name": "Belt Protection",
+      "parent_id": "T2.7",
+      "level": 3,
+      "definition": "Belt 손상·이탈·외부접촉 방지"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.7.5",
+      "name": "Belt-Rail Integration",
+      "parent_id": "T2.7",
+      "level": 3,
+      "definition": "Belt 구동계와 Rail/Guide Frame의 통합"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.8.1",
+      "name": "Mechanical Coupling",
+      "parent_id": "T2.8",
+      "level": 3,
+      "definition": "기계적 Clutch/Coupling으로 동력 연결·분리"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.8.2",
+      "name": "Electromagnetic Coupling",
+      "parent_id": "T2.8",
+      "level": 3,
+      "definition": "전자기 작동 Clutch"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.8.3",
+      "name": "Positive / Serration Coupling",
+      "parent_id": "T2.8",
+      "level": 3,
+      "definition": "Serration 등 형상 치합식 결합"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.8.4",
+      "name": "Drive Disconnect",
+      "parent_id": "T2.8",
+      "level": 3,
+      "definition": "Manual/Emergency 운전을 위한 구동경로 분리"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.9.1",
+      "name": "Hybrid Transmission",
+      "parent_id": "T2.9",
+      "level": 3,
+      "definition": "Cable/Belt/Drum/Gear의 복합 전달구조"
+    },
+    {
+      "record_type": "technology",
+      "id": "T3.1",
+      "name": "Latching Engagement",
+      "parent_id": "T3",
+      "level": 2,
+      "definition": "Latch와 Striker를 이용한 Door 체결 구조"
+    },
+    {
+      "record_type": "technology",
+      "id": "T3.2",
+      "name": "Cinching / Pull-in",
+      "parent_id": "T3",
+      "level": 2,
+      "definition": "Half-close에서 완전 폐쇄 위치로 당기는 구조"
+    },
+    {
+      "record_type": "technology",
+      "id": "T3.3",
+      "name": "Release / Unlatch",
+      "parent_id": "T3",
+      "level": 2,
+      "definition": "개방을 위해 Latch를 해제하는 구조"
+    },
+    {
+      "record_type": "technology",
+      "id": "T3.4",
+      "name": "Locking / Retention",
+      "parent_id": "T3",
+      "level": 2,
+      "definition": "Door의 폐쇄·잠금 상태를 기계적으로 유지"
+    },
+    {
+      "record_type": "technology",
+      "id": "T4.1",
+      "name": "Position / Motion Sensing",
+      "parent_id": "T4",
+      "level": 2,
+      "definition": "위치·속도·방향 검출"
+    },
+    {
+      "record_type": "technology",
+      "id": "T4.2",
+      "name": "Load / Drive-state Sensing",
+      "parent_id": "T4",
+      "level": 2,
+      "definition": "Motor current, torque, load 등 구동상태 검출"
+    },
+    {
+      "record_type": "technology",
+      "id": "T4.3",
+      "name": "Contact Obstacle Detection",
+      "parent_id": "T4",
+      "level": 2,
+      "definition": "Edge/strip/touch 기반 끼임 검출"
+    },
+    {
+      "record_type": "technology",
+      "id": "T4.4",
+      "name": "Non-contact Obstacle Detection",
+      "parent_id": "T4",
+      "level": 2,
+      "definition": "Proximity/capacitive/camera 등 비접촉 검출"
+    },
+    {
+      "record_type": "technology",
+      "id": "T4.5",
+      "name": "Vehicle / Environment Sensing",
+      "parent_id": "T4",
+      "level": 2,
+      "definition": "Inclination 등 차량·환경상태 검출"
+    },
+    {
+      "record_type": "technology",
+      "id": "T5.1",
+      "name": "Basic Motion Control",
+      "parent_id": "T5",
+      "level": 2,
+      "definition": "Open/Close/Stop/Reverse sequence 제어"
+    },
+    {
+      "record_type": "technology",
+      "id": "T5.2",
+      "name": "Speed / Torque Profile Control",
+      "parent_id": "T5",
+      "level": 2,
+      "definition": "Door 위치·상황에 따른 속도/Torque profile 제어"
+    },
+    {
+      "record_type": "technology",
+      "id": "T5.3",
+      "name": "Position / Trajectory-dependent Control",
+      "parent_id": "T5",
+      "level": 2,
+      "definition": "곡선부·End position 등 위치/궤적 기반 제어"
+    },
+    {
+      "record_type": "technology",
+      "id": "T5.4",
+      "name": "Manual Assist Control",
+      "parent_id": "T5",
+      "level": 2,
+      "definition": "사용자 수동 조작을 Motor로 보조"
+    },
+    {
+      "record_type": "technology",
+      "id": "T5.5",
+      "name": "Obstacle / Anti-pinch Response",
+      "parent_id": "T5",
+      "level": 2,
+      "definition": "장애물 검출 후 정지·반전 등 안전 response"
+    },
+    {
+      "record_type": "technology",
+      "id": "T5.6",
+      "name": "Interlock",
+      "parent_id": "T5",
+      "level": 2,
+      "definition": "Vehicle/door condition에 따른 작동 제한"
+    },
+    {
+      "record_type": "technology",
+      "id": "T5.7",
+      "name": "Fault Diagnostics / Protection",
+      "parent_id": "T5",
+      "level": 2,
+      "definition": "Motor/Sensor/Circuit 이상 진단 및 보호"
+    },
+    {
+      "record_type": "technology",
+      "id": "T6.1",
+      "name": "Power Supply",
+      "parent_id": "T6",
+      "level": 2,
+      "definition": "Vehicle power를 Door/PSD로 전달"
+    },
+    {
+      "record_type": "technology",
+      "id": "T6.2",
+      "name": "Motor Drive / ECU Interface",
+      "parent_id": "T6",
+      "level": 2,
+      "definition": "Motor power switching 및 ECU interface"
+    },
+    {
+      "record_type": "technology",
+      "id": "T6.3",
+      "name": "Wire Harness",
+      "parent_id": "T6",
+      "level": 2,
+      "definition": "차체-도어 간 전력·신호 Harness"
+    },
+    {
+      "record_type": "technology",
+      "id": "T6.4",
+      "name": "Harness Guidance / Protection",
+      "parent_id": "T6",
+      "level": 2,
+      "definition": "Door 운동에 따른 Harness 경로 및 보호"
+    },
+    {
+      "record_type": "technology",
+      "id": "T6.5",
+      "name": "Connector / Signal Interface",
+      "parent_id": "T6",
+      "level": 2,
+      "definition": "Door-Body/ECU electrical connection"
+    },
+    {
+      "record_type": "technology",
+      "id": "T7.1",
+      "name": "Local Operation Input",
+      "parent_id": "T7",
+      "level": 2,
+      "definition": "Switch/handle 등 근거리 사용자 입력"
+    },
+    {
+      "record_type": "technology",
+      "id": "T7.2",
+      "name": "Remote / Smart Input",
+      "parent_id": "T7",
+      "level": 2,
+      "definition": "Remote/Smart Key 입력"
+    },
+    {
+      "record_type": "technology",
+      "id": "T7.3",
+      "name": "Hands-free / Intent Input",
+      "parent_id": "T7",
+      "level": 2,
+      "definition": "Gesture/Proximity/intent 기반 입력"
+    },
+    {
+      "record_type": "technology",
+      "id": "T7.4",
+      "name": "Warning Interface",
+      "parent_id": "T7",
+      "level": 2,
+      "definition": "Lamp/Buzzer 등 상태·위험 경고"
+    },
+    {
+      "record_type": "technology",
+      "id": "T7.5",
+      "name": "Manual / Emergency Operation",
+      "parent_id": "T7",
+      "level": 2,
+      "definition": "전원 이상 또는 사용자 의도에 따른 수동/비상 운전"
+    }
+  ],
+  "architecture_axes": [
+    {
+      "record_type": "architecture_axis",
+      "id": "A1",
+      "name": "Mounting Location",
+      "definition": "구동계 또는 부품이 차량의 어느 구조에 배치되는지",
+      "values": [
+        {
+          "id": "A1.1",
+          "name": "Door-mounted"
+        },
+        {
+          "id": "A1.2",
+          "name": "Body-mounted"
+        },
+        {
+          "id": "A1.3",
+          "name": "Rail-integrated"
+        },
+        {
+          "id": "A1.4",
+          "name": "Door-panel-integrated"
+        }
+      ]
+    },
+    {
+      "record_type": "architecture_axis",
+      "id": "A2",
+      "name": "Module Integration",
+      "definition": "여러 기능을 하나의 Module/Base에 통합하는 방식",
+      "values": [
+        {
+          "id": "A2.1",
+          "name": "Door Module"
+        },
+        {
+          "id": "A2.2",
+          "name": "Base-plate Integrated"
+        },
+        {
+          "id": "A2.3",
+          "name": "Multi-function Module"
+        },
+        {
+          "id": "A2.4",
+          "name": "Pre-assembled Module"
+        }
+      ]
+    },
+    {
+      "record_type": "architecture_axis",
+      "id": "A3",
+      "name": "Unit Architecture",
+      "definition": "기능 부품을 하나의 Unit으로 구성하는 방식",
+      "values": [
+        {
+          "id": "A3.1",
+          "name": "Drive Unit"
+        },
+        {
+          "id": "A3.2",
+          "name": "Pulley Unit"
+        },
+        {
+          "id": "A3.3",
+          "name": "Motor-Reducer Integrated"
+        }
+      ]
+    },
+    {
+      "record_type": "architecture_axis",
+      "id": "A4",
+      "name": "Mounting & Positioning",
+      "definition": "부품의 장착·위치결정·조정·사전고정 방식",
+      "values": [
+        {
+          "id": "A4.1",
+          "name": "Fastened"
+        },
+        {
+          "id": "A4.2",
+          "name": "Positioned"
+        },
+        {
+          "id": "A4.3",
+          "name": "Adjustable"
+        },
+        {
+          "id": "A4.4",
+          "name": "Temporary Holding"
+        }
+      ]
+    },
+    {
+      "record_type": "architecture_axis",
+      "id": "A5",
+      "name": "Enclosure / Protection Architecture",
+      "definition": "Housing/Cover/Protector를 이용한 수용·보호 구조. Compact Packaging은 Effect/Design Attribute로 관리",
+      "values": [
+        {
+          "id": "A5.1",
+          "name": "Housing-based"
+        },
+        {
+          "id": "A5.2",
+          "name": "Cover-based"
+        },
+        {
+          "id": "A5.3",
+          "name": "Guide-Protector Integrated"
+        }
+      ]
+    }
+  ],
+  "architecture_values": [
+    {
+      "record_type": "architecture_value",
+      "id": "A1.1",
+      "name": "Door-mounted",
+      "parent_id": "A1",
+      "definition": "구동계 또는 부품이 차량의 어느 구조에 배치되는지"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A1.2",
+      "name": "Body-mounted",
+      "parent_id": "A1",
+      "definition": "구동계 또는 부품이 차량의 어느 구조에 배치되는지"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A1.3",
+      "name": "Rail-integrated",
+      "parent_id": "A1",
+      "definition": "구동계 또는 부품이 차량의 어느 구조에 배치되는지"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A1.4",
+      "name": "Door-panel-integrated",
+      "parent_id": "A1",
+      "definition": "구동계 또는 부품이 차량의 어느 구조에 배치되는지"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A2.1",
+      "name": "Door Module",
+      "parent_id": "A2",
+      "definition": "여러 기능을 하나의 Module/Base에 통합하는 방식"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A2.2",
+      "name": "Base-plate Integrated",
+      "parent_id": "A2",
+      "definition": "여러 기능을 하나의 Module/Base에 통합하는 방식"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A2.3",
+      "name": "Multi-function Module",
+      "parent_id": "A2",
+      "definition": "여러 기능을 하나의 Module/Base에 통합하는 방식"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A2.4",
+      "name": "Pre-assembled Module",
+      "parent_id": "A2",
+      "definition": "여러 기능을 하나의 Module/Base에 통합하는 방식"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A3.1",
+      "name": "Drive Unit",
+      "parent_id": "A3",
+      "definition": "기능 부품을 하나의 Unit으로 구성하는 방식"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A3.2",
+      "name": "Pulley Unit",
+      "parent_id": "A3",
+      "definition": "기능 부품을 하나의 Unit으로 구성하는 방식"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A3.3",
+      "name": "Motor-Reducer Integrated",
+      "parent_id": "A3",
+      "definition": "기능 부품을 하나의 Unit으로 구성하는 방식"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A4.1",
+      "name": "Fastened",
+      "parent_id": "A4",
+      "definition": "부품의 장착·위치결정·조정·사전고정 방식"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A4.2",
+      "name": "Positioned",
+      "parent_id": "A4",
+      "definition": "부품의 장착·위치결정·조정·사전고정 방식"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A4.3",
+      "name": "Adjustable",
+      "parent_id": "A4",
+      "definition": "부품의 장착·위치결정·조정·사전고정 방식"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A4.4",
+      "name": "Temporary Holding",
+      "parent_id": "A4",
+      "definition": "부품의 장착·위치결정·조정·사전고정 방식"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A5.1",
+      "name": "Housing-based",
+      "parent_id": "A5",
+      "definition": "Housing/Cover/Protector를 이용한 수용·보호 구조. Compact Packaging은 Effect/Design Attribute로 관리"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A5.2",
+      "name": "Cover-based",
+      "parent_id": "A5",
+      "definition": "Housing/Cover/Protector를 이용한 수용·보호 구조. Compact Packaging은 Effect/Design Attribute로 관리"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A5.3",
+      "name": "Guide-Protector Integrated",
+      "parent_id": "A5",
+      "definition": "Housing/Cover/Protector를 이용한 수용·보호 구조. Compact Packaging은 Effect/Design Attribute로 관리"
+    }
+  ],
+  "auxiliary_axes": [
+    {
+      "Axis": "Component / Claim Element",
+      "대표 값": "Motor, Guide Pulley, Slot, Groove, Door Module",
+      "관리 이유": "\"무엇이 등장하는가\"는 Dictionary에서 관리"
+    },
+    {
+      "Axis": "Function",
+      "대표 값": "guide_flexible_member, maintain_tension, detect_position",
+      "관리 이유": "\"무엇을 하는가\"는 Function Vocabulary에서 관리"
+    },
+    {
+      "Axis": "Relation",
+      "대표 값": "mounted_on, wound_on, guided_by, located_between",
+      "관리 이유": "\"어떻게 연결되는가\"는 Relation Vocabulary에서 관리"
+    },
+    {
+      "Axis": "Problem",
+      "대표 값": "P-FLX-01 tension_loss_or_slack; P-FLX-08 routing_or_installation_difficulty",
+      "관리 이유": "해결대상은 PSD Problem Vocabulary v1.1에서 관리"
+    },
+    {
+      "Axis": "Effect / Design Attribute",
+      "대표 값": "E-ASM-04 facilitate_routing; E-PKG-03 simplify_structure; DA-03 Assembly",
+      "관리 이유": "기술 결과와 설계평가축은 Effect / Design Attribute Vocabulary v1.1에서 관리"
+    },
+    {
+      "Axis": "State",
+      "대표 값": "Full-open, Ajar, Half-latched, Fully latched",
+      "관리 이유": "상태는 State / Mode & Claim Constraint Vocabulary v1.1에서 관리"
+    },
+    {
+      "Axis": "Operation Mode",
+      "대표 값": "Power, Manual, Emergency",
+      "관리 이유": "운전 모드는 Technology와 분리"
+    },
+    {
+      "Axis": "Claim Constraint",
+      "대표 값": "greater_than, threshold, conditional, cardinality",
+      "관리 이유": "핵심 청구 한정조건은 Technology와 분리하여 후속 Constraint Vocabulary에서 관리"
+    }
+  ],
+  "mapping_rules": [
+    {
+      "Rule": "T-R1",
+      "원칙": "Technology는 1~N개 multi-label로 저장",
+      "예시": "technology_labels=[T2.5,T2.6]"
+    },
+    {
+      "Rule": "T-R2",
+      "원칙": "보고서 표시용 display_primary는 핵심 차별 메커니즘 기준 1개 지정",
+      "예시": "display_primary=T2.6"
+    },
+    {
+      "Rule": "T-R3",
+      "원칙": "Architecture는 Technology와 별도로 0~N개 ID로 태깅",
+      "예시": "A1.1 Door-mounted; A4.3 Adjustable"
+    },
+    {
+      "Rule": "T-R4",
+      "원칙": "Component/Feature/Portion은 Taxonomy 항목으로 만들지 않음",
+      "예시": "Front Pulley → Guide Pulley + position=front"
+    },
+    {
+      "Rule": "T-R5",
+      "원칙": "Relation/State/Constraint/Effect를 Taxonomy에 넣지 않음",
+      "예시": "Cable-Drum Mapping → Relation"
+    },
+    {
+      "Rule": "T-R6",
+      "원칙": "미매핑 표현은 즉시 Taxonomy 확장하지 않고 Dictionary Review 우선",
+      "예시": "unmapped_candidate → 검토 후 확장"
+    },
+    {
+      "Rule": "T-R7",
+      "원칙": "Dictionary의 Typical / Compatible Taxonomy는 후보/호환성 힌트일 뿐 Patent Technology 자동 태깅 근거로 사용하지 않음",
+      "예시": "실제 technology_labels는 Claim의 핵심 해결구조/차별 메커니즘을 기준으로 판정"
+    }
+  ],
+  "report_question_map": [
+    {
+      "질문": "어느 기술영역인가?",
+      "사용 구조": "Technology Taxonomy",
+      "예": "T2.5 Pulley / Cable Guidance"
+    },
+    {
+      "질문": "어떤 설치·통합 구조인가?",
+      "사용 구조": "Architecture Axis",
+      "예": "A1 Door-mounted"
+    },
+    {
+      "질문": "무엇이 등장하는가?",
+      "사용 구조": "Claim Element Dictionary",
+      "예": "Guide Pulley, Adjustment Slot"
+    },
+    {
+      "질문": "무엇을 하는가?",
+      "사용 구조": "Function Vocabulary",
+      "예": "guide_flexible_member; adjust_component_position"
+    },
+    {
+      "질문": "어떻게 연결되는가?",
+      "사용 구조": "Relation Vocabulary",
+      "예": "Drive Cable --guided_by--> Guide Pulley"
+    },
+    {
+      "질문": "무슨 문제를 해결하는가?",
+      "사용 구조": "Problem Vocabulary",
+      "예": "P-FLX-08 routing_or_installation_difficulty"
+    },
+    {
+      "질문": "무슨 결과를 얻는가?",
+      "사용 구조": "Effect / Design Attribute Vocabulary",
+      "예": "E-ASM-04 facilitate_routing; DA-03 Assembly"
+    },
+    {
+      "질문": "어떤 조건에서 성립하는가?",
+      "사용 구조": "Claim Constraint Vocabulary",
+      "예": "diameter_1 > diameter_2; IF state=retracted THEN relation"
+    }
+  ],
+  "common_provenance_fields": [
+    {
+      "Field": "source_scope",
+      "예시": "claim / specification / prior_art_discussion / inference",
+      "원칙": "근거가 나온 문서 범위"
+    },
+    {
+      "Field": "source_section",
+      "예시": "Claim 1 / Background / Effects of the Invention",
+      "원칙": "문서 내 구체 섹션"
+    },
+    {
+      "Field": "claim_id",
+      "예시": "Claim 1",
+      "원칙": "Claim 기반 Fact이면 저장"
+    },
+    {
+      "Field": "evidence_text",
+      "예시": "원문 근거 문구",
+      "원칙": "원문 표현을 보존"
+    },
+    {
+      "Field": "evidence_level",
+      "예시": "E1-E4 / PE1-PE4 / EE1-EE4",
+      "원칙": "Vocabulary별 Evidence 등급"
+    },
+    {
+      "Field": "normalization_status",
+      "예시": "exact / synonym / subtype / unmapped_candidate",
+      "원칙": "정규화 상태가 적용되는 경우 저장"
+    }
+  ],
+  "items": [
+    {
+      "record_type": "technology",
+      "id": "T1",
+      "name": "Door Kinematics & Guidance",
+      "parent_id": null,
+      "level": 1,
+      "definition": "Door 이동 궤적, Rail/Roller, 지지·안내",
+      "scope": "Door 이동 궤적, Rail/Roller, 지지·안내",
+      "importance": "Core"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2",
+      "name": "Drive & Power Transmission",
+      "parent_id": null,
+      "level": 1,
+      "definition": "Motor, Reduction, Cable, Drum, Pulley, Tension, Belt, Clutch",
+      "scope": "Motor, Reduction, Cable, Drum, Pulley, Tension, Belt, Clutch",
+      "importance": "Focus ★★★"
+    },
+    {
+      "record_type": "technology",
+      "id": "T3",
+      "name": "Latch, Cinching & Release",
+      "parent_id": null,
+      "level": 1,
+      "definition": "Latch/Striker, Cinching, Release, Locking",
+      "scope": "Latch/Striker, Cinching, Release, Locking",
+      "importance": "Core"
+    },
+    {
+      "record_type": "technology",
+      "id": "T4",
+      "name": "Sensing & State Detection",
+      "parent_id": null,
+      "level": 1,
+      "definition": "위치·속도·부하·장애물·환경 상태 검출",
+      "scope": "위치·속도·부하·장애물·환경 상태 검출",
+      "importance": "Core"
+    },
+    {
+      "record_type": "technology",
+      "id": "T5",
+      "name": "Control, Safety & Diagnostics",
+      "parent_id": null,
+      "level": 1,
+      "definition": "개폐·속도/Torque·Assist·Anti-pinch·진단/보호",
+      "scope": "개폐·속도/Torque·Assist·Anti-pinch·진단/보호",
+      "importance": "Core+"
+    },
+    {
+      "record_type": "technology",
+      "id": "T6",
+      "name": "Power & Electrical Interface",
+      "parent_id": null,
+      "level": 1,
+      "definition": "전원, Motor Driver, Wire Harness, Connector/Signal",
+      "scope": "전원, Motor Driver, Wire Harness, Connector/Signal",
+      "importance": "Core"
+    },
+    {
+      "record_type": "technology",
+      "id": "T7",
+      "name": "User Interface & Manual Operation",
+      "parent_id": null,
+      "level": 1,
+      "definition": "Local/Remote/Hands-free 입력, Warning, Manual/Emergency",
+      "scope": "Local/Remote/Hands-free 입력, Warning, Manual/Emergency",
+      "importance": "Core"
+    },
+    {
+      "record_type": "technology",
+      "id": "T1.1",
+      "name": "Rail / Track Architecture",
+      "parent_id": "T1",
+      "level": 2,
+      "definition": "Door 이동 경로를 형성하는 Rail/Track 구조",
+      "representative_claim_elements": [
+        "Guide Rail",
+        "Track"
+      ],
+      "representative_patents": [
+        "JP2023178564A",
+        "JP2024168683A"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T1.2",
+      "name": "Roller / Roller Arm Guidance",
+      "parent_id": "T1",
+      "level": 2,
+      "definition": "Rail과 접촉하여 Door를 지지·안내하는 Roller계 구조",
+      "representative_claim_elements": [
+        "Roller",
+        "Roller Arm"
+      ],
+      "representative_patents": [
+        "JP7077855B2",
+        "US10443288B2"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T1.3",
+      "name": "Door Trajectory / Motion Geometry",
+      "parent_id": "T1",
+      "level": 2,
+      "definition": "Swing-out, sliding, curved-section 등 Door 운동 궤적 설계",
+      "representative_claim_elements": [
+        "Rail",
+        "Roller Arm"
+      ],
+      "representative_patents": [
+        "US20110061304A1",
+        "JP6915329B2"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T1.4",
+      "name": "Door Hold / Stop",
+      "parent_id": "T1",
+      "level": 2,
+      "definition": "Full-open 위치 유지 또는 Door 이동 한계 규정",
+      "representative_claim_elements": [
+        "Stopper",
+        "Hold Mechanism"
+      ],
+      "representative_patents": [
+        "Discovery 보완"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.1",
+      "name": "Drive Source",
+      "parent_id": "T2",
+      "level": 2,
+      "definition": "전동 구동력을 생성하는 구동원 및 Actuator 구조",
+      "representative_claim_elements": [
+        "Motor",
+        "Motor Unit"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.2",
+      "name": "Reduction / Torque Conversion",
+      "parent_id": "T2",
+      "level": 2,
+      "definition": "감속·Torque 증대 또는 전달비를 조절하는 구조",
+      "representative_claim_elements": [
+        "Reducer",
+        "Gear Train"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.3",
+      "name": "Cable Drive",
+      "parent_id": "T2",
+      "level": 2,
+      "definition": "Cable을 이용해 구동력을 Door로 전달하는 구조",
+      "representative_claim_elements": [
+        "Drive Cable"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.4",
+      "name": "Drum / Winding Mechanism",
+      "parent_id": "T2",
+      "level": 2,
+      "definition": "Cable 권취·해제 및 Drum geometry를 이용한 전달 구조",
+      "representative_claim_elements": [
+        "Drum",
+        "Winding Groove"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.5",
+      "name": "Pulley / Cable Guidance",
+      "parent_id": "T2",
+      "level": 2,
+      "definition": "Pulley 및 Guide를 이용한 Cable 방향·경로 관리 구조",
+      "representative_claim_elements": [
+        "Guide Pulley",
+        "Guide Block"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.6",
+      "name": "Tension / Slack Management",
+      "parent_id": "T2",
+      "level": 2,
+      "definition": "Cable/Belt 장력 유지 및 신장·Slack 보상 구조",
+      "representative_claim_elements": [
+        "Tensioner",
+        "Tension Pulley"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.7",
+      "name": "Belt Drive",
+      "parent_id": "T2",
+      "level": 2,
+      "definition": "Belt를 이용한 동력전달 및 Door interface 구조",
+      "representative_claim_elements": [
+        "Drive Belt",
+        "Belt Pulley"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.8",
+      "name": "Clutch / Power Coupling",
+      "parent_id": "T2",
+      "level": 2,
+      "definition": "동력계의 선택적 결합·분리 구조",
+      "representative_claim_elements": [
+        "Clutch",
+        "Coupling"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.9",
+      "name": "Hybrid / Multi-path Transmission",
+      "parent_id": "T2",
+      "level": 2,
+      "definition": "Cable/Belt/Drum/Gear 등 복수 전달경로 결합",
+      "representative_claim_elements": [
+        "복합 Drive Unit"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.3.1",
+      "name": "Cable Transmission",
+      "parent_id": "T2.3",
+      "level": 3,
+      "definition": "Cable 인장력으로 구동력을 전달",
+      "notes": {
+        "기존 Taxonomy에서 이동된 요소": "Opening/Closing Cable → role attribute"
+      }
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.3.2",
+      "name": "Cable Routing & Direction Change",
+      "parent_id": "T2.3",
+      "level": 3,
+      "definition": "Cable 경로 형성 및 진행방향 전환",
+      "notes": {
+        "기존 Taxonomy에서 이동된 요소": "Cable Path / Direction Change"
+      }
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.3.3",
+      "name": "Cable-Door Interface",
+      "parent_id": "T2.3",
+      "level": 3,
+      "definition": "Cable과 Door/Roller Arm 사이의 구동력 전달 interface",
+      "notes": {
+        "기존 Taxonomy에서 이동된 요소": "Cable End / Holder는 Component Dictionary"
+      }
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.3.4",
+      "name": "Cable Protection & Interference Prevention",
+      "parent_id": "T2.3",
+      "level": 3,
+      "definition": "Cable 이탈·마찰·상호간섭·오염 방지",
+      "notes": {
+        "기존 Taxonomy에서 이동된 요소": "Protector / Separation Wall은 Claim Element"
+      }
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.4.1",
+      "name": "Drum Architecture",
+      "parent_id": "T2.4",
+      "level": 3,
+      "definition": "Single / multiple drum 등 Drum 구성방식",
+      "notes": {
+        "구분": "개수는 architecture property"
+      }
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.4.2",
+      "name": "Winding Geometry",
+      "parent_id": "T2.4",
+      "level": 3,
+      "definition": "Groove·권취면 등 Cable을 수용하는 Drum geometry",
+      "notes": {
+        "구분": "Winding Groove는 Structural Feature"
+      }
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.4.3",
+      "name": "Variable-diameter Transmission",
+      "parent_id": "T2.4",
+      "level": 3,
+      "definition": "서로 다른 직경/유효반경을 이용해 전달특성 변화",
+      "notes": {
+        "구분": "Large/Small은 Portion size attribute"
+      }
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.5.1",
+      "name": "Guide-Pulley Architecture",
+      "parent_id": "T2.5",
+      "level": 3,
+      "definition": "Cable 방향 및 경로를 형성하는 Pulley 구조",
+      "representative_patents": [
+        "JP4747471B2"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.5.2",
+      "name": "Pulley Support / Mounting",
+      "parent_id": "T2.5",
+      "level": 3,
+      "definition": "Holder/Bracket/Housing 등을 통한 Pulley 지지·장착",
+      "representative_patents": [
+        "JP7077855B2",
+        "JP2016188541A"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.5.3",
+      "name": "Pulley Position Adjustment",
+      "parent_id": "T2.5",
+      "level": 3,
+      "definition": "Slot/guide 구조를 이용한 Pulley 위치 조정",
+      "representative_patents": [
+        "JP5012010B2"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.5.4",
+      "name": "Cable Guide / Protector",
+      "parent_id": "T2.5",
+      "level": 3,
+      "definition": "Guide Block, Protector, Partition 등을 이용한 Cable 관리",
+      "representative_patents": [
+        "JP7604988B2",
+        "JP5125234B2"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.5.5",
+      "name": "Pulley Damping Structure",
+      "parent_id": "T2.5",
+      "level": 3,
+      "definition": "Pulley/Cable 진동·충격을 저감하는 기계 구조",
+      "representative_patents": [
+        "JP5207678B2"
+      ]
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.6.1",
+      "name": "Fixed Adjustment",
+      "parent_id": "T2.6",
+      "level": 3,
+      "definition": "조립·설정 단계에서 위치 조정으로 장력을 설정"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.6.2",
+      "name": "Movable-Pulley Tension",
+      "parent_id": "T2.6",
+      "level": 3,
+      "definition": "Pulley 이동량을 이용해 장력 변화 흡수"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.6.3",
+      "name": "Spring-loaded Tension",
+      "parent_id": "T2.6",
+      "level": 3,
+      "definition": "Spring/elastic force로 지속적 장력 부여"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.6.4",
+      "name": "Automatic Slack Compensation",
+      "parent_id": "T2.6",
+      "level": 3,
+      "definition": "Cable 신장·처짐에 따른 여유 길이를 자동 보상"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.6.5",
+      "name": "Belt Tension Management",
+      "parent_id": "T2.6",
+      "level": 3,
+      "definition": "Belt계 장력 유지 및 보상"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.7.1",
+      "name": "Belt Transmission",
+      "parent_id": "T2.7",
+      "level": 3,
+      "definition": "Belt 자체를 이용한 동력전달"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.7.2",
+      "name": "Belt Pulley Architecture",
+      "parent_id": "T2.7",
+      "level": 3,
+      "definition": "Drive/Driven pulley를 이용한 Belt 구동"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.7.3",
+      "name": "Belt-Door Interface",
+      "parent_id": "T2.7",
+      "level": 3,
+      "definition": "Belt 운동을 Door에 전달하는 연결구조"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.7.4",
+      "name": "Belt Protection",
+      "parent_id": "T2.7",
+      "level": 3,
+      "definition": "Belt 손상·이탈·외부접촉 방지"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.7.5",
+      "name": "Belt-Rail Integration",
+      "parent_id": "T2.7",
+      "level": 3,
+      "definition": "Belt 구동계와 Rail/Guide Frame의 통합"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.8.1",
+      "name": "Mechanical Coupling",
+      "parent_id": "T2.8",
+      "level": 3,
+      "definition": "기계적 Clutch/Coupling으로 동력 연결·분리"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.8.2",
+      "name": "Electromagnetic Coupling",
+      "parent_id": "T2.8",
+      "level": 3,
+      "definition": "전자기 작동 Clutch"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.8.3",
+      "name": "Positive / Serration Coupling",
+      "parent_id": "T2.8",
+      "level": 3,
+      "definition": "Serration 등 형상 치합식 결합"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.8.4",
+      "name": "Drive Disconnect",
+      "parent_id": "T2.8",
+      "level": 3,
+      "definition": "Manual/Emergency 운전을 위한 구동경로 분리"
+    },
+    {
+      "record_type": "technology",
+      "id": "T2.9.1",
+      "name": "Hybrid Transmission",
+      "parent_id": "T2.9",
+      "level": 3,
+      "definition": "Cable/Belt/Drum/Gear의 복합 전달구조"
+    },
+    {
+      "record_type": "technology",
+      "id": "T3.1",
+      "name": "Latching Engagement",
+      "parent_id": "T3",
+      "level": 2,
+      "definition": "Latch와 Striker를 이용한 Door 체결 구조"
+    },
+    {
+      "record_type": "technology",
+      "id": "T3.2",
+      "name": "Cinching / Pull-in",
+      "parent_id": "T3",
+      "level": 2,
+      "definition": "Half-close에서 완전 폐쇄 위치로 당기는 구조"
+    },
+    {
+      "record_type": "technology",
+      "id": "T3.3",
+      "name": "Release / Unlatch",
+      "parent_id": "T3",
+      "level": 2,
+      "definition": "개방을 위해 Latch를 해제하는 구조"
+    },
+    {
+      "record_type": "technology",
+      "id": "T3.4",
+      "name": "Locking / Retention",
+      "parent_id": "T3",
+      "level": 2,
+      "definition": "Door의 폐쇄·잠금 상태를 기계적으로 유지"
+    },
+    {
+      "record_type": "technology",
+      "id": "T4.1",
+      "name": "Position / Motion Sensing",
+      "parent_id": "T4",
+      "level": 2,
+      "definition": "위치·속도·방향 검출"
+    },
+    {
+      "record_type": "technology",
+      "id": "T4.2",
+      "name": "Load / Drive-state Sensing",
+      "parent_id": "T4",
+      "level": 2,
+      "definition": "Motor current, torque, load 등 구동상태 검출"
+    },
+    {
+      "record_type": "technology",
+      "id": "T4.3",
+      "name": "Contact Obstacle Detection",
+      "parent_id": "T4",
+      "level": 2,
+      "definition": "Edge/strip/touch 기반 끼임 검출"
+    },
+    {
+      "record_type": "technology",
+      "id": "T4.4",
+      "name": "Non-contact Obstacle Detection",
+      "parent_id": "T4",
+      "level": 2,
+      "definition": "Proximity/capacitive/camera 등 비접촉 검출"
+    },
+    {
+      "record_type": "technology",
+      "id": "T4.5",
+      "name": "Vehicle / Environment Sensing",
+      "parent_id": "T4",
+      "level": 2,
+      "definition": "Inclination 등 차량·환경상태 검출"
+    },
+    {
+      "record_type": "technology",
+      "id": "T5.1",
+      "name": "Basic Motion Control",
+      "parent_id": "T5",
+      "level": 2,
+      "definition": "Open/Close/Stop/Reverse sequence 제어"
+    },
+    {
+      "record_type": "technology",
+      "id": "T5.2",
+      "name": "Speed / Torque Profile Control",
+      "parent_id": "T5",
+      "level": 2,
+      "definition": "Door 위치·상황에 따른 속도/Torque profile 제어"
+    },
+    {
+      "record_type": "technology",
+      "id": "T5.3",
+      "name": "Position / Trajectory-dependent Control",
+      "parent_id": "T5",
+      "level": 2,
+      "definition": "곡선부·End position 등 위치/궤적 기반 제어"
+    },
+    {
+      "record_type": "technology",
+      "id": "T5.4",
+      "name": "Manual Assist Control",
+      "parent_id": "T5",
+      "level": 2,
+      "definition": "사용자 수동 조작을 Motor로 보조"
+    },
+    {
+      "record_type": "technology",
+      "id": "T5.5",
+      "name": "Obstacle / Anti-pinch Response",
+      "parent_id": "T5",
+      "level": 2,
+      "definition": "장애물 검출 후 정지·반전 등 안전 response"
+    },
+    {
+      "record_type": "technology",
+      "id": "T5.6",
+      "name": "Interlock",
+      "parent_id": "T5",
+      "level": 2,
+      "definition": "Vehicle/door condition에 따른 작동 제한"
+    },
+    {
+      "record_type": "technology",
+      "id": "T5.7",
+      "name": "Fault Diagnostics / Protection",
+      "parent_id": "T5",
+      "level": 2,
+      "definition": "Motor/Sensor/Circuit 이상 진단 및 보호"
+    },
+    {
+      "record_type": "technology",
+      "id": "T6.1",
+      "name": "Power Supply",
+      "parent_id": "T6",
+      "level": 2,
+      "definition": "Vehicle power를 Door/PSD로 전달"
+    },
+    {
+      "record_type": "technology",
+      "id": "T6.2",
+      "name": "Motor Drive / ECU Interface",
+      "parent_id": "T6",
+      "level": 2,
+      "definition": "Motor power switching 및 ECU interface"
+    },
+    {
+      "record_type": "technology",
+      "id": "T6.3",
+      "name": "Wire Harness",
+      "parent_id": "T6",
+      "level": 2,
+      "definition": "차체-도어 간 전력·신호 Harness"
+    },
+    {
+      "record_type": "technology",
+      "id": "T6.4",
+      "name": "Harness Guidance / Protection",
+      "parent_id": "T6",
+      "level": 2,
+      "definition": "Door 운동에 따른 Harness 경로 및 보호"
+    },
+    {
+      "record_type": "technology",
+      "id": "T6.5",
+      "name": "Connector / Signal Interface",
+      "parent_id": "T6",
+      "level": 2,
+      "definition": "Door-Body/ECU electrical connection"
+    },
+    {
+      "record_type": "technology",
+      "id": "T7.1",
+      "name": "Local Operation Input",
+      "parent_id": "T7",
+      "level": 2,
+      "definition": "Switch/handle 등 근거리 사용자 입력"
+    },
+    {
+      "record_type": "technology",
+      "id": "T7.2",
+      "name": "Remote / Smart Input",
+      "parent_id": "T7",
+      "level": 2,
+      "definition": "Remote/Smart Key 입력"
+    },
+    {
+      "record_type": "technology",
+      "id": "T7.3",
+      "name": "Hands-free / Intent Input",
+      "parent_id": "T7",
+      "level": 2,
+      "definition": "Gesture/Proximity/intent 기반 입력"
+    },
+    {
+      "record_type": "technology",
+      "id": "T7.4",
+      "name": "Warning Interface",
+      "parent_id": "T7",
+      "level": 2,
+      "definition": "Lamp/Buzzer 등 상태·위험 경고"
+    },
+    {
+      "record_type": "technology",
+      "id": "T7.5",
+      "name": "Manual / Emergency Operation",
+      "parent_id": "T7",
+      "level": 2,
+      "definition": "전원 이상 또는 사용자 의도에 따른 수동/비상 운전"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A1.1",
+      "name": "Door-mounted",
+      "parent_id": "A1",
+      "definition": "구동계 또는 부품이 차량의 어느 구조에 배치되는지"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A1.2",
+      "name": "Body-mounted",
+      "parent_id": "A1",
+      "definition": "구동계 또는 부품이 차량의 어느 구조에 배치되는지"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A1.3",
+      "name": "Rail-integrated",
+      "parent_id": "A1",
+      "definition": "구동계 또는 부품이 차량의 어느 구조에 배치되는지"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A1.4",
+      "name": "Door-panel-integrated",
+      "parent_id": "A1",
+      "definition": "구동계 또는 부품이 차량의 어느 구조에 배치되는지"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A2.1",
+      "name": "Door Module",
+      "parent_id": "A2",
+      "definition": "여러 기능을 하나의 Module/Base에 통합하는 방식"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A2.2",
+      "name": "Base-plate Integrated",
+      "parent_id": "A2",
+      "definition": "여러 기능을 하나의 Module/Base에 통합하는 방식"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A2.3",
+      "name": "Multi-function Module",
+      "parent_id": "A2",
+      "definition": "여러 기능을 하나의 Module/Base에 통합하는 방식"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A2.4",
+      "name": "Pre-assembled Module",
+      "parent_id": "A2",
+      "definition": "여러 기능을 하나의 Module/Base에 통합하는 방식"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A3.1",
+      "name": "Drive Unit",
+      "parent_id": "A3",
+      "definition": "기능 부품을 하나의 Unit으로 구성하는 방식"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A3.2",
+      "name": "Pulley Unit",
+      "parent_id": "A3",
+      "definition": "기능 부품을 하나의 Unit으로 구성하는 방식"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A3.3",
+      "name": "Motor-Reducer Integrated",
+      "parent_id": "A3",
+      "definition": "기능 부품을 하나의 Unit으로 구성하는 방식"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A4.1",
+      "name": "Fastened",
+      "parent_id": "A4",
+      "definition": "부품의 장착·위치결정·조정·사전고정 방식"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A4.2",
+      "name": "Positioned",
+      "parent_id": "A4",
+      "definition": "부품의 장착·위치결정·조정·사전고정 방식"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A4.3",
+      "name": "Adjustable",
+      "parent_id": "A4",
+      "definition": "부품의 장착·위치결정·조정·사전고정 방식"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A4.4",
+      "name": "Temporary Holding",
+      "parent_id": "A4",
+      "definition": "부품의 장착·위치결정·조정·사전고정 방식"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A5.1",
+      "name": "Housing-based",
+      "parent_id": "A5",
+      "definition": "Housing/Cover/Protector를 이용한 수용·보호 구조. Compact Packaging은 Effect/Design Attribute로 관리"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A5.2",
+      "name": "Cover-based",
+      "parent_id": "A5",
+      "definition": "Housing/Cover/Protector를 이용한 수용·보호 구조. Compact Packaging은 Effect/Design Attribute로 관리"
+    },
+    {
+      "record_type": "architecture_value",
+      "id": "A5.3",
+      "name": "Guide-Protector Integrated",
+      "parent_id": "A5",
+      "definition": "Housing/Cover/Protector를 이용한 수용·보호 구조. Compact Packaging은 Effect/Design Attribute로 관리"
+    }
+  ]
+}

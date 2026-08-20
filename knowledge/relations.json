@@ -1,0 +1,884 @@
+{
+  "schema_version": "1.0",
+  "knowledge_type": "relation_vocabulary",
+  "source_document": {
+    "file_name": "PSD_Relation_Vocabulary_v1.2.docx",
+    "version": "1.2",
+    "sha256": "afbdbd8c0813b03b7e7c4682f4ad5badd43687c908c0dd247c28880ea73925b3"
+  },
+  "generated_at": "2026-08-21T01:36:00+09:00",
+  "counts": {
+    "relations": 46
+  },
+  "version_info": [
+    {
+      "Version": "Canonical Relations",
+      "1.2": "46"
+    },
+    {
+      "Version": "Focus Area",
+      "1.2": "Drive / Cable / Pulley / Tension / Mounting"
+    },
+    {
+      "Version": "Evidence Model",
+      "1.2": "E1-E4"
+    },
+    {
+      "Version": "Evaluation",
+      "1.2": "Core Relation F1 + Relation Attribute Accuracy"
+    }
+  ],
+  "rules": [
+    {
+      "Rule": "RV-01",
+      "원칙": "Triple 기반",
+      "설명": "기본 표현은 Subject - Relation - Object로 저장한다."
+    },
+    {
+      "Rule": "RV-02",
+      "원칙": "Specific 우선",
+      "설명": "Claim에서 구체 관계가 확인되면 generic connected_to보다 mounted_on, supported_by 등 구체 관계를 우선한다."
+    },
+    {
+      "Rule": "RV-03",
+      "원칙": "Relation + Attribute",
+      "설명": "rotatably_supported_by처럼 관계 이름을 증식시키지 않고 supported_by + motion=rotatable로 표현한다."
+    },
+    {
+      "Rule": "RV-04",
+      "원칙": "Canonical 방향",
+      "설명": "DB에는 Canonical 방향 하나만 저장하고 inverse는 파생한다."
+    },
+    {
+      "Rule": "RV-05",
+      "원칙": "Instance 보존",
+      "설명": "First/Second, Front/Rear 등 Claim instance/attribute를 유지한 상태로 Relation을 연결한다."
+    },
+    {
+      "Rule": "RV-06",
+      "원칙": "N-ary 허용",
+      "설명": "located_between처럼 2개 이상의 Object가 필요한 관계는 N-ary 구조로 저장한다."
+    },
+    {
+      "Rule": "RV-07",
+      "원칙": "Evidence 필수",
+      "설명": "Relation마다 E1-E4 Evidence Level과 근거 문구를 보존한다."
+    },
+    {
+      "Rule": "RV-08",
+      "원칙": "Domain/Range 검증",
+      "설명": "Relation별 허용 Subject/Object 유형을 정의해 비정상 Triple을 탐지한다."
+    },
+    {
+      "Rule": "RV-09",
+      "원칙": "Relation-Function 분리",
+      "설명": "Function은 요소가 무엇을 하는지, Relation은 대상까지 포함한 사실을 나타낸다."
+    },
+    {
+      "Rule": "RV-10",
+      "원칙": "Claim Fact 우선",
+      "설명": "일반 PSD 지식만으로 E1/E2 Relation을 생성하지 않는다."
+    },
+    {
+      "Rule": "RV-11",
+      "원칙": "공식 Entity Type 사용",
+      "설명": "Domain/Range는 Dictionary v1.3의 Component/Assembly/Structural Feature/Portion-Region/Reference Entity/Geometric Reference에 맞춘다."
+    },
+    {
+      "Rule": "RV-12",
+      "원칙": "State/Constraint 분리",
+      "설명": "상태조건·비교·threshold·cardinality는 Relation 이름에 포함하지 않고 State / Mode & Claim Constraint Vocabulary v1.1로 분리한다."
+    },
+    {
+      "Rule": "RV-13",
+      "원칙": "상태조건은 Constraint로",
+      "설명": "Relation Attribute에 state_condition을 중복 저장하지 않고 State/Context-qualified Constraint에서 관리한다."
+    }
+  ],
+  "items": [
+    {
+      "id": "R-HIE-01",
+      "canonical_name": "part_of",
+      "korean_name": "~의 일부임",
+      "category": "Hierarchy / Formation / Integration",
+      "domain_range_raw": "Component/Assembly/Structural Feature/Portion-Region -> Component/Assembly",
+      "domain_raw": "Component/Assembly/Structural Feature/Portion-Region",
+      "range_raw": "Component/Assembly",
+      "directionality": "directed",
+      "definition_distinction": "구성요소가 상위 조립체/부품의 일부",
+      "example_triple": "Motor --part_of--> Drive Unit"
+    },
+    {
+      "id": "R-HIE-02",
+      "canonical_name": "formed_in",
+      "korean_name": "~내에 형성됨",
+      "category": "Hierarchy / Formation / Integration",
+      "domain_range_raw": "Structural Feature/Portion-Region -> Component/Assembly",
+      "domain_raw": "Structural Feature/Portion-Region",
+      "range_raw": "Component/Assembly",
+      "directionality": "directed",
+      "definition_distinction": "홈·홀·Recess 등이 내부/재료 내에 형성",
+      "example_triple": "Recess --formed_in--> Base"
+    },
+    {
+      "id": "R-HIE-03",
+      "canonical_name": "formed_on",
+      "korean_name": "~상에 형성됨",
+      "category": "Hierarchy / Formation / Integration",
+      "domain_range_raw": "Structural Feature/Portion-Region -> Component/Assembly",
+      "domain_raw": "Structural Feature/Portion-Region",
+      "range_raw": "Component/Assembly",
+      "directionality": "directed",
+      "definition_distinction": "표면 또는 면에 Feature가 형성",
+      "example_triple": "Guide Surface --formed_on--> Housing"
+    },
+    {
+      "id": "R-HIE-04",
+      "canonical_name": "accommodated_in",
+      "korean_name": "~에 수용됨",
+      "category": "Hierarchy / Formation / Integration",
+      "domain_range_raw": "Component/Assembly -> Component/Assembly/Structural Feature",
+      "domain_raw": "Component/Assembly",
+      "range_raw": "Component/Assembly/Structural Feature",
+      "directionality": "directed",
+      "definition_distinction": "의도된 수용 공간 안에 배치",
+      "example_triple": "Drive Mechanism --accommodated_in--> Recess"
+    },
+    {
+      "id": "R-HIE-05",
+      "canonical_name": "integrated_with",
+      "korean_name": "~와 일체화됨",
+      "category": "Hierarchy / Formation / Integration",
+      "domain_range_raw": "Component/Assembly <-> Component/Assembly",
+      "domain_raw": "Component/Assembly",
+      "range_raw": "Component/Assembly",
+      "directionality": "symmetric",
+      "definition_distinction": "구조적으로 일체형 또는 통합형",
+      "example_triple": "Drive Mechanism --integrated_with--> Guide Rail"
+    },
+    {
+      "id": "R-HIE-06",
+      "canonical_name": "separate_from",
+      "korean_name": "~와 별체임",
+      "category": "Hierarchy / Formation / Integration",
+      "domain_range_raw": "Component/Assembly <-> Component/Assembly",
+      "domain_raw": "Component/Assembly",
+      "range_raw": "Component/Assembly",
+      "directionality": "symmetric",
+      "definition_distinction": "서로 별물/별체로 구성",
+      "example_triple": "Guide Block --separate_from--> Pulley Housing"
+    },
+    {
+      "id": "R-STR-01",
+      "canonical_name": "connected_to",
+      "korean_name": "~에 연결됨",
+      "category": "Structural / Mechanical",
+      "domain_range_raw": "Component/Assembly/Portion-Region <-> Component/Assembly/Portion-Region/Reference Entity",
+      "domain_raw": "Component/Assembly/Portion-Region",
+      "range_raw": "Component/Assembly/Portion-Region/Reference Entity",
+      "directionality": "symmetric",
+      "definition_distinction": "가장 일반적인 구조 연결",
+      "example_triple": "Drive Cable --connected_to--> Sliding Door"
+    },
+    {
+      "id": "R-STR-02",
+      "canonical_name": "coupled_to",
+      "korean_name": "~에 결합됨",
+      "category": "Structural / Mechanical",
+      "domain_range_raw": "Component/Assembly <-> Component/Assembly",
+      "domain_raw": "Component/Assembly",
+      "range_raw": "Component/Assembly",
+      "directionality": "symmetric",
+      "definition_distinction": "힘·운동 전달 가능한 기계적 결합",
+      "example_triple": "Motor --coupled_to--> Reducer"
+    },
+    {
+      "id": "R-STR-03",
+      "canonical_name": "mounted_on",
+      "korean_name": "~에 장착됨",
+      "category": "Structural / Mechanical",
+      "domain_range_raw": "Component/Assembly -> Component/Assembly/Reference Entity",
+      "domain_raw": "Component/Assembly",
+      "range_raw": "Component/Assembly/Reference Entity",
+      "directionality": "directed",
+      "definition_distinction": "설치/장착 관계",
+      "example_triple": "Motor --mounted_on--> Base"
+    },
+    {
+      "id": "R-STR-04",
+      "canonical_name": "fixed_to",
+      "korean_name": "~에 고정됨",
+      "category": "Structural / Mechanical",
+      "domain_range_raw": "Component/Assembly -> Component/Assembly/Reference Entity",
+      "domain_raw": "Component/Assembly",
+      "range_raw": "Component/Assembly/Reference Entity",
+      "directionality": "directed",
+      "definition_distinction": "상대운동이 제한된 고정",
+      "example_triple": "Bracket --fixed_to--> Door Panel"
+    },
+    {
+      "id": "R-STR-05",
+      "canonical_name": "supported_by",
+      "korean_name": "~에 의해 지지됨",
+      "category": "Structural / Mechanical",
+      "domain_range_raw": "Component/Assembly -> Component/Assembly/Structural Feature",
+      "domain_raw": "Component/Assembly",
+      "range_raw": "Component/Assembly/Structural Feature",
+      "directionality": "directed",
+      "definition_distinction": "하중 또는 회전부 지지",
+      "example_triple": "Pulley --supported_by--> Pulley Holder"
+    },
+    {
+      "id": "R-STR-06",
+      "canonical_name": "held_by",
+      "korean_name": "~에 의해 유지됨",
+      "category": "Structural / Mechanical",
+      "domain_range_raw": "Component/Assembly -> Component/Assembly/Structural Feature/Portion-Region",
+      "domain_raw": "Component/Assembly",
+      "range_raw": "Component/Assembly/Structural Feature/Portion-Region",
+      "directionality": "directed",
+      "definition_distinction": "특정 위치·자세를 유지",
+      "example_triple": "Belt Bracket --held_by--> Holding Mechanism"
+    },
+    {
+      "id": "R-STR-07",
+      "canonical_name": "inserted_into",
+      "korean_name": "~에 삽입됨",
+      "category": "Structural / Mechanical",
+      "domain_range_raw": "Component/Portion-Region -> Structural Feature/Component",
+      "domain_raw": "Component/Portion-Region",
+      "range_raw": "Structural Feature/Component",
+      "directionality": "directed",
+      "definition_distinction": "형상 안으로 삽입",
+      "example_triple": "Connection Portion --inserted_into--> Slit"
+    },
+    {
+      "id": "R-STR-08",
+      "canonical_name": "covered_by",
+      "korean_name": "~에 의해 덮임",
+      "category": "Structural / Mechanical",
+      "domain_range_raw": "Component/Assembly/Portion-Region -> Component/Assembly",
+      "domain_raw": "Component/Assembly/Portion-Region",
+      "range_raw": "Component/Assembly",
+      "directionality": "directed",
+      "definition_distinction": "덮개/보호 구조",
+      "example_triple": "Pulley --covered_by--> Cover"
+    },
+    {
+      "id": "R-STR-09",
+      "canonical_name": "engaged_with",
+      "korean_name": "~와 맞물림/계합",
+      "category": "Structural / Mechanical",
+      "domain_range_raw": "Component/Assembly/Structural Feature/Portion-Region <-> same",
+      "domain_raw": "Component/Assembly/Structural Feature/Portion-Region",
+      "range_raw": "same",
+      "directionality": "symmetric",
+      "definition_distinction": "치합·걸림·계합",
+      "example_triple": "Latch Assembly --engaged_with--> Striker"
+    },
+    {
+      "id": "R-STR-10",
+      "canonical_name": "abuts",
+      "korean_name": "~에 접함",
+      "category": "Structural / Mechanical",
+      "domain_range_raw": "Component/Structural Feature/Portion-Region <-> same",
+      "domain_raw": "Component/Structural Feature/Portion-Region",
+      "range_raw": "same",
+      "directionality": "symmetric",
+      "definition_distinction": "단순 접촉·맞댐",
+      "example_triple": "Guide Surface --abuts--> Drive Cable"
+    },
+    {
+      "id": "R-SPA-01",
+      "canonical_name": "located_in",
+      "korean_name": "~내에 위치",
+      "category": "Spatial / Geometry",
+      "domain_range_raw": "Claim Element -> Component/Assembly/Reference Entity/Structural Feature",
+      "domain_raw": "Claim Element",
+      "range_raw": "Component/Assembly/Reference Entity/Structural Feature",
+      "directionality": "directed",
+      "definition_distinction": "단순 공간적 내부 위치",
+      "example_triple": "Motor --located_in--> Sliding Door"
+    },
+    {
+      "id": "R-SPA-02",
+      "canonical_name": "located_between",
+      "korean_name": "~사이에 위치",
+      "category": "Spatial / Geometry",
+      "domain_range_raw": "Claim Element -> Object Set<Claim Element/Geometric Reference>",
+      "domain_raw": "Claim Element",
+      "range_raw": "Object Set<Claim Element/Geometric Reference>",
+      "directionality": "directed",
+      "definition_distinction": "두 개 이상의 기준요소 사이 배치; N-ary",
+      "example_triple": "Path Member --located_between--> [Pulley_1, Pulley_2]"
+    },
+    {
+      "id": "R-SPA-03",
+      "canonical_name": "located_above",
+      "korean_name": "~보다 위에 위치",
+      "category": "Spatial / Geometry",
+      "domain_range_raw": "Claim Element -> Claim Element/Geometric Reference",
+      "domain_raw": "Claim Element",
+      "range_raw": "Claim Element/Geometric Reference",
+      "directionality": "directed",
+      "definition_distinction": "상하 상대배치",
+      "example_triple": "Connection Portion(role=door) --located_above--> Connection Portion(role=belt)"
+    },
+    {
+      "id": "R-SPA-04",
+      "canonical_name": "located_forward_of",
+      "korean_name": "~보다 전방에 위치",
+      "category": "Spatial / Geometry",
+      "domain_range_raw": "Claim Element -> Claim Element/Geometric Reference",
+      "domain_raw": "Claim Element",
+      "range_raw": "Claim Element/Geometric Reference",
+      "directionality": "directed",
+      "definition_distinction": "차량/도어 기준 전후 상대배치",
+      "example_triple": "Guide Pulley_1 --located_forward_of--> Guide Pulley_2"
+    },
+    {
+      "id": "R-SPA-05",
+      "canonical_name": "adjacent_to",
+      "korean_name": "~에 인접",
+      "category": "Spatial / Geometry",
+      "domain_range_raw": "Claim Element <-> Claim Element/Geometric Reference",
+      "domain_raw": "Claim Element",
+      "range_raw": "Claim Element/Geometric Reference",
+      "directionality": "symmetric",
+      "definition_distinction": "가까이 배치",
+      "example_triple": "Drive Cable --adjacent_to--> Guide Surface"
+    },
+    {
+      "id": "R-SPA-06",
+      "canonical_name": "opposed_to",
+      "korean_name": "~와 대향",
+      "category": "Spatial / Geometry",
+      "domain_range_raw": "Claim Element <-> Claim Element/Geometric Reference",
+      "domain_raw": "Claim Element",
+      "range_raw": "Claim Element/Geometric Reference",
+      "directionality": "symmetric",
+      "definition_distinction": "서로 마주보는 위치/면",
+      "example_triple": "Guide Groove_1 --opposed_to--> Guide Groove_2"
+    },
+    {
+      "id": "R-SPA-07",
+      "canonical_name": "aligned_with",
+      "korean_name": "~와 정렬",
+      "category": "Spatial / Geometry",
+      "domain_range_raw": "Claim Element/Geometric Reference <-> Claim Element/Geometric Reference",
+      "domain_raw": "Claim Element/Geometric Reference",
+      "range_raw": "Claim Element/Geometric Reference",
+      "directionality": "symmetric",
+      "definition_distinction": "축선·연장선·방향 정렬",
+      "example_triple": "Pulley Axis --aligned_with--> Shaft Axis"
+    },
+    {
+      "id": "R-SPA-08",
+      "canonical_name": "extends_from",
+      "korean_name": "~로부터 연장",
+      "category": "Spatial / Geometry",
+      "domain_range_raw": "Component/Structural Feature/Portion-Region -> Claim Element/Geometric Reference",
+      "domain_raw": "Component/Structural Feature/Portion-Region",
+      "range_raw": "Claim Element/Geometric Reference",
+      "directionality": "directed",
+      "definition_distinction": "기점에서 연장",
+      "example_triple": "Support Portion --extends_from--> Housing"
+    },
+    {
+      "id": "R-SPA-09",
+      "canonical_name": "extends_toward",
+      "korean_name": "~방향으로 연장",
+      "category": "Spatial / Geometry",
+      "domain_range_raw": "Component/Structural Feature/Portion-Region -> Claim Element/Geometric Reference",
+      "domain_raw": "Component/Structural Feature/Portion-Region",
+      "range_raw": "Claim Element/Geometric Reference",
+      "directionality": "directed",
+      "definition_distinction": "목표/방향 쪽으로 연장",
+      "example_triple": "Support Portion --extends_toward--> Guide Pulley"
+    },
+    {
+      "id": "R-SPA-10",
+      "canonical_name": "passes_through",
+      "korean_name": "~을 관통/통과",
+      "category": "Spatial / Geometry",
+      "domain_range_raw": "Component -> Structural Feature/Portion-Region",
+      "domain_raw": "Component",
+      "range_raw": "Structural Feature/Portion-Region",
+      "directionality": "directed",
+      "definition_distinction": "구멍·슬릿·개구를 통과",
+      "example_triple": "Drive Cable --passes_through--> Slit"
+    },
+    {
+      "id": "R-SPA-11",
+      "canonical_name": "overlaps",
+      "korean_name": "~와 중첩됨",
+      "category": "Spatial / Geometry",
+      "domain_range_raw": "Claim Element/Geometric Reference <-> Claim Element/Geometric Reference",
+      "domain_raw": "Claim Element/Geometric Reference",
+      "range_raw": "Claim Element/Geometric Reference",
+      "directionality": "symmetric",
+      "definition_distinction": "평면/투영/기하조건에서 두 요소가 겹침. symmetric relation",
+      "example_triple": "Engagement Hole --overlaps--> Axis Connection Segment"
+    },
+    {
+      "id": "R-FLX-01",
+      "canonical_name": "wound_on",
+      "korean_name": "~에 권취됨",
+      "category": "Flexible Transmission",
+      "domain_range_raw": "Drive Cable -> Drum/Winding Groove",
+      "domain_raw": "Drive Cable",
+      "range_raw": "Drum/Winding Groove",
+      "directionality": "directed",
+      "definition_distinction": "감고 풀며 저장/구동하는 권취",
+      "example_triple": "Drive Cable --wound_on--> Winding Groove"
+    },
+    {
+      "id": "R-FLX-02",
+      "canonical_name": "wrapped_around",
+      "korean_name": "~에 감겨 지나감",
+      "category": "Flexible Transmission",
+      "domain_range_raw": "Drive Cable/Drive Belt -> Pulley/Pulley Groove",
+      "domain_raw": "Drive Cable/Drive Belt",
+      "range_raw": "Pulley/Pulley Groove",
+      "directionality": "directed",
+      "definition_distinction": "Pulley를 경유하며 방향/경로 변경",
+      "example_triple": "Drive Cable --wrapped_around--> Guide Pulley"
+    },
+    {
+      "id": "R-FLX-03",
+      "canonical_name": "guided_by",
+      "korean_name": "~에 의해 안내됨",
+      "category": "Flexible Transmission",
+      "domain_range_raw": "Drive Cable/Drive Belt/Wire Harness -> Component/Structural Feature",
+      "domain_raw": "Drive Cable/Drive Belt/Wire Harness",
+      "range_raw": "Component/Structural Feature",
+      "directionality": "directed",
+      "definition_distinction": "정해진 경로로 안내",
+      "example_triple": "Drive Cable --guided_by--> Guide Block"
+    },
+    {
+      "id": "R-FLX-04",
+      "canonical_name": "passes_along",
+      "korean_name": "~을 따라 지나감",
+      "category": "Flexible Transmission",
+      "domain_range_raw": "Drive Cable/Drive Belt/Wire Harness -> Structural Feature/Component",
+      "domain_raw": "Drive Cable/Drive Belt/Wire Harness",
+      "range_raw": "Structural Feature/Component",
+      "directionality": "directed",
+      "definition_distinction": "홈/가이드 경로를 따라 이동",
+      "example_triple": "Drive Cable --passes_along--> Guide Groove"
+    },
+    {
+      "id": "R-FLX-05",
+      "canonical_name": "retained_by",
+      "korean_name": "~에 의해 이탈 방지됨",
+      "category": "Flexible Transmission",
+      "domain_range_raw": "Drive Cable/Drive Belt -> Component/Structural Feature/Portion-Region",
+      "domain_raw": "Drive Cable/Drive Belt",
+      "range_raw": "Component/Structural Feature/Portion-Region",
+      "directionality": "directed",
+      "definition_distinction": "이탈·탈선 방지",
+      "example_triple": "Drive Cable --retained_by--> Cable Protector"
+    },
+    {
+      "id": "R-MOT-01",
+      "canonical_name": "drives",
+      "korean_name": "~를 구동함",
+      "category": "Motion / Power",
+      "domain_range_raw": "Component/Assembly -> Component/Assembly",
+      "domain_raw": "Component/Assembly",
+      "range_raw": "Component/Assembly",
+      "directionality": "directed",
+      "definition_distinction": "구동원 또는 구동요소가 직접 구동",
+      "example_triple": "Motor --drives--> Drum"
+    },
+    {
+      "id": "R-MOT-02",
+      "canonical_name": "transmits_rotation_to",
+      "korean_name": "~로 회전을 전달",
+      "category": "Motion / Power",
+      "domain_range_raw": "Component -> Component/Assembly",
+      "domain_raw": "Component",
+      "range_raw": "Component/Assembly",
+      "directionality": "directed",
+      "definition_distinction": "회전 운동 전달",
+      "example_triple": "Gear --transmits_rotation_to--> Drum"
+    },
+    {
+      "id": "R-MOT-03",
+      "canonical_name": "transmits_force_to",
+      "korean_name": "~로 힘을 전달",
+      "category": "Motion / Power",
+      "domain_range_raw": "Component/Assembly -> Component/Assembly/Reference Entity",
+      "domain_raw": "Component/Assembly",
+      "range_raw": "Component/Assembly/Reference Entity",
+      "directionality": "directed",
+      "definition_distinction": "인장력/구동력 전달",
+      "example_triple": "Drive Cable --transmits_force_to--> Sliding Door"
+    },
+    {
+      "id": "R-MOT-04",
+      "canonical_name": "moves_along",
+      "korean_name": "~을 따라 이동",
+      "category": "Motion / Power",
+      "domain_range_raw": "Component/Assembly/Reference Entity -> Component/Structural Feature",
+      "domain_raw": "Component/Assembly/Reference Entity",
+      "range_raw": "Component/Structural Feature",
+      "directionality": "directed",
+      "definition_distinction": "정해진 Guide/Rail을 따라 이동",
+      "example_triple": "Roller --moves_along--> Guide Rail"
+    },
+    {
+      "id": "R-MOT-05",
+      "canonical_name": "biases",
+      "korean_name": "~방향으로 가압/탄성력 부여",
+      "category": "Motion / Power",
+      "domain_range_raw": "Component -> Component/Assembly/Portion-Region",
+      "domain_raw": "Component",
+      "range_raw": "Component/Assembly/Portion-Region",
+      "directionality": "directed",
+      "definition_distinction": "탄성력·복원력 부여",
+      "example_triple": "Spring --biases--> Pulley Holder"
+    },
+    {
+      "id": "R-MOT-06",
+      "canonical_name": "applies_tension_to",
+      "korean_name": "~에 장력을 부여",
+      "category": "Motion / Power",
+      "domain_range_raw": "Component/Assembly -> Drive Cable/Drive Belt",
+      "domain_raw": "Component/Assembly",
+      "range_raw": "Drive Cable/Drive Belt",
+      "directionality": "directed",
+      "definition_distinction": "장력 부여",
+      "example_triple": "Tensioner --applies_tension_to--> Drive Cable"
+    },
+    {
+      "id": "R-CLS-01",
+      "canonical_name": "locks",
+      "korean_name": "~를 잠금",
+      "category": "Closure / Latch",
+      "domain_range_raw": "Latch Assembly/Lock Device -> Sliding Door",
+      "domain_raw": "Latch Assembly/Lock Device",
+      "range_raw": "Sliding Door",
+      "directionality": "directed",
+      "definition_distinction": "닫힌 상태를 잠금",
+      "example_triple": "Latch Assembly --locks--> Sliding Door"
+    },
+    {
+      "id": "R-CLS-02",
+      "canonical_name": "releases",
+      "korean_name": "~를 해제",
+      "category": "Closure / Latch",
+      "domain_range_raw": "Release Mechanism -> Latch Assembly/Lock Device",
+      "domain_raw": "Release Mechanism",
+      "range_raw": "Latch Assembly/Lock Device",
+      "directionality": "directed",
+      "definition_distinction": "래치/잠금 해제",
+      "example_triple": "Release Mechanism --releases--> Latch Assembly"
+    },
+    {
+      "id": "R-CLS-03",
+      "canonical_name": "cinches",
+      "korean_name": "~를 완전폐쇄 방향으로 당김",
+      "category": "Closure / Latch",
+      "domain_range_raw": "Cinching Mechanism -> Sliding Door/Latch Assembly",
+      "domain_raw": "Cinching Mechanism",
+      "range_raw": "Sliding Door/Latch Assembly",
+      "directionality": "directed",
+      "definition_distinction": "Half-close에서 완전 폐쇄로 당김",
+      "example_triple": "Cinching Mechanism --cinches--> Sliding Door"
+    },
+    {
+      "id": "R-CTL-01",
+      "canonical_name": "controls",
+      "korean_name": "~를 제어",
+      "category": "Control / Sensing / Electrical",
+      "domain_range_raw": "Controller / ECU -> Component/Assembly",
+      "domain_raw": "Controller / ECU",
+      "range_raw": "Component/Assembly",
+      "directionality": "directed",
+      "definition_distinction": "제어 명령/로직으로 동작 제어",
+      "example_triple": "Controller / ECU --controls--> Motor"
+    },
+    {
+      "id": "R-CTL-02",
+      "canonical_name": "actuates",
+      "korean_name": "~를 작동시킴",
+      "category": "Control / Sensing / Electrical",
+      "domain_range_raw": "Component/Assembly -> Component/Assembly",
+      "domain_raw": "Component/Assembly",
+      "range_raw": "Component/Assembly",
+      "directionality": "directed",
+      "definition_distinction": "기구를 실제 작동시킴",
+      "example_triple": "Motor --actuates--> Release Mechanism"
+    },
+    {
+      "id": "R-CTL-03",
+      "canonical_name": "receives_signal_from",
+      "korean_name": "~로부터 신호 수신",
+      "category": "Control / Sensing / Electrical",
+      "domain_range_raw": "Controller / ECU -> Component",
+      "domain_raw": "Controller / ECU",
+      "range_raw": "Component",
+      "directionality": "directed",
+      "definition_distinction": "입력 신호를 수신",
+      "example_triple": "Controller / ECU --receives_signal_from--> Encoder"
+    },
+    {
+      "id": "R-CTL-04",
+      "canonical_name": "supplies_power_to",
+      "korean_name": "~에 전원 공급",
+      "category": "Control / Sensing / Electrical",
+      "domain_range_raw": "Power Source/Wire Harness -> Component/Assembly",
+      "domain_raw": "Power Source/Wire Harness",
+      "range_raw": "Component/Assembly",
+      "directionality": "directed",
+      "definition_distinction": "전력 공급",
+      "example_triple": "Power Source --supplies_power_to--> Motor"
+    },
+    {
+      "id": "R-CTL-05",
+      "canonical_name": "senses",
+      "korean_name": "~의 상태/운동을 감지",
+      "category": "Control / Sensing / Electrical",
+      "domain_range_raw": "Component -> Component/Assembly/Reference Entity",
+      "domain_raw": "Component",
+      "range_raw": "Component/Assembly/Reference Entity",
+      "directionality": "directed",
+      "definition_distinction": "위치·속도·상태 등 감지",
+      "example_triple": "Position Sensor --senses--> Sliding Door"
+    }
+  ],
+  "relation_attributes": [
+    {
+      "Attribute": "motion",
+      "허용 예시": "rotatable, slidable, movable, pivotable, axial_slide",
+      "용도": "상대 운동 가능 여부"
+    },
+    {
+      "Attribute": "mounting_mode",
+      "허용 예시": "fixed, adjustable, temporary, detachable",
+      "용도": "장착/고정 방식"
+    },
+    {
+      "Attribute": "connection_mode",
+      "허용 예시": "direct, indirect, snap_fit, threaded, frictional",
+      "용도": "연결 방식"
+    },
+    {
+      "Attribute": "endpoint",
+      "허용 예시": "one_end, other_end",
+      "용도": "Cable/Belt 등의 종단 관계"
+    },
+    {
+      "Attribute": "direction",
+      "허용 예시": "axial, radial, longitudinal, transverse",
+      "용도": "관계의 방향"
+    },
+    {
+      "Attribute": "position_context",
+      "허용 예시": "front, rear, upper, lower, center, end",
+      "용도": "관계가 발생하는 위치 맥락"
+    },
+    {
+      "Attribute": "alignment_type",
+      "허용 예시": "coaxial, parallel, on_extension",
+      "용도": "정렬 방식"
+    }
+  ],
+  "inverse_relations": [
+    {
+      "Canonical Relation": "part_of",
+      "Derived Inverse": "has_part",
+      "저장 원칙": "파생"
+    },
+    {
+      "Canonical Relation": "mounted_on",
+      "Derived Inverse": "has_mounted_component",
+      "저장 원칙": "파생"
+    },
+    {
+      "Canonical Relation": "fixed_to",
+      "Derived Inverse": "has_fixed_component",
+      "저장 원칙": "파생"
+    },
+    {
+      "Canonical Relation": "supported_by",
+      "Derived Inverse": "supports",
+      "저장 원칙": "파생"
+    },
+    {
+      "Canonical Relation": "held_by",
+      "Derived Inverse": "holds",
+      "저장 원칙": "파생"
+    },
+    {
+      "Canonical Relation": "covered_by",
+      "Derived Inverse": "covers",
+      "저장 원칙": "파생"
+    },
+    {
+      "Canonical Relation": "guided_by",
+      "Derived Inverse": "guides",
+      "저장 원칙": "파생"
+    },
+    {
+      "Canonical Relation": "wound_on",
+      "Derived Inverse": "has_wound_member",
+      "저장 원칙": "파생"
+    },
+    {
+      "Canonical Relation": "drives",
+      "Derived Inverse": "driven_by",
+      "저장 원칙": "파생"
+    },
+    {
+      "Canonical Relation": "transmits_force_to",
+      "Derived Inverse": "receives_force_from",
+      "저장 원칙": "파생"
+    },
+    {
+      "Canonical Relation": "biases",
+      "Derived Inverse": "biased_by",
+      "저장 원칙": "파생"
+    },
+    {
+      "Canonical Relation": "applies_tension_to",
+      "Derived Inverse": "tensioned_by",
+      "저장 원칙": "파생"
+    },
+    {
+      "Canonical Relation": "controls",
+      "Derived Inverse": "controlled_by",
+      "저장 원칙": "파생"
+    },
+    {
+      "Canonical Relation": "receives_signal_from",
+      "Derived Inverse": "transmits_signal_to",
+      "저장 원칙": "파생"
+    },
+    {
+      "Canonical Relation": "supplies_power_to",
+      "Derived Inverse": "powered_by",
+      "저장 원칙": "파생"
+    },
+    {
+      "Canonical Relation": "overlaps",
+      "Derived Inverse": "self / symmetric",
+      "저장 원칙": "대칭관계; inverse 별도 저장 안 함"
+    }
+  ],
+  "evidence_levels": [
+    {
+      "Level": "E1",
+      "명칭": "Explicit Claim",
+      "정의": "Claim에 관계가 직접 명시",
+      "사용 원칙": "Core Relation F1 포함"
+    },
+    {
+      "Level": "E2",
+      "명칭": "Claim Entailment",
+      "정의": "동일 Claim 내부의 문법·선행어·구조만으로 필연적으로 도출되며 외부 PSD 지식을 사용하지 않음",
+      "사용 원칙": "인간 검증 후 Core Relation F1 포함"
+    },
+    {
+      "Level": "E3",
+      "명칭": "Description-supported",
+      "정의": "상세설명/실시형태에서 확인",
+      "사용 원칙": "보고서/작동원리용"
+    },
+    {
+      "Level": "E4",
+      "명칭": "Domain Inference",
+      "정의": "PSD 일반지식으로 추론",
+      "사용 원칙": "Patent Fact 사용 금지"
+    }
+  ],
+  "extraction_rules": [
+    {
+      "Rule": "SR-01",
+      "이름": "Specific Relation 우선",
+      "적용 기준": "Motor mounted on Base -> mounted_on (connected_to보다 우선)"
+    },
+    {
+      "Rule": "SR-02",
+      "이름": "동력 전달 결합은 coupled_to",
+      "적용 기준": "힘/운동 전달 목적의 결합이 명시되면 connected_to 대신 coupled_to"
+    },
+    {
+      "Rule": "SR-03",
+      "이름": "Support와 Mount 구분",
+      "적용 기준": "rotatably supported -> supported_by + motion=rotatable"
+    },
+    {
+      "Rule": "SR-04",
+      "이름": "Feature는 formed_in/on",
+      "적용 기준": "Guide Groove, Recess, Slot 등 Feature의 형성 관계를 part_of로 일반화하지 않음"
+    },
+    {
+      "Rule": "SR-05",
+      "이름": "수용은 accommodated_in",
+      "적용 기준": "의도된 수용 공간에 들어가는 경우 located_in보다 우선"
+    },
+    {
+      "Rule": "SR-06",
+      "이름": "권취/경유 구분",
+      "적용 기준": "Drum 권취는 wound_on, Pulley 경유는 wrapped_around"
+    },
+    {
+      "Rule": "SR-07",
+      "이름": "조건은 Attribute",
+      "적용 기준": "rotatably_supported_by, adjustably_mounted_on 같은 복합 Relation을 새로 만들지 않음"
+    },
+    {
+      "Rule": "SR-08",
+      "이름": "근거 없는 압축 금지",
+      "적용 기준": "Motor->Drum이 상식적으로 맞더라도 Claim 근거 없으면 E1/E2로 생성하지 않음"
+    }
+  ],
+  "evaluation_rules": [
+    {
+      "항목": "Main Metric",
+      "권장 기준": "Core Relation Precision / Recall / F1",
+      "설명": "Strict key = Subject Instance + Canonical Relation + Object Instance"
+    },
+    {
+      "항목": "N-ary 관계",
+      "권장 기준": "located_between (Object Set order-insensitive)",
+      "설명": "Strict key = Subject + Relation + 순서 무관 Object Set"
+    },
+    {
+      "항목": "Secondary Metric",
+      "권장 기준": "Relation Attribute Accuracy",
+      "설명": "motion, mounting_mode 등 속성 정확도"
+    },
+    {
+      "항목": "Gold 범위",
+      "권장 기준": "E1 + 검증된 E2",
+      "설명": "독립청구항 중심 Gold Relation"
+    },
+    {
+      "항목": "Error Analysis",
+      "권장 기준": "Relation Type Error / Instance Merge / Omission / Unsupported Relation / Attribute Error",
+      "설명": "F1 외 오류 유형 분석"
+    }
+  ],
+  "architecture_inference_patterns": [
+    {
+      "Relation 패턴": "Drive Unit --mounted_on--> Sliding Door",
+      "추론 가능한 Architecture": "A1.1 Door-mounted"
+    },
+    {
+      "Relation 패턴": "Drive Mechanism --integrated_with--> Guide Rail",
+      "추론 가능한 Architecture": "A1.3 Rail-integrated"
+    },
+    {
+      "Relation 패턴": "Drive Mechanism --accommodated_in--> Door Module/Base Recess",
+      "추론 가능한 Architecture": "A2.1/A2.2 Module-integrated"
+    },
+    {
+      "Relation 패턴": "Pulley --supported_by--> Pulley Unit / Housing",
+      "추론 가능한 Architecture": "A3.2 Pulley Unit"
+    }
+  ]
+}

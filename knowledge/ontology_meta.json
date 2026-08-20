@@ -1,0 +1,636 @@
+{
+  "schema_version": "1.0",
+  "knowledge_type": "psd_core_ontology",
+  "ontology_name": "PSD Core Ontology",
+  "ontology_version": "1.0",
+  "status": "draft_freeze",
+  "generated_at": "2026-08-21T01:36:00+09:00",
+  "knowledge_versions": {
+    "core_taxonomy": "1.4",
+    "claim_element_dictionary": "1.3",
+    "function_vocabulary": "1.2",
+    "relation_vocabulary": "1.2",
+    "state_mode_constraint_vocabulary": "1.1",
+    "problem_vocabulary": "1.1",
+    "effect_design_attribute_vocabulary": "1.1"
+  },
+  "source_manifest": {
+    "taxonomy": {
+      "file_name": "PSD_Core_Taxonomy_v1.4.docx",
+      "version": "1.4",
+      "sha256": "db64fc140df4b3e4d6628e18fb9e37abf29dee39f8524d446bb02874289f7402"
+    },
+    "claim_elements": {
+      "file_name": "PSD_Claim_Element_Component_Dictionary_v1.3.docx",
+      "version": "1.3",
+      "sha256": "11802c6ffc2f10c0871bdd861b747a375560ee5b633fe1b978975b8618a7e8db"
+    },
+    "functions": {
+      "file_name": "PSD_Function_Vocabulary_v1.2.docx",
+      "version": "1.2",
+      "sha256": "401bcb3fb95a293b7784ae060557aa05536bc0fe1662ec24dcd8677e82cbcd45"
+    },
+    "relations": {
+      "file_name": "PSD_Relation_Vocabulary_v1.2.docx",
+      "version": "1.2",
+      "sha256": "afbdbd8c0813b03b7e7c4682f4ad5badd43687c908c0dd247c28880ea73925b3"
+    },
+    "state_constraint": {
+      "file_name": "PSD_State_Mode_Claim_Constraint_Vocabulary_v1.1.docx",
+      "version": "1.1",
+      "sha256": "1aaf63206314b41767612d4fda5ec6774c87eb159b75acfb5cae05fb12be9f80"
+    },
+    "problems": {
+      "file_name": "PSD_Problem_Vocabulary_v1.1.docx",
+      "version": "1.1",
+      "sha256": "ff99e936b8fad8296dc20d5d16ad0c172fc826feca6d28d19b8bab4f4c2af89d"
+    },
+    "effects": {
+      "file_name": "PSD_Effect_Design_Attribute_Vocabulary_v1.1.docx",
+      "version": "1.1",
+      "sha256": "30e23ef43fe2e51b9ac834163de4b2ceefb32bbc2d1148657b84b68f706574d7"
+    },
+    "ontology": {
+      "file_name": "PSD_Core_Ontology_v1.0.docx",
+      "version": "1.0",
+      "sha256": "4463c37e4637d3f9dae86c51ebf47b0fb9a3c2799ea27c2541cb7bfecd889f05"
+    }
+  },
+  "layers": [
+    {
+      "Layer": "Concept Layer",
+      "설명": "PSD 분야에서 공통으로 사용하는 표준 개념",
+      "예": "Drive Cable, Guide Pulley, maintain_tension, guided_by, P-FLX-01"
+    },
+    {
+      "Layer": "Patent Instance Layer",
+      "설명": "특정 Claim에 실제 등장한 개별 인스턴스",
+      "예": "Cable_1, Cable_2, GuidePulley_1, Housing_1"
+    }
+  ],
+  "classes": [
+    {
+      "class_name": "PatentDocument",
+      "meaning": "공개 특허 문서 단위"
+    },
+    {
+      "class_name": "Claim",
+      "meaning": "독립/종속청구항 및 Dependency"
+    },
+    {
+      "class_name": "ClaimElementConcept",
+      "meaning": "표준 Master 개념"
+    },
+    {
+      "class_name": "ClaimElementInstance",
+      "meaning": "특정 Claim의 실제 요소"
+    },
+    {
+      "class_name": "FunctionAssignment",
+      "meaning": "특정 Instance에 Evidence 기반 Function 부여"
+    },
+    {
+      "class_name": "RelationAssertion",
+      "meaning": "Instance 간 Canonical Relation"
+    },
+    {
+      "class_name": "State / Mode Assertion",
+      "meaning": "특정 Entity 또는 System의 상태/모드"
+    },
+    {
+      "class_name": "ClaimConstraint",
+      "meaning": "비교·조건·수량·상태한정 등"
+    },
+    {
+      "class_name": "Problem / Effect Assertion",
+      "meaning": "특허별 문제·효과 주장"
+    },
+    {
+      "class_name": "Evidence",
+      "meaning": "모든 Assertion의 원문 근거"
+    }
+  ],
+  "canonical_edges": [
+    {
+      "subject_class": "PatentDocument",
+      "predicate": "has_claim",
+      "object_class": "Claim"
+    },
+    {
+      "subject_class": "Claim",
+      "predicate": "has_element",
+      "object_class": "ClaimElementInstance"
+    },
+    {
+      "subject_class": "ClaimElementInstance",
+      "predicate": "normalized_to",
+      "object_class": "ClaimElementConcept"
+    },
+    {
+      "subject_class": "Claim",
+      "predicate": "has_function_assignment",
+      "object_class": "FunctionAssignment"
+    },
+    {
+      "subject_class": "Claim",
+      "predicate": "has_relation_assertion",
+      "object_class": "RelationAssertion"
+    },
+    {
+      "subject_class": "Claim",
+      "predicate": "has_state_assertion",
+      "object_class": "StateAssertion"
+    },
+    {
+      "subject_class": "Claim",
+      "predicate": "has_mode_assertion",
+      "object_class": "ModeAssertion"
+    },
+    {
+      "subject_class": "Claim",
+      "predicate": "has_constraint",
+      "object_class": "ClaimConstraint"
+    },
+    {
+      "subject_class": "PatentDocument",
+      "predicate": "has_technology_assignment",
+      "object_class": "Technology"
+    },
+    {
+      "subject_class": "PatentDocument",
+      "predicate": "has_architecture_assignment",
+      "object_class": "Architecture"
+    },
+    {
+      "subject_class": "PatentDocument",
+      "predicate": "has_problem_assertion",
+      "object_class": "Problem"
+    },
+    {
+      "subject_class": "PatentDocument",
+      "predicate": "has_effect_assertion",
+      "object_class": "Effect"
+    },
+    {
+      "subject_class": "Effect",
+      "predicate": "mapped_to",
+      "object_class": "DesignAttribute"
+    },
+    {
+      "subject_class": "Assertion",
+      "predicate": "grounded_by",
+      "object_class": "Evidence"
+    }
+  ],
+  "patent_properties": [
+    {
+      "Property": "patent_id",
+      "예시": "JP7604988B2",
+      "비고": "내부 식별자"
+    },
+    {
+      "Property": "publication_number",
+      "예시": "JP7604988B2",
+      "비고": "공개/등록번호"
+    },
+    {
+      "Property": "application_number",
+      "예시": "...",
+      "비고": "원번호 보존"
+    },
+    {
+      "Property": "priority_date",
+      "예시": "YYYY-MM-DD",
+      "비고": "Family 분석 기준"
+    },
+    {
+      "Property": "applicant",
+      "예시": "AISIN",
+      "비고": "출원인"
+    },
+    {
+      "Property": "title",
+      "예시": "...",
+      "비고": "발명의 명칭"
+    },
+    {
+      "Property": "family_id",
+      "예시": "PAT_FAMILY_001",
+      "비고": "패밀리 중복 집계 방지"
+    },
+    {
+      "Property": "legal_status",
+      "예시": "granted",
+      "비고": "법적 상태"
+    }
+  ],
+  "claim_properties": [
+    {
+      "Claim Property": "claim_id",
+      "의미": "Patent + Claim Number 기반 고유 ID"
+    },
+    {
+      "Claim Property": "claim_number",
+      "의미": "청구항 번호"
+    },
+    {
+      "Claim Property": "claim_type",
+      "의미": "independent / dependent"
+    },
+    {
+      "Claim Property": "claim_text",
+      "의미": "원문 또는 정규화 텍스트"
+    },
+    {
+      "Claim Property": "depends_on[]",
+      "의미": "종속항이 참조하는 상위 Claim"
+    },
+    {
+      "Claim Property": "inherits_parent_limitations",
+      "의미": "상위 Claim 한정 상속 여부"
+    }
+  ],
+  "claim_element_types": [
+    {
+      "Type": "Component",
+      "대표 예": "Motor, Drive Cable, Guide Pulley, Spring"
+    },
+    {
+      "Type": "Assembly",
+      "대표 예": "Drive Unit, Pulley Unit, Door Module"
+    },
+    {
+      "Type": "Structural Feature",
+      "대표 예": "Guide Groove, Adjustment Slot, Recess"
+    },
+    {
+      "Type": "Portion / Region",
+      "대표 예": "Drum Diameter Portion"
+    },
+    {
+      "Type": "Reference Entity",
+      "대표 예": "Sliding Door, Vehicle Body, Door Opening"
+    },
+    {
+      "Type": "Geometric Reference",
+      "대표 예": "Axis, Centerline, Plane, Direction Reference"
+    }
+  ],
+  "claim_element_attribute_rules": [
+    {
+      "Attribute 구분": "instance_index",
+      "원칙": "first/second 등을 Instance 번호로 저장"
+    },
+    {
+      "Attribute 구분": "position",
+      "원칙": "front/rear/upper/lower 등 위치 정보"
+    },
+    {
+      "Attribute 구분": "role",
+      "원칙": "opening/closing/drive 등 기능 역할"
+    },
+    {
+      "Attribute 구분": "material / size / shape",
+      "원칙": "Claim에서 직접 한정될 때 저장"
+    },
+    {
+      "Attribute 구분": "mobility",
+      "원칙": "Element 자체의 고유 이동성"
+    },
+    {
+      "Attribute 구분": "state",
+      "원칙": "Claim Element Attribute로 저장하지 않음 - State Assertion 사용"
+    }
+  ],
+  "relation_categories": [
+    {
+      "Category": "Hierarchy / Formation",
+      "대표 Relation": "part_of, formed_in, formed_on, accommodated_in"
+    },
+    {
+      "Category": "Structural / Mechanical",
+      "대표 Relation": "mounted_on, fixed_to, supported_by, held_by, engaged_with"
+    },
+    {
+      "Category": "Spatial / Geometry",
+      "대표 Relation": "located_between, located_above, adjacent_to, opposed_to, aligned_with, overlaps"
+    },
+    {
+      "Category": "Flexible Transmission",
+      "대표 Relation": "wound_on, wrapped_around, guided_by, passes_along, retained_by"
+    },
+    {
+      "Category": "Motion / Power",
+      "대표 Relation": "drives, transmits_force_to, moves_along, biases, applies_tension_to"
+    },
+    {
+      "Category": "Closure / Latch",
+      "대표 Relation": "locks, releases, cinches"
+    },
+    {
+      "Category": "Control / Electrical",
+      "대표 Relation": "controls, actuates, receives_signal_from, supplies_power_to, senses"
+    }
+  ],
+  "context_qualifiers": [
+    {
+      "Qualifier": "travel_region",
+      "예": "curved_region"
+    },
+    {
+      "Qualifier": "assembly_stage",
+      "예": "pre_assembly"
+    },
+    {
+      "Qualifier": "viewpoint",
+      "예": "axial_view"
+    },
+    {
+      "Qualifier": "direction_reference",
+      "예": "vehicle_longitudinal"
+    },
+    {
+      "Qualifier": "time_scope",
+      "예": "during_closing"
+    },
+    {
+      "Qualifier": "position_context",
+      "예": "front_end"
+    },
+    {
+      "Qualifier": "operation_mode",
+      "예": "power_driven_mode"
+    },
+    {
+      "Qualifier": "state",
+      "예": "retracted"
+    }
+  ],
+  "evidence_output_policy": [
+    {
+      "Evidence 체계": "Claim Fact",
+      "허용 수준": "E1 / E2",
+      "Patent Fact 출력": "허용"
+    },
+    {
+      "Evidence 체계": "Description-supported",
+      "허용 수준": "E3",
+      "Patent Fact 출력": "허용(근거 표시 권장)"
+    },
+    {
+      "Evidence 체계": "Domain Inference",
+      "허용 수준": "E4",
+      "Patent Fact 출력": "금지"
+    },
+    {
+      "Evidence 체계": "Problem",
+      "허용 수준": "PE1 - PE3",
+      "Patent Fact 출력": "허용"
+    },
+    {
+      "Evidence 체계": "Problem Domain Inference",
+      "허용 수준": "PE4",
+      "Patent Fact 출력": "금지"
+    },
+    {
+      "Evidence 체계": "Effect",
+      "허용 수준": "EE1 - EE3",
+      "Patent Fact 출력": "허용"
+    },
+    {
+      "Evidence 체계": "Effect Domain Inference",
+      "허용 수준": "EE4",
+      "Patent Fact 출력": "금지"
+    }
+  ],
+  "example_mapping": [
+    {
+      "Axis": "Problem",
+      "Mapping 예": "P-FLX-01 tension_loss_or_slack"
+    },
+    {
+      "Axis": "Claim Elements",
+      "Mapping 예": "Drive Cable / Tension Pulley / Spring"
+    },
+    {
+      "Axis": "Relation 1",
+      "Mapping 예": "Spring_1 --biases--> TensionPulley_1"
+    },
+    {
+      "Axis": "Relation 2",
+      "Mapping 예": "TensionPulley_1 --applies_tension_to--> Cable_1"
+    },
+    {
+      "Axis": "Function",
+      "Mapping 예": "maintain_tension / compensate_slack"
+    },
+    {
+      "Axis": "Effect",
+      "Mapping 예": "E-FLX-01 stabilize_tension / E-DRV-09 stabilize_door_position"
+    },
+    {
+      "Axis": "Design Attribute",
+      "Mapping 예": "DA-05 Transmission Stability / DA-07 Motion Quality"
+    },
+    {
+      "Axis": "Technology",
+      "Mapping 예": "T2.6 Tension / Slack Management"
+    }
+  ],
+  "related_patent_features": [
+    {
+      "검색/비교 Feature": "Problem similarity",
+      "의미": "같은 기술적 문제를 해결하는가"
+    },
+    {
+      "검색/비교 Feature": "Function similarity",
+      "의미": "같은 기능을 수행하는가"
+    },
+    {
+      "검색/비교 Feature": "Claim Element similarity",
+      "의미": "같은/유사 구성요소를 사용하는가"
+    },
+    {
+      "검색/비교 Feature": "Relation similarity",
+      "의미": "구성요소 간 결합·배치·동력 관계가 유사한가"
+    },
+    {
+      "검색/비교 Feature": "Constraint similarity",
+      "의미": "핵심 한정조건이 유사한가"
+    },
+    {
+      "검색/비교 Feature": "Technology similarity",
+      "의미": "같은 기술 Subsystem인가"
+    },
+    {
+      "검색/비교 Feature": "Architecture similarity",
+      "의미": "장착/통합 구조가 유사한가"
+    }
+  ],
+  "validation_rules": [
+    {
+      "Rule": "V01",
+      "Validation": "모든 Claim Element Instance는 정확히 1개 Master 또는 unmapped_candidate를 가진다."
+    },
+    {
+      "Rule": "V02",
+      "Validation": "모든 Relation Subject/Object는 실제 Instance로 존재해야 한다."
+    },
+    {
+      "Rule": "V03",
+      "Validation": "Relation의 Domain/Range 제약을 만족해야 한다."
+    },
+    {
+      "Rule": "V04",
+      "Validation": "State Value는 지정된 State Dimension의 허용값이어야 한다."
+    },
+    {
+      "Rule": "V05",
+      "Validation": "Constraint는 실제 존재하는 Entity/Relation/State를 참조해야 한다."
+    },
+    {
+      "Rule": "V06",
+      "Validation": "E1/E2 Claim Evidence는 claim_id를 필수로 가진다."
+    },
+    {
+      "Rule": "V07",
+      "Validation": "E4/PE4/EE4는 Patent Fact 출력에 사용할 수 없다."
+    },
+    {
+      "Rule": "V08",
+      "Validation": "First/Second 등 Instance 표현으로 별도 Master를 생성하지 않는다."
+    },
+    {
+      "Rule": "V09",
+      "Validation": "Front/Rear 등 위치차이는 기본적으로 Attribute로 우선 처리한다."
+    },
+    {
+      "Rule": "V10",
+      "Validation": "State를 Claim Element Attribute에 중복 저장하지 않는다."
+    },
+    {
+      "Rule": "V11",
+      "Validation": "Entity mobility와 Relation motion에 동일 사실을 중복 저장하지 않는다."
+    },
+    {
+      "Rule": "V12",
+      "Validation": "Dependent Claim dependency cycle을 허용하지 않는다."
+    },
+    {
+      "Rule": "V13",
+      "Validation": "Technology는 Multi-label을 허용한다."
+    },
+    {
+      "Rule": "V14",
+      "Validation": "display_primary는 최대 1개만 허용한다."
+    },
+    {
+      "Rule": "V15",
+      "Validation": "미등록 Claim Element를 기존 Master에 강제 정규화하지 않는다."
+    }
+  ],
+  "report_generation_map": [
+    {
+      "보고서 항목": "특허 기본정보",
+      "Ontology Source": "PatentDocument"
+    },
+    {
+      "보고서 항목": "핵심 과제",
+      "Ontology Source": "Problem Assertion"
+    },
+    {
+      "보고서 항목": "필수 구성요소",
+      "Ontology Source": "Claim Element Instance"
+    },
+    {
+      "보고서 항목": "물리적/기능적 관계",
+      "Ontology Source": "Relation Assertion"
+    },
+    {
+      "보고서 항목": "핵심 청구조건",
+      "Ontology Source": "Claim Constraint"
+    },
+    {
+      "보고서 항목": "종속항 추가조건",
+      "Ontology Source": "Claim Dependency + Constraint"
+    },
+    {
+      "보고서 항목": "작동원리",
+      "Ontology Source": "Function + Relation + State/Sequence"
+    },
+    {
+      "보고서 항목": "기술 효과",
+      "Ontology Source": "Effect Assertion"
+    },
+    {
+      "보고서 항목": "PSD 기술분류",
+      "Ontology Source": "Technology + Architecture"
+    },
+    {
+      "보고서 항목": "핵심 기술 요약",
+      "Ontology Source": "전체 Patent Graph 종합"
+    }
+  ],
+  "mapping_test_error_types": [
+    {
+      "Mapping Test에서 기록할 항목": "Unmapped Claim Element",
+      "의미": "Dictionary에 없는 실제 Claim 요소"
+    },
+    {
+      "Mapping Test에서 기록할 항목": "Unknown Relation",
+      "의미": "46개 Relation으로 표현 불가"
+    },
+    {
+      "Mapping Test에서 기록할 항목": "Unknown Function",
+      "의미": "Function Vocabulary에서 표현 불가"
+    },
+    {
+      "Mapping Test에서 기록할 항목": "Unrepresentable Constraint",
+      "의미": "12개 Constraint Type으로 표현 불가"
+    },
+    {
+      "Mapping Test에서 기록할 항목": "Problem Coverage Gap",
+      "의미": "Problem Vocabulary 미분류"
+    },
+    {
+      "Mapping Test에서 기록할 항목": "Effect Coverage Gap",
+      "의미": "Effect Vocabulary 미분류"
+    },
+    {
+      "Mapping Test에서 기록할 항목": "Ambiguous Normalization",
+      "의미": "둘 이상의 Master가 경쟁하는 표현"
+    }
+  ],
+  "structured_patent_output_schema": {
+    "patent": {},
+    "technology_assignments": [],
+    "architecture_assignments": [],
+    "claims": [
+      {
+        "claim_id": "",
+        "claim_type": "",
+        "depends_on": [],
+        "claim_elements": [],
+        "function_assignments": [],
+        "relation_assertions": [],
+        "state_assertions": [],
+        "mode_assertions": [],
+        "constraints": []
+      }
+    ],
+    "problem_assertions": [],
+    "effect_assertions": [],
+    "problem_effect_links": [],
+    "evidence": []
+  },
+  "core_principles": [
+    "Concept Layer and Patent Instance Layer are separated.",
+    "Patent Facts require patent-specific evidence; domain knowledge does not automatically create facts.",
+    "First/Second are instances, not separate master concepts.",
+    "State is stored as StateAssertion, not duplicated as a Claim Element attribute.",
+    "Entity mobility and Relation motion must not duplicate the same fact.",
+    "Technology is multi-label; display_primary is a report-only representative label.",
+    "Problem and Effect links require patent-specific evidence and are not inferred 1:1.",
+    "E4/PE4/EE4 domain inference must not be output as Patent Fact."
+  ]
+}

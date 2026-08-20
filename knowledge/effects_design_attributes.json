@@ -1,0 +1,1682 @@
+{
+  "schema_version": "1.0",
+  "knowledge_type": "effect_design_attribute_vocabulary",
+  "source_document": {
+    "file_name": "PSD_Effect_Design_Attribute_Vocabulary_v1.1.docx",
+    "version": "1.1",
+    "sha256": "30e23ef43fe2e51b9ac834163de4b2ceefb32bbc2d1148657b84b68f706574d7"
+  },
+  "generated_at": "2026-08-21T01:36:00+09:00",
+  "counts": {
+    "effects": 65,
+    "design_attributes": 20,
+    "effect_categories": 9
+  },
+  "effects": [
+    {
+      "record_type": "effect",
+      "id": "E-PKG-01",
+      "canonical_name": "reduce_installation_space",
+      "korean_name": "설치 공간 감소",
+      "category": "Packaging / Structure",
+      "definition": "PSD 장착에 필요한 공간을 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-PKG-02",
+      "canonical_name": "improve_packaging_efficiency",
+      "korean_name": "패키징 효율 향상",
+      "category": "Packaging / Structure",
+      "definition": "제한된 Door/Body 공간의 활용 효율을 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-PKG-03",
+      "canonical_name": "simplify_structure",
+      "korean_name": "구조 단순화",
+      "category": "Packaging / Structure",
+      "definition": "Housing, Cover, Bracket 등 구조 복잡도를 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-PKG-04",
+      "canonical_name": "reduce_component_interference",
+      "korean_name": "부품 간섭 감소",
+      "category": "Packaging / Structure",
+      "definition": "주변 Component 간 물리적 간섭 가능성을 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-PKG-05",
+      "canonical_name": "improve_component_layout",
+      "korean_name": "부품 배치성 향상",
+      "category": "Packaging / Structure",
+      "definition": "부품 배치 자유도 또는 적정성을 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-PKG-06",
+      "canonical_name": "improve_module_integration",
+      "korean_name": "모듈 통합성 향상",
+      "category": "Packaging / Structure",
+      "definition": "여러 PSD/도어 기능을 효율적으로 통합"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ASM-01",
+      "canonical_name": "facilitate_assembly",
+      "korean_name": "조립 용이성 향상",
+      "category": "Assembly / Manufacturing",
+      "definition": "Component 조립 작업을 쉽게 함"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ASM-02",
+      "canonical_name": "improve_positioning_accuracy",
+      "korean_name": "위치결정 정확도 향상",
+      "category": "Assembly / Manufacturing",
+      "definition": "조립 시 Component 위치를 정확히 설정"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ASM-03",
+      "canonical_name": "facilitate_position_adjustment",
+      "korean_name": "위치 조정 용이성 향상",
+      "category": "Assembly / Manufacturing",
+      "definition": "Pulley/Bracket 등의 위치 조정을 쉽게 함"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ASM-04",
+      "canonical_name": "facilitate_routing",
+      "korean_name": "배선·배치 용이성 향상",
+      "category": "Assembly / Manufacturing",
+      "definition": "Cable/Belt/Harness routing 작업을 쉽게 함"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ASM-05",
+      "canonical_name": "simplify_manufacturing",
+      "korean_name": "제조 단순화",
+      "category": "Assembly / Manufacturing",
+      "definition": "가공·성형·제작 공정을 단순화"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ASM-06",
+      "canonical_name": "improve_formability",
+      "korean_name": "성형성 향상",
+      "category": "Assembly / Manufacturing",
+      "definition": "Housing/Cover/Groove 등을 형성하기 쉽게 함"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ASM-07",
+      "canonical_name": "reduce_assembly_steps",
+      "korean_name": "조립 공정 감소",
+      "category": "Assembly / Manufacturing",
+      "definition": "필요한 조립·체결 작업 단계를 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ASM-08",
+      "canonical_name": "enable_preassembly",
+      "korean_name": "사전조립 가능",
+      "category": "Assembly / Manufacturing",
+      "definition": "차량/도어 장착 전에 Module 단위 조립을 가능하게 함"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-FLX-01",
+      "canonical_name": "stabilize_tension",
+      "korean_name": "장력 안정화",
+      "category": "Flexible Transmission",
+      "definition": "Cable/Belt 장력을 적정 수준으로 안정적으로 유지"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-FLX-02",
+      "canonical_name": "reduce_slack",
+      "korean_name": "처짐 감소",
+      "category": "Flexible Transmission",
+      "definition": "Cable/Belt의 느슨함과 여유 길이를 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-FLX-03",
+      "canonical_name": "stabilize_routing",
+      "korean_name": "경로 안정화",
+      "category": "Flexible Transmission",
+      "definition": "Flexible Member가 의도된 경로를 안정적으로 유지"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-FLX-04",
+      "canonical_name": "prevent_derailment",
+      "korean_name": "이탈 방지",
+      "category": "Flexible Transmission",
+      "definition": "Cable/Belt가 Pulley/Guide에서 벗어나는 것을 방지"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-FLX-05",
+      "canonical_name": "reduce_flexible_member_interference",
+      "korean_name": "케이블·벨트 간섭 감소",
+      "category": "Flexible Transmission",
+      "definition": "Flexible Member 간 또는 주변 구조와의 간섭 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-FLX-06",
+      "canonical_name": "reduce_bending_load",
+      "korean_name": "굽힘 부담 감소",
+      "category": "Flexible Transmission",
+      "definition": "과도한 굽힘 또는 곡률 부담을 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-FLX-07",
+      "canonical_name": "reduce_flexible_member_wear",
+      "korean_name": "케이블·벨트 마모 감소",
+      "category": "Flexible Transmission",
+      "definition": "반복 마찰로 인한 Flexible Member 마모 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-FLX-08",
+      "canonical_name": "stabilize_end_connection",
+      "korean_name": "종단 연결 안정화",
+      "category": "Flexible Transmission",
+      "definition": "Cable End/Belt Connection의 연결 안정성을 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-FLX-09",
+      "canonical_name": "accommodate_length_variation",
+      "korean_name": "길이 변화 흡수",
+      "category": "Flexible Transmission",
+      "definition": "열변화·공차·신장 등에 따른 길이 차이를 보상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-DRV-01",
+      "canonical_name": "increase_drive_torque",
+      "korean_name": "구동 토크 향상",
+      "category": "Drive / Motion",
+      "definition": "Door 구동에 사용할 수 있는 Torque를 증가"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-DRV-02",
+      "canonical_name": "reduce_drive_load",
+      "korean_name": "구동 부하 감소",
+      "category": "Drive / Motion",
+      "definition": "Motor/Transmission에 걸리는 부하 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-DRV-03",
+      "canonical_name": "improve_transmission_efficiency",
+      "korean_name": "동력전달 효율 향상",
+      "category": "Drive / Motion",
+      "definition": "Motor 출력이 Door에 전달되는 효율 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-DRV-04",
+      "canonical_name": "optimize_speed_torque_characteristic",
+      "korean_name": "속도·토크 특성 최적화",
+      "category": "Drive / Motion",
+      "definition": "Door 위치/조건에 적합한 Speed-Torque 특성을 확보"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-DRV-05",
+      "canonical_name": "stabilize_door_motion",
+      "korean_name": "도어 운동 안정화",
+      "category": "Drive / Motion",
+      "definition": "Opening/Closing 중 Door 움직임 안정화"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-DRV-06",
+      "canonical_name": "improve_trajectory_accuracy",
+      "korean_name": "이동 궤적 정확도 향상",
+      "category": "Drive / Motion",
+      "definition": "Rail/Roller에 따른 Door 궤적 정확도를 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-DRV-07",
+      "canonical_name": "reduce_motion_resistance",
+      "korean_name": "이동 저항 감소",
+      "category": "Drive / Motion",
+      "definition": "Sliding/Pivot Motion의 저항을 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-DRV-08",
+      "canonical_name": "reduce_end_region_shock",
+      "korean_name": "단부 충격 감소",
+      "category": "Drive / Motion",
+      "definition": "Full-open/close 부근 충격 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-DRV-09",
+      "canonical_name": "stabilize_door_position",
+      "korean_name": "도어 위치 안정화",
+      "category": "Drive / Motion",
+      "definition": "정지 또는 작동 중 Door 위치를 안정적으로 유지"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-REL-01",
+      "canonical_name": "improve_operational_reliability",
+      "korean_name": "작동 신뢰성 향상",
+      "category": "Reliability / Durability / NVH",
+      "definition": "반복 동작에서 의도된 PSD 기능을 안정적으로 수행"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-REL-02",
+      "canonical_name": "improve_durability",
+      "korean_name": "내구성 향상",
+      "category": "Reliability / Durability / NVH",
+      "definition": "장기간 반복 사용에 대한 수명 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-REL-03",
+      "canonical_name": "reduce_wear",
+      "korean_name": "마모 감소",
+      "category": "Reliability / Durability / NVH",
+      "definition": "부품 접촉·마찰에 따른 일반적인 마모 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-REL-04",
+      "canonical_name": "reduce_noise",
+      "korean_name": "소음 감소",
+      "category": "Reliability / Durability / NVH",
+      "definition": "PSD 작동 Noise 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-REL-05",
+      "canonical_name": "reduce_vibration",
+      "korean_name": "진동 감소",
+      "category": "Reliability / Durability / NVH",
+      "definition": "Door/Drive System의 Vibration 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-REL-06",
+      "canonical_name": "reduce_impact_load",
+      "korean_name": "충격 하중 감소",
+      "category": "Reliability / Durability / NVH",
+      "definition": "갑작스러운 Door 움직임 등에 의한 Impact Load 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-REL-07",
+      "canonical_name": "improve_fatigue_resistance",
+      "korean_name": "피로 내구성 향상",
+      "category": "Reliability / Durability / NVH",
+      "definition": "반복 하중·굽힘에 대한 피로 저항 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-PRT-01",
+      "canonical_name": "prevent_contamination",
+      "korean_name": "이물질 오염 방지",
+      "category": "Protection / Environment",
+      "definition": "먼지·모래 등 이물의 작동부 유입을 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-PRT-02",
+      "canonical_name": "improve_ingress_protection",
+      "korean_name": "방수·방진성 향상",
+      "category": "Protection / Environment",
+      "definition": "Water/Dust 침투를 억제"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-PRT-03",
+      "canonical_name": "protect_flexible_member",
+      "korean_name": "케이블·벨트 보호",
+      "category": "Protection / Environment",
+      "definition": "외력·접촉·환경으로부터 Cable/Belt를 보호"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-PRT-04",
+      "canonical_name": "protect_electrical_components",
+      "korean_name": "전장부품 보호",
+      "category": "Protection / Environment",
+      "definition": "Harness/Connector/ECU 등을 환경·접촉으로부터 보호"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-PRT-05",
+      "canonical_name": "prevent_component_exposure",
+      "korean_name": "부품 노출 방지",
+      "category": "Protection / Environment",
+      "definition": "Cover 이탈 등으로 내부 Component 노출을 방지"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-SAF-01",
+      "canonical_name": "reduce_pinch_or_collision_risk",
+      "korean_name": "끼임·충돌 위험 감소",
+      "category": "Safety / Manual / Closure",
+      "definition": "사용자/물체와 Door 충돌 위험 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-SAF-02",
+      "canonical_name": "prevent_unintended_movement",
+      "korean_name": "의도치 않은 이동 방지",
+      "category": "Safety / Manual / Closure",
+      "definition": "Door의 비의도적 움직임을 방지"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-SAF-03",
+      "canonical_name": "improve_manual_operability",
+      "korean_name": "수동 조작성 향상",
+      "category": "Safety / Manual / Closure",
+      "definition": "사용자가 Door를 수동으로 쉽게 조작"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-SAF-04",
+      "canonical_name": "reduce_manual_operating_force",
+      "korean_name": "수동 조작력 감소",
+      "category": "Safety / Manual / Closure",
+      "definition": "Door를 손으로 움직이는 데 필요한 힘 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-SAF-05",
+      "canonical_name": "enable_emergency_operation",
+      "korean_name": "비상 작동성 확보",
+      "category": "Safety / Manual / Closure",
+      "definition": "고장·전원상실 시 수동/비상 운전 가능"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-SAF-06",
+      "canonical_name": "improve_closure_reliability",
+      "korean_name": "폐쇄 신뢰성 향상",
+      "category": "Safety / Manual / Closure",
+      "definition": "Door가 완전 폐쇄·Latch 상태에 안정적으로 도달"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-SAF-07",
+      "canonical_name": "improve_operational_safety",
+      "korean_name": "작동 안전성 향상",
+      "category": "Safety / Manual / Closure",
+      "definition": "차량/도어 상태에 따른 안전한 PSD 운전 확보"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-CTL-01",
+      "canonical_name": "improve_position_detection_accuracy",
+      "korean_name": "위치 검출 정확도 향상",
+      "category": "Sensing / Control / Electrical",
+      "definition": "Door/Motor 위치 판단 정확도 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-CTL-02",
+      "canonical_name": "improve_state_detection_reliability",
+      "korean_name": "상태 검출 신뢰성 향상",
+      "category": "Sensing / Control / Electrical",
+      "definition": "Door/Latch/Direction 상태 검출 신뢰성 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-CTL-03",
+      "canonical_name": "improve_obstacle_detection_reliability",
+      "korean_name": "장애물 검출 신뢰성 향상",
+      "category": "Sensing / Control / Electrical",
+      "definition": "Pinch/Obstacle 검출 신뢰성 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-CTL-04",
+      "canonical_name": "improve_motion_control_accuracy",
+      "korean_name": "동작 제어 정확도 향상",
+      "category": "Sensing / Control / Electrical",
+      "definition": "Speed/Torque/Position 제어 정밀도 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-CTL-05",
+      "canonical_name": "improve_fault_protection",
+      "korean_name": "고장 보호 성능 향상",
+      "category": "Sensing / Control / Electrical",
+      "definition": "이상 발생 시 보호·Fail-safe 능력 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ELE-01",
+      "canonical_name": "improve_power_supply_reliability",
+      "korean_name": "전원 공급 신뢰성 향상",
+      "category": "Sensing / Control / Electrical",
+      "definition": "Door 이동 중 안정적 전원 공급"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ELE-02",
+      "canonical_name": "improve_signal_connection_reliability",
+      "korean_name": "신호 접속 신뢰성 향상",
+      "category": "Sensing / Control / Electrical",
+      "definition": "Harness/Connector의 신호 전달 안정성 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ELE-03",
+      "canonical_name": "reduce_harness_fatigue",
+      "korean_name": "하네스 피로 감소",
+      "category": "Sensing / Control / Electrical",
+      "definition": "반복 Door 이동에 따른 Harness 굽힘·피로 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ECO-01",
+      "canonical_name": "reduce_part_count",
+      "korean_name": "부품 수 감소",
+      "category": "Economy / Weight / Service",
+      "definition": "필요한 Component 개수를 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ECO-02",
+      "canonical_name": "reduce_manufacturing_cost",
+      "korean_name": "제조비용 감소",
+      "category": "Economy / Weight / Service",
+      "definition": "생산·성형·가공비용 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ECO-03",
+      "canonical_name": "reduce_assembly_cost",
+      "korean_name": "조립비용 감소",
+      "category": "Economy / Weight / Service",
+      "definition": "작업시간/공정 감소에 따른 조립비 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ECO-04",
+      "canonical_name": "reduce_weight",
+      "korean_name": "중량 감소",
+      "category": "Economy / Weight / Service",
+      "definition": "PSD/Door System 질량 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-SVC-01",
+      "canonical_name": "improve_maintainability",
+      "korean_name": "정비성 향상",
+      "category": "Economy / Weight / Service",
+      "definition": "점검·교체·수리 작업 용이성 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-SVC-02",
+      "canonical_name": "improve_component_accessibility",
+      "korean_name": "부품 접근성 향상",
+      "category": "Economy / Weight / Service",
+      "definition": "Service 시 대상 Component 접근 용이"
+    }
+  ],
+  "design_attributes": [
+    {
+      "record_type": "design_attribute",
+      "id": "DA-01",
+      "name": "Packaging",
+      "korean_name": "패키징성",
+      "representative_effect_raw": "reduce_installation_space",
+      "representative_effect_canonicals": [
+        "reduce_installation_space"
+      ],
+      "representative_effect_ids": [
+        "E-PKG-01"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-02",
+      "name": "Structural Simplicity",
+      "korean_name": "구조 단순성",
+      "representative_effect_raw": "simplify_structure",
+      "representative_effect_canonicals": [
+        "simplify_structure"
+      ],
+      "representative_effect_ids": [
+        "E-PKG-03"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-03",
+      "name": "Assembly",
+      "korean_name": "조립성",
+      "representative_effect_raw": "facilitate_assembly",
+      "representative_effect_canonicals": [
+        "facilitate_assembly"
+      ],
+      "representative_effect_ids": [
+        "E-ASM-01"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-04",
+      "name": "Manufacturability",
+      "korean_name": "제조성",
+      "representative_effect_raw": "improve_formability",
+      "representative_effect_canonicals": [
+        "improve_formability"
+      ],
+      "representative_effect_ids": [
+        "E-ASM-06"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-05",
+      "name": "Transmission Stability",
+      "korean_name": "동력전달 안정성",
+      "representative_effect_raw": "stabilize_tension, stabilize_routing",
+      "representative_effect_canonicals": [
+        "stabilize_tension",
+        "stabilize_routing"
+      ],
+      "representative_effect_ids": [
+        "E-FLX-01",
+        "E-FLX-03"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-06",
+      "name": "Drive Performance",
+      "korean_name": "구동성능",
+      "representative_effect_raw": "increase_drive_torque",
+      "representative_effect_canonicals": [
+        "increase_drive_torque"
+      ],
+      "representative_effect_ids": [
+        "E-DRV-01"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-07",
+      "name": "Motion Quality",
+      "korean_name": "운동 품질",
+      "representative_effect_raw": "stabilize_door_motion",
+      "representative_effect_canonicals": [
+        "stabilize_door_motion"
+      ],
+      "representative_effect_ids": [
+        "E-DRV-05"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-08",
+      "name": "Reliability",
+      "korean_name": "신뢰성",
+      "representative_effect_raw": "improve_operational_reliability",
+      "representative_effect_canonicals": [
+        "improve_operational_reliability"
+      ],
+      "representative_effect_ids": [
+        "E-REL-01"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-09",
+      "name": "Durability",
+      "korean_name": "내구성",
+      "representative_effect_raw": "improve_durability",
+      "representative_effect_canonicals": [
+        "improve_durability"
+      ],
+      "representative_effect_ids": [
+        "E-REL-02"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-10",
+      "name": "NVH",
+      "korean_name": "소음·진동",
+      "representative_effect_raw": "reduce_noise, reduce_vibration",
+      "representative_effect_canonicals": [
+        "reduce_noise",
+        "reduce_vibration"
+      ],
+      "representative_effect_ids": [
+        "E-REL-04",
+        "E-REL-05"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-11",
+      "name": "Protection / Environment",
+      "korean_name": "보호·환경내성",
+      "representative_effect_raw": "prevent_contamination",
+      "representative_effect_canonicals": [
+        "prevent_contamination"
+      ],
+      "representative_effect_ids": [
+        "E-PRT-01"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-12",
+      "name": "Safety",
+      "korean_name": "안전성",
+      "representative_effect_raw": "reduce_pinch_or_collision_risk",
+      "representative_effect_canonicals": [
+        "reduce_pinch_or_collision_risk"
+      ],
+      "representative_effect_ids": [
+        "E-SAF-01"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-13",
+      "name": "Manual Operability",
+      "korean_name": "수동 조작성",
+      "representative_effect_raw": "reduce_manual_operating_force",
+      "representative_effect_canonicals": [
+        "reduce_manual_operating_force"
+      ],
+      "representative_effect_ids": [
+        "E-SAF-04"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-14",
+      "name": "Closure Performance",
+      "korean_name": "폐쇄성능",
+      "representative_effect_raw": "improve_closure_reliability",
+      "representative_effect_canonicals": [
+        "improve_closure_reliability"
+      ],
+      "representative_effect_ids": [
+        "E-SAF-06"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-15",
+      "name": "Sensing Accuracy",
+      "korean_name": "검출 정확도",
+      "representative_effect_raw": "improve_position_detection_accuracy",
+      "representative_effect_canonicals": [
+        "improve_position_detection_accuracy"
+      ],
+      "representative_effect_ids": [
+        "E-CTL-01"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-16",
+      "name": "Control Performance",
+      "korean_name": "제어성능",
+      "representative_effect_raw": "improve_motion_control_accuracy",
+      "representative_effect_canonicals": [
+        "improve_motion_control_accuracy"
+      ],
+      "representative_effect_ids": [
+        "E-CTL-04"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-17",
+      "name": "Electrical Reliability",
+      "korean_name": "전장 신뢰성",
+      "representative_effect_raw": "improve_power_supply_reliability",
+      "representative_effect_canonicals": [
+        "improve_power_supply_reliability"
+      ],
+      "representative_effect_ids": [
+        "E-ELE-01"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-18",
+      "name": "Cost Efficiency",
+      "korean_name": "비용 효율",
+      "representative_effect_raw": "reduce_part_count, reduce_*_cost",
+      "representative_effect_canonicals": [
+        "reduce_part_count",
+        "reduce_*_cost"
+      ],
+      "representative_effect_ids": [
+        "E-ECO-01",
+        "E-ECO-02",
+        "E-ECO-03"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-19",
+      "name": "Weight",
+      "korean_name": "중량",
+      "representative_effect_raw": "reduce_weight",
+      "representative_effect_canonicals": [
+        "reduce_weight"
+      ],
+      "representative_effect_ids": [
+        "E-ECO-04"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-20",
+      "name": "Maintainability",
+      "korean_name": "정비성",
+      "representative_effect_raw": "improve_maintainability",
+      "representative_effect_canonicals": [
+        "improve_maintainability"
+      ],
+      "representative_effect_ids": [
+        "E-SVC-01"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "record_type": "effect",
+      "id": "E-PKG-01",
+      "canonical_name": "reduce_installation_space",
+      "korean_name": "설치 공간 감소",
+      "category": "Packaging / Structure",
+      "definition": "PSD 장착에 필요한 공간을 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-PKG-02",
+      "canonical_name": "improve_packaging_efficiency",
+      "korean_name": "패키징 효율 향상",
+      "category": "Packaging / Structure",
+      "definition": "제한된 Door/Body 공간의 활용 효율을 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-PKG-03",
+      "canonical_name": "simplify_structure",
+      "korean_name": "구조 단순화",
+      "category": "Packaging / Structure",
+      "definition": "Housing, Cover, Bracket 등 구조 복잡도를 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-PKG-04",
+      "canonical_name": "reduce_component_interference",
+      "korean_name": "부품 간섭 감소",
+      "category": "Packaging / Structure",
+      "definition": "주변 Component 간 물리적 간섭 가능성을 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-PKG-05",
+      "canonical_name": "improve_component_layout",
+      "korean_name": "부품 배치성 향상",
+      "category": "Packaging / Structure",
+      "definition": "부품 배치 자유도 또는 적정성을 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-PKG-06",
+      "canonical_name": "improve_module_integration",
+      "korean_name": "모듈 통합성 향상",
+      "category": "Packaging / Structure",
+      "definition": "여러 PSD/도어 기능을 효율적으로 통합"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ASM-01",
+      "canonical_name": "facilitate_assembly",
+      "korean_name": "조립 용이성 향상",
+      "category": "Assembly / Manufacturing",
+      "definition": "Component 조립 작업을 쉽게 함"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ASM-02",
+      "canonical_name": "improve_positioning_accuracy",
+      "korean_name": "위치결정 정확도 향상",
+      "category": "Assembly / Manufacturing",
+      "definition": "조립 시 Component 위치를 정확히 설정"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ASM-03",
+      "canonical_name": "facilitate_position_adjustment",
+      "korean_name": "위치 조정 용이성 향상",
+      "category": "Assembly / Manufacturing",
+      "definition": "Pulley/Bracket 등의 위치 조정을 쉽게 함"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ASM-04",
+      "canonical_name": "facilitate_routing",
+      "korean_name": "배선·배치 용이성 향상",
+      "category": "Assembly / Manufacturing",
+      "definition": "Cable/Belt/Harness routing 작업을 쉽게 함"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ASM-05",
+      "canonical_name": "simplify_manufacturing",
+      "korean_name": "제조 단순화",
+      "category": "Assembly / Manufacturing",
+      "definition": "가공·성형·제작 공정을 단순화"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ASM-06",
+      "canonical_name": "improve_formability",
+      "korean_name": "성형성 향상",
+      "category": "Assembly / Manufacturing",
+      "definition": "Housing/Cover/Groove 등을 형성하기 쉽게 함"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ASM-07",
+      "canonical_name": "reduce_assembly_steps",
+      "korean_name": "조립 공정 감소",
+      "category": "Assembly / Manufacturing",
+      "definition": "필요한 조립·체결 작업 단계를 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ASM-08",
+      "canonical_name": "enable_preassembly",
+      "korean_name": "사전조립 가능",
+      "category": "Assembly / Manufacturing",
+      "definition": "차량/도어 장착 전에 Module 단위 조립을 가능하게 함"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-FLX-01",
+      "canonical_name": "stabilize_tension",
+      "korean_name": "장력 안정화",
+      "category": "Flexible Transmission",
+      "definition": "Cable/Belt 장력을 적정 수준으로 안정적으로 유지"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-FLX-02",
+      "canonical_name": "reduce_slack",
+      "korean_name": "처짐 감소",
+      "category": "Flexible Transmission",
+      "definition": "Cable/Belt의 느슨함과 여유 길이를 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-FLX-03",
+      "canonical_name": "stabilize_routing",
+      "korean_name": "경로 안정화",
+      "category": "Flexible Transmission",
+      "definition": "Flexible Member가 의도된 경로를 안정적으로 유지"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-FLX-04",
+      "canonical_name": "prevent_derailment",
+      "korean_name": "이탈 방지",
+      "category": "Flexible Transmission",
+      "definition": "Cable/Belt가 Pulley/Guide에서 벗어나는 것을 방지"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-FLX-05",
+      "canonical_name": "reduce_flexible_member_interference",
+      "korean_name": "케이블·벨트 간섭 감소",
+      "category": "Flexible Transmission",
+      "definition": "Flexible Member 간 또는 주변 구조와의 간섭 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-FLX-06",
+      "canonical_name": "reduce_bending_load",
+      "korean_name": "굽힘 부담 감소",
+      "category": "Flexible Transmission",
+      "definition": "과도한 굽힘 또는 곡률 부담을 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-FLX-07",
+      "canonical_name": "reduce_flexible_member_wear",
+      "korean_name": "케이블·벨트 마모 감소",
+      "category": "Flexible Transmission",
+      "definition": "반복 마찰로 인한 Flexible Member 마모 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-FLX-08",
+      "canonical_name": "stabilize_end_connection",
+      "korean_name": "종단 연결 안정화",
+      "category": "Flexible Transmission",
+      "definition": "Cable End/Belt Connection의 연결 안정성을 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-FLX-09",
+      "canonical_name": "accommodate_length_variation",
+      "korean_name": "길이 변화 흡수",
+      "category": "Flexible Transmission",
+      "definition": "열변화·공차·신장 등에 따른 길이 차이를 보상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-DRV-01",
+      "canonical_name": "increase_drive_torque",
+      "korean_name": "구동 토크 향상",
+      "category": "Drive / Motion",
+      "definition": "Door 구동에 사용할 수 있는 Torque를 증가"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-DRV-02",
+      "canonical_name": "reduce_drive_load",
+      "korean_name": "구동 부하 감소",
+      "category": "Drive / Motion",
+      "definition": "Motor/Transmission에 걸리는 부하 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-DRV-03",
+      "canonical_name": "improve_transmission_efficiency",
+      "korean_name": "동력전달 효율 향상",
+      "category": "Drive / Motion",
+      "definition": "Motor 출력이 Door에 전달되는 효율 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-DRV-04",
+      "canonical_name": "optimize_speed_torque_characteristic",
+      "korean_name": "속도·토크 특성 최적화",
+      "category": "Drive / Motion",
+      "definition": "Door 위치/조건에 적합한 Speed-Torque 특성을 확보"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-DRV-05",
+      "canonical_name": "stabilize_door_motion",
+      "korean_name": "도어 운동 안정화",
+      "category": "Drive / Motion",
+      "definition": "Opening/Closing 중 Door 움직임 안정화"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-DRV-06",
+      "canonical_name": "improve_trajectory_accuracy",
+      "korean_name": "이동 궤적 정확도 향상",
+      "category": "Drive / Motion",
+      "definition": "Rail/Roller에 따른 Door 궤적 정확도를 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-DRV-07",
+      "canonical_name": "reduce_motion_resistance",
+      "korean_name": "이동 저항 감소",
+      "category": "Drive / Motion",
+      "definition": "Sliding/Pivot Motion의 저항을 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-DRV-08",
+      "canonical_name": "reduce_end_region_shock",
+      "korean_name": "단부 충격 감소",
+      "category": "Drive / Motion",
+      "definition": "Full-open/close 부근 충격 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-DRV-09",
+      "canonical_name": "stabilize_door_position",
+      "korean_name": "도어 위치 안정화",
+      "category": "Drive / Motion",
+      "definition": "정지 또는 작동 중 Door 위치를 안정적으로 유지"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-REL-01",
+      "canonical_name": "improve_operational_reliability",
+      "korean_name": "작동 신뢰성 향상",
+      "category": "Reliability / Durability / NVH",
+      "definition": "반복 동작에서 의도된 PSD 기능을 안정적으로 수행"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-REL-02",
+      "canonical_name": "improve_durability",
+      "korean_name": "내구성 향상",
+      "category": "Reliability / Durability / NVH",
+      "definition": "장기간 반복 사용에 대한 수명 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-REL-03",
+      "canonical_name": "reduce_wear",
+      "korean_name": "마모 감소",
+      "category": "Reliability / Durability / NVH",
+      "definition": "부품 접촉·마찰에 따른 일반적인 마모 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-REL-04",
+      "canonical_name": "reduce_noise",
+      "korean_name": "소음 감소",
+      "category": "Reliability / Durability / NVH",
+      "definition": "PSD 작동 Noise 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-REL-05",
+      "canonical_name": "reduce_vibration",
+      "korean_name": "진동 감소",
+      "category": "Reliability / Durability / NVH",
+      "definition": "Door/Drive System의 Vibration 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-REL-06",
+      "canonical_name": "reduce_impact_load",
+      "korean_name": "충격 하중 감소",
+      "category": "Reliability / Durability / NVH",
+      "definition": "갑작스러운 Door 움직임 등에 의한 Impact Load 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-REL-07",
+      "canonical_name": "improve_fatigue_resistance",
+      "korean_name": "피로 내구성 향상",
+      "category": "Reliability / Durability / NVH",
+      "definition": "반복 하중·굽힘에 대한 피로 저항 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-PRT-01",
+      "canonical_name": "prevent_contamination",
+      "korean_name": "이물질 오염 방지",
+      "category": "Protection / Environment",
+      "definition": "먼지·모래 등 이물의 작동부 유입을 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-PRT-02",
+      "canonical_name": "improve_ingress_protection",
+      "korean_name": "방수·방진성 향상",
+      "category": "Protection / Environment",
+      "definition": "Water/Dust 침투를 억제"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-PRT-03",
+      "canonical_name": "protect_flexible_member",
+      "korean_name": "케이블·벨트 보호",
+      "category": "Protection / Environment",
+      "definition": "외력·접촉·환경으로부터 Cable/Belt를 보호"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-PRT-04",
+      "canonical_name": "protect_electrical_components",
+      "korean_name": "전장부품 보호",
+      "category": "Protection / Environment",
+      "definition": "Harness/Connector/ECU 등을 환경·접촉으로부터 보호"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-PRT-05",
+      "canonical_name": "prevent_component_exposure",
+      "korean_name": "부품 노출 방지",
+      "category": "Protection / Environment",
+      "definition": "Cover 이탈 등으로 내부 Component 노출을 방지"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-SAF-01",
+      "canonical_name": "reduce_pinch_or_collision_risk",
+      "korean_name": "끼임·충돌 위험 감소",
+      "category": "Safety / Manual / Closure",
+      "definition": "사용자/물체와 Door 충돌 위험 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-SAF-02",
+      "canonical_name": "prevent_unintended_movement",
+      "korean_name": "의도치 않은 이동 방지",
+      "category": "Safety / Manual / Closure",
+      "definition": "Door의 비의도적 움직임을 방지"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-SAF-03",
+      "canonical_name": "improve_manual_operability",
+      "korean_name": "수동 조작성 향상",
+      "category": "Safety / Manual / Closure",
+      "definition": "사용자가 Door를 수동으로 쉽게 조작"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-SAF-04",
+      "canonical_name": "reduce_manual_operating_force",
+      "korean_name": "수동 조작력 감소",
+      "category": "Safety / Manual / Closure",
+      "definition": "Door를 손으로 움직이는 데 필요한 힘 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-SAF-05",
+      "canonical_name": "enable_emergency_operation",
+      "korean_name": "비상 작동성 확보",
+      "category": "Safety / Manual / Closure",
+      "definition": "고장·전원상실 시 수동/비상 운전 가능"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-SAF-06",
+      "canonical_name": "improve_closure_reliability",
+      "korean_name": "폐쇄 신뢰성 향상",
+      "category": "Safety / Manual / Closure",
+      "definition": "Door가 완전 폐쇄·Latch 상태에 안정적으로 도달"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-SAF-07",
+      "canonical_name": "improve_operational_safety",
+      "korean_name": "작동 안전성 향상",
+      "category": "Safety / Manual / Closure",
+      "definition": "차량/도어 상태에 따른 안전한 PSD 운전 확보"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-CTL-01",
+      "canonical_name": "improve_position_detection_accuracy",
+      "korean_name": "위치 검출 정확도 향상",
+      "category": "Sensing / Control / Electrical",
+      "definition": "Door/Motor 위치 판단 정확도 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-CTL-02",
+      "canonical_name": "improve_state_detection_reliability",
+      "korean_name": "상태 검출 신뢰성 향상",
+      "category": "Sensing / Control / Electrical",
+      "definition": "Door/Latch/Direction 상태 검출 신뢰성 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-CTL-03",
+      "canonical_name": "improve_obstacle_detection_reliability",
+      "korean_name": "장애물 검출 신뢰성 향상",
+      "category": "Sensing / Control / Electrical",
+      "definition": "Pinch/Obstacle 검출 신뢰성 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-CTL-04",
+      "canonical_name": "improve_motion_control_accuracy",
+      "korean_name": "동작 제어 정확도 향상",
+      "category": "Sensing / Control / Electrical",
+      "definition": "Speed/Torque/Position 제어 정밀도 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-CTL-05",
+      "canonical_name": "improve_fault_protection",
+      "korean_name": "고장 보호 성능 향상",
+      "category": "Sensing / Control / Electrical",
+      "definition": "이상 발생 시 보호·Fail-safe 능력 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ELE-01",
+      "canonical_name": "improve_power_supply_reliability",
+      "korean_name": "전원 공급 신뢰성 향상",
+      "category": "Sensing / Control / Electrical",
+      "definition": "Door 이동 중 안정적 전원 공급"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ELE-02",
+      "canonical_name": "improve_signal_connection_reliability",
+      "korean_name": "신호 접속 신뢰성 향상",
+      "category": "Sensing / Control / Electrical",
+      "definition": "Harness/Connector의 신호 전달 안정성 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ELE-03",
+      "canonical_name": "reduce_harness_fatigue",
+      "korean_name": "하네스 피로 감소",
+      "category": "Sensing / Control / Electrical",
+      "definition": "반복 Door 이동에 따른 Harness 굽힘·피로 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ECO-01",
+      "canonical_name": "reduce_part_count",
+      "korean_name": "부품 수 감소",
+      "category": "Economy / Weight / Service",
+      "definition": "필요한 Component 개수를 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ECO-02",
+      "canonical_name": "reduce_manufacturing_cost",
+      "korean_name": "제조비용 감소",
+      "category": "Economy / Weight / Service",
+      "definition": "생산·성형·가공비용 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ECO-03",
+      "canonical_name": "reduce_assembly_cost",
+      "korean_name": "조립비용 감소",
+      "category": "Economy / Weight / Service",
+      "definition": "작업시간/공정 감소에 따른 조립비 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-ECO-04",
+      "canonical_name": "reduce_weight",
+      "korean_name": "중량 감소",
+      "category": "Economy / Weight / Service",
+      "definition": "PSD/Door System 질량 감소"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-SVC-01",
+      "canonical_name": "improve_maintainability",
+      "korean_name": "정비성 향상",
+      "category": "Economy / Weight / Service",
+      "definition": "점검·교체·수리 작업 용이성 향상"
+    },
+    {
+      "record_type": "effect",
+      "id": "E-SVC-02",
+      "canonical_name": "improve_component_accessibility",
+      "korean_name": "부품 접근성 향상",
+      "category": "Economy / Weight / Service",
+      "definition": "Service 시 대상 Component 접근 용이"
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-01",
+      "name": "Packaging",
+      "korean_name": "패키징성",
+      "representative_effect_raw": "reduce_installation_space",
+      "representative_effect_canonicals": [
+        "reduce_installation_space"
+      ],
+      "representative_effect_ids": [
+        "E-PKG-01"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-02",
+      "name": "Structural Simplicity",
+      "korean_name": "구조 단순성",
+      "representative_effect_raw": "simplify_structure",
+      "representative_effect_canonicals": [
+        "simplify_structure"
+      ],
+      "representative_effect_ids": [
+        "E-PKG-03"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-03",
+      "name": "Assembly",
+      "korean_name": "조립성",
+      "representative_effect_raw": "facilitate_assembly",
+      "representative_effect_canonicals": [
+        "facilitate_assembly"
+      ],
+      "representative_effect_ids": [
+        "E-ASM-01"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-04",
+      "name": "Manufacturability",
+      "korean_name": "제조성",
+      "representative_effect_raw": "improve_formability",
+      "representative_effect_canonicals": [
+        "improve_formability"
+      ],
+      "representative_effect_ids": [
+        "E-ASM-06"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-05",
+      "name": "Transmission Stability",
+      "korean_name": "동력전달 안정성",
+      "representative_effect_raw": "stabilize_tension, stabilize_routing",
+      "representative_effect_canonicals": [
+        "stabilize_tension",
+        "stabilize_routing"
+      ],
+      "representative_effect_ids": [
+        "E-FLX-01",
+        "E-FLX-03"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-06",
+      "name": "Drive Performance",
+      "korean_name": "구동성능",
+      "representative_effect_raw": "increase_drive_torque",
+      "representative_effect_canonicals": [
+        "increase_drive_torque"
+      ],
+      "representative_effect_ids": [
+        "E-DRV-01"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-07",
+      "name": "Motion Quality",
+      "korean_name": "운동 품질",
+      "representative_effect_raw": "stabilize_door_motion",
+      "representative_effect_canonicals": [
+        "stabilize_door_motion"
+      ],
+      "representative_effect_ids": [
+        "E-DRV-05"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-08",
+      "name": "Reliability",
+      "korean_name": "신뢰성",
+      "representative_effect_raw": "improve_operational_reliability",
+      "representative_effect_canonicals": [
+        "improve_operational_reliability"
+      ],
+      "representative_effect_ids": [
+        "E-REL-01"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-09",
+      "name": "Durability",
+      "korean_name": "내구성",
+      "representative_effect_raw": "improve_durability",
+      "representative_effect_canonicals": [
+        "improve_durability"
+      ],
+      "representative_effect_ids": [
+        "E-REL-02"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-10",
+      "name": "NVH",
+      "korean_name": "소음·진동",
+      "representative_effect_raw": "reduce_noise, reduce_vibration",
+      "representative_effect_canonicals": [
+        "reduce_noise",
+        "reduce_vibration"
+      ],
+      "representative_effect_ids": [
+        "E-REL-04",
+        "E-REL-05"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-11",
+      "name": "Protection / Environment",
+      "korean_name": "보호·환경내성",
+      "representative_effect_raw": "prevent_contamination",
+      "representative_effect_canonicals": [
+        "prevent_contamination"
+      ],
+      "representative_effect_ids": [
+        "E-PRT-01"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-12",
+      "name": "Safety",
+      "korean_name": "안전성",
+      "representative_effect_raw": "reduce_pinch_or_collision_risk",
+      "representative_effect_canonicals": [
+        "reduce_pinch_or_collision_risk"
+      ],
+      "representative_effect_ids": [
+        "E-SAF-01"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-13",
+      "name": "Manual Operability",
+      "korean_name": "수동 조작성",
+      "representative_effect_raw": "reduce_manual_operating_force",
+      "representative_effect_canonicals": [
+        "reduce_manual_operating_force"
+      ],
+      "representative_effect_ids": [
+        "E-SAF-04"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-14",
+      "name": "Closure Performance",
+      "korean_name": "폐쇄성능",
+      "representative_effect_raw": "improve_closure_reliability",
+      "representative_effect_canonicals": [
+        "improve_closure_reliability"
+      ],
+      "representative_effect_ids": [
+        "E-SAF-06"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-15",
+      "name": "Sensing Accuracy",
+      "korean_name": "검출 정확도",
+      "representative_effect_raw": "improve_position_detection_accuracy",
+      "representative_effect_canonicals": [
+        "improve_position_detection_accuracy"
+      ],
+      "representative_effect_ids": [
+        "E-CTL-01"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-16",
+      "name": "Control Performance",
+      "korean_name": "제어성능",
+      "representative_effect_raw": "improve_motion_control_accuracy",
+      "representative_effect_canonicals": [
+        "improve_motion_control_accuracy"
+      ],
+      "representative_effect_ids": [
+        "E-CTL-04"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-17",
+      "name": "Electrical Reliability",
+      "korean_name": "전장 신뢰성",
+      "representative_effect_raw": "improve_power_supply_reliability",
+      "representative_effect_canonicals": [
+        "improve_power_supply_reliability"
+      ],
+      "representative_effect_ids": [
+        "E-ELE-01"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-18",
+      "name": "Cost Efficiency",
+      "korean_name": "비용 효율",
+      "representative_effect_raw": "reduce_part_count, reduce_*_cost",
+      "representative_effect_canonicals": [
+        "reduce_part_count",
+        "reduce_*_cost"
+      ],
+      "representative_effect_ids": [
+        "E-ECO-01",
+        "E-ECO-02",
+        "E-ECO-03"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-19",
+      "name": "Weight",
+      "korean_name": "중량",
+      "representative_effect_raw": "reduce_weight",
+      "representative_effect_canonicals": [
+        "reduce_weight"
+      ],
+      "representative_effect_ids": [
+        "E-ECO-04"
+      ]
+    },
+    {
+      "record_type": "design_attribute",
+      "id": "DA-20",
+      "name": "Maintainability",
+      "korean_name": "정비성",
+      "representative_effect_raw": "improve_maintainability",
+      "representative_effect_canonicals": [
+        "improve_maintainability"
+      ],
+      "representative_effect_ids": [
+        "E-SVC-01"
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "Rule": "E-R1",
+      "원칙": "Effect는 바람직한 기술적 결과로 표현한다."
+    },
+    {
+      "Rule": "E-R2",
+      "원칙": "Problem을 단순 부정형으로 뒤집어서 Effect를 생성하지 않는다."
+    },
+    {
+      "Rule": "E-R3",
+      "원칙": "Design Attribute와 구체 Effect를 분리한다."
+    },
+    {
+      "Rule": "E-R4",
+      "원칙": "특허가 주장하지 않는 비용·중량 효과를 임의로 추가하지 않는다."
+    },
+    {
+      "Rule": "E-R5",
+      "원칙": "Specific Effect가 확인되면 Generic Effect보다 우선한다."
+    },
+    {
+      "Rule": "E-R6",
+      "원칙": "한 특허에 복수 Effect를 허용한다."
+    },
+    {
+      "Rule": "E-R7",
+      "원칙": "Primary Effect는 보고서 표시용으로만 1개 지정할 수 있다."
+    },
+    {
+      "Rule": "E-R8",
+      "원칙": "지식 저장은 Multi-label을 기본으로 한다."
+    },
+    {
+      "Rule": "E-R9",
+      "원칙": "Original Effect Expression과 Evidence를 보존한다."
+    },
+    {
+      "Rule": "E-R10",
+      "원칙": "효과가 불명확하면 unclear / not_identified를 허용한다."
+    }
+  ],
+  "evidence_levels": [
+    {
+      "Level": "EE1",
+      "명칭": "Explicit Effect",
+      "기준": "발명의 효과/작용효과에서 직접 명시",
+      "보고서 사용": "사용"
+    },
+    {
+      "Level": "EE2",
+      "명칭": "Explicit Specification Effect",
+      "기준": "Summary/Description에서 결과를 직접 명시",
+      "보고서 사용": "사용"
+    },
+    {
+      "Level": "EE3",
+      "명칭": "Directly Supported Effect",
+      "기준": "구조와 설명으로 직접 뒷받침되나 효과문장 자체는 없음",
+      "보고서 사용": "사용 - 인간 검증 권장"
+    },
+    {
+      "Level": "EE4",
+      "명칭": "Domain Inference",
+      "기준": "일반 PSD/공학 지식으로 추론",
+      "보고서 사용": "Patent Fact로 사용 금지"
+    }
+  ],
+  "effect_statuses": [
+    {
+      "status": "explicit",
+      "meaning": "EE1/EE2 수준으로 효과 표현이 명확함"
+    },
+    {
+      "status": "supported",
+      "meaning": "EE3 수준으로 명세서 근거가 충분함"
+    },
+    {
+      "status": "unclear",
+      "meaning": "가능한 효과는 있으나 근거가 충분하지 않음"
+    },
+    {
+      "status": "not_identified",
+      "meaning": "효과를 구조적으로 특정하지 않음"
+    }
+  ],
+  "problem_effect_policy": "Problem and Effect are not linked 1:1 automatically. Patent-specific evidence is required for a Problem-Effect link."
+}

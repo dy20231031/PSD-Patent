@@ -1,0 +1,451 @@
+{
+  "schema_version": "1.0",
+  "knowledge_type": "state_mode_vocabulary",
+  "source_document": {
+    "file_name": "PSD_State_Mode_Claim_Constraint_Vocabulary_v1.1.docx",
+    "version": "1.1",
+    "sha256": "1aaf63206314b41767612d4fda5ec6774c87eb159b75acfb5cae05fb12be9f80"
+  },
+  "generated_at": "2026-08-21T01:36:00+09:00",
+  "counts": {
+    "state_dimensions": 10,
+    "operation_modes": 4
+  },
+  "classification_guide": [
+    {
+      "구분": "State",
+      "질문": "현재 어떤 상태인가?",
+      "예시": "Belt Bracket posture = retracted"
+    },
+    {
+      "구분": "Mode",
+      "질문": "PSD가 어떤 방식으로 동작하는가?",
+      "예시": "power_driven_mode"
+    },
+    {
+      "구분": "Constraint",
+      "질문": "어떤 조건이 권리범위를 한정하는가?",
+      "예시": "diameter_A > diameter_B"
+    },
+    {
+      "구분": "Relation",
+      "질문": "두 Claim Element가 어떻게 연결되는가?",
+      "예시": "Motor --mounted_on--> Base"
+    },
+    {
+      "구분": "Attribute",
+      "질문": "Entity 자체의 속성은 무엇인가?",
+      "예시": "Guide Pulley position = front"
+    }
+  ],
+  "state_dimensions": [
+    {
+      "id": "ST-DOR-01",
+      "canonical_name": "door_position_state",
+      "korean_name": "도어 위치 상태",
+      "controlled_values": [
+        "fully_closed",
+        "ajar",
+        "intermediate",
+        "fully_open"
+      ],
+      "controlled_values_raw": "fully_closed / ajar / intermediate / fully_open",
+      "typical_target": "Sliding Door"
+    },
+    {
+      "id": "ST-DOR-02",
+      "canonical_name": "door_motion_state",
+      "korean_name": "도어 운동 상태",
+      "controlled_values": [
+        "opening",
+        "closing",
+        "stopped"
+      ],
+      "controlled_values_raw": "opening / closing / stopped",
+      "typical_target": "Sliding Door"
+    },
+    {
+      "id": "ST-LAT-01",
+      "canonical_name": "latch_state",
+      "korean_name": "래치 상태",
+      "controlled_values": [
+        "unlatched",
+        "half_latched",
+        "fully_latched"
+      ],
+      "controlled_values_raw": "unlatched / half_latched / fully_latched",
+      "typical_target": "Latch Assembly"
+    },
+    {
+      "id": "ST-LCK-01",
+      "canonical_name": "lock_state",
+      "korean_name": "잠금 상태",
+      "controlled_values": [
+        "locked",
+        "unlocked"
+      ],
+      "controlled_values_raw": "locked / unlocked",
+      "typical_target": "Lock Device"
+    },
+    {
+      "id": "ST-CPL-01",
+      "canonical_name": "coupling_state",
+      "korean_name": "동력결합 상태",
+      "controlled_values": [
+        "engaged",
+        "partially_engaged",
+        "disengaged"
+      ],
+      "controlled_values_raw": "engaged / partially_engaged / disengaged",
+      "typical_target": "Clutch, Coupling"
+    },
+    {
+      "id": "ST-HLD-01",
+      "canonical_name": "holding_member_position",
+      "korean_name": "홀딩부 위치상태",
+      "controlled_values": [
+        "holding_position",
+        "covering_position"
+      ],
+      "controlled_values_raw": "holding_position / covering_position",
+      "typical_target": "Holding Portion"
+    },
+    {
+      "id": "ST-PST-01",
+      "canonical_name": "posture_state",
+      "korean_name": "자세 상태",
+      "controlled_values": [
+        "retracted",
+        "released",
+        "extended"
+      ],
+      "controlled_values_raw": "retracted / released / extended",
+      "typical_target": "Bracket, Arm, Movable Member"
+    },
+    {
+      "id": "ST-OBS-01",
+      "canonical_name": "obstacle_state",
+      "korean_name": "장애물 상태",
+      "controlled_values": [
+        "clear",
+        "obstacle_detected"
+      ],
+      "controlled_values_raw": "clear / obstacle_detected",
+      "typical_target": "PSD System / Door"
+    },
+    {
+      "id": "ST-FLT-01",
+      "canonical_name": "fault_state",
+      "korean_name": "고장 상태",
+      "controlled_values": [
+        "normal",
+        "fault_detected"
+      ],
+      "controlled_values_raw": "normal / fault_detected",
+      "typical_target": "Motor, Sensor, ECU"
+    },
+    {
+      "id": "ST-PWR-01",
+      "canonical_name": "power_availability_state",
+      "korean_name": "전원 상태",
+      "controlled_values": [
+        "available",
+        "unavailable"
+      ],
+      "controlled_values_raw": "available / unavailable",
+      "typical_target": "PSD System"
+    }
+  ],
+  "operation_modes": [
+    {
+      "id": "MD-01",
+      "canonical_name": "power_driven_mode",
+      "korean_name": "전동 작동 모드",
+      "definition": "Motor 구동력으로 Door를 이동"
+    },
+    {
+      "id": "MD-02",
+      "canonical_name": "manual_mode",
+      "korean_name": "수동 작동 모드",
+      "definition": "사용자 힘으로 Door를 이동"
+    },
+    {
+      "id": "MD-03",
+      "canonical_name": "power_assist_mode",
+      "korean_name": "전동 보조 모드",
+      "definition": "사용자 조작력에 Motor가 보조력을 제공"
+    },
+    {
+      "id": "MD-04",
+      "canonical_name": "emergency_release_mode",
+      "korean_name": "비상 수동 모드",
+      "definition": "고장/전원 이상 시 구동계를 분리하고 수동 조작"
+    }
+  ],
+  "mode_classification_examples": [
+    {
+      "표현": "Power-driven operation",
+      "분류": "Mode",
+      "이유": "구동 방식 자체를 정의"
+    },
+    {
+      "표현": "Manual operation",
+      "분류": "Mode",
+      "이유": "사람의 힘으로 동작하는 방식"
+    },
+    {
+      "표현": "Smart Key",
+      "분류": "Input Channel",
+      "이유": "사용자 명령 입력 수단"
+    },
+    {
+      "표현": "Remote Controller",
+      "분류": "Input Channel",
+      "이유": "사용자 명령 전달 수단"
+    },
+    {
+      "표현": "Hands-free Sensor",
+      "분류": "Input/Sensing",
+      "이유": "명령 트리거 또는 감지 수단"
+    }
+  ],
+  "evidence_levels": [
+    {
+      "Level": "E1",
+      "명칭": "Explicit Claim",
+      "정의": "청구항에 상태/조건이 직접 명시",
+      "권장 사용": "Gold / Patent Fact"
+    },
+    {
+      "Level": "E2",
+      "명칭": "Claim-internal entailment",
+      "정의": "동일 Claim의 문법·선행어·구조만으로 필연 도출",
+      "권장 사용": "Gold 가능, 인간 검증"
+    },
+    {
+      "Level": "E3",
+      "명칭": "Specification-supported",
+      "정의": "Description/Embodiment/Figure 설명에서 확인",
+      "권장 사용": "보고서 보조"
+    },
+    {
+      "Level": "E4",
+      "명칭": "Domain inference",
+      "정의": "PSD 일반지식·공학적 상식에 의한 추론",
+      "권장 사용": "Claim Fact 출력 금지"
+    }
+  ],
+  "normalization_examples": [
+    {
+      "표현": "Front Pulley",
+      "분류": "Attribute",
+      "정규화 예": "position=front"
+    },
+    {
+      "표현": "First Cable",
+      "분류": "Instance",
+      "정규화 예": "instance_index=1"
+    },
+    {
+      "표현": "BLDC Motor",
+      "분류": "Subtype",
+      "정규화 예": "Motor subtype"
+    },
+    {
+      "표현": "Door is opening",
+      "분류": "State",
+      "정규화 예": "door_motion_state=opening"
+    },
+    {
+      "표현": "Clutch is engaged",
+      "분류": "State",
+      "정규화 예": "coupling_state=engaged"
+    },
+    {
+      "표현": "Power-driven operation",
+      "분류": "Mode",
+      "정규화 예": "power_driven_mode"
+    },
+    {
+      "표현": "Diameter A > Diameter B",
+      "분류": "Constraint",
+      "정규화 예": "comparison_constraint"
+    },
+    {
+      "표현": "Motor mounted on Base",
+      "분류": "Relation",
+      "정규화 예": "mounted_on"
+    },
+    {
+      "표현": "Motor mounted on Base only in State X",
+      "분류": "Relation + Constraint",
+      "정규화 예": "mounted_on + state-qualified"
+    },
+    {
+      "표현": "Holding Mechanism made of resin",
+      "분류": "Property Constraint",
+      "정규화 예": "property_constraint"
+    },
+    {
+      "표현": "Noise reduction",
+      "분류": "Effect",
+      "정규화 예": "Effect Vocabulary에서 관리"
+    }
+  ],
+  "items": [
+    {
+      "record_type": "state_dimension",
+      "id": "ST-DOR-01",
+      "canonical_name": "door_position_state",
+      "korean_name": "도어 위치 상태",
+      "controlled_values": [
+        "fully_closed",
+        "ajar",
+        "intermediate",
+        "fully_open"
+      ],
+      "controlled_values_raw": "fully_closed / ajar / intermediate / fully_open",
+      "typical_target": "Sliding Door"
+    },
+    {
+      "record_type": "state_dimension",
+      "id": "ST-DOR-02",
+      "canonical_name": "door_motion_state",
+      "korean_name": "도어 운동 상태",
+      "controlled_values": [
+        "opening",
+        "closing",
+        "stopped"
+      ],
+      "controlled_values_raw": "opening / closing / stopped",
+      "typical_target": "Sliding Door"
+    },
+    {
+      "record_type": "state_dimension",
+      "id": "ST-LAT-01",
+      "canonical_name": "latch_state",
+      "korean_name": "래치 상태",
+      "controlled_values": [
+        "unlatched",
+        "half_latched",
+        "fully_latched"
+      ],
+      "controlled_values_raw": "unlatched / half_latched / fully_latched",
+      "typical_target": "Latch Assembly"
+    },
+    {
+      "record_type": "state_dimension",
+      "id": "ST-LCK-01",
+      "canonical_name": "lock_state",
+      "korean_name": "잠금 상태",
+      "controlled_values": [
+        "locked",
+        "unlocked"
+      ],
+      "controlled_values_raw": "locked / unlocked",
+      "typical_target": "Lock Device"
+    },
+    {
+      "record_type": "state_dimension",
+      "id": "ST-CPL-01",
+      "canonical_name": "coupling_state",
+      "korean_name": "동력결합 상태",
+      "controlled_values": [
+        "engaged",
+        "partially_engaged",
+        "disengaged"
+      ],
+      "controlled_values_raw": "engaged / partially_engaged / disengaged",
+      "typical_target": "Clutch, Coupling"
+    },
+    {
+      "record_type": "state_dimension",
+      "id": "ST-HLD-01",
+      "canonical_name": "holding_member_position",
+      "korean_name": "홀딩부 위치상태",
+      "controlled_values": [
+        "holding_position",
+        "covering_position"
+      ],
+      "controlled_values_raw": "holding_position / covering_position",
+      "typical_target": "Holding Portion"
+    },
+    {
+      "record_type": "state_dimension",
+      "id": "ST-PST-01",
+      "canonical_name": "posture_state",
+      "korean_name": "자세 상태",
+      "controlled_values": [
+        "retracted",
+        "released",
+        "extended"
+      ],
+      "controlled_values_raw": "retracted / released / extended",
+      "typical_target": "Bracket, Arm, Movable Member"
+    },
+    {
+      "record_type": "state_dimension",
+      "id": "ST-OBS-01",
+      "canonical_name": "obstacle_state",
+      "korean_name": "장애물 상태",
+      "controlled_values": [
+        "clear",
+        "obstacle_detected"
+      ],
+      "controlled_values_raw": "clear / obstacle_detected",
+      "typical_target": "PSD System / Door"
+    },
+    {
+      "record_type": "state_dimension",
+      "id": "ST-FLT-01",
+      "canonical_name": "fault_state",
+      "korean_name": "고장 상태",
+      "controlled_values": [
+        "normal",
+        "fault_detected"
+      ],
+      "controlled_values_raw": "normal / fault_detected",
+      "typical_target": "Motor, Sensor, ECU"
+    },
+    {
+      "record_type": "state_dimension",
+      "id": "ST-PWR-01",
+      "canonical_name": "power_availability_state",
+      "korean_name": "전원 상태",
+      "controlled_values": [
+        "available",
+        "unavailable"
+      ],
+      "controlled_values_raw": "available / unavailable",
+      "typical_target": "PSD System"
+    },
+    {
+      "record_type": "operation_mode",
+      "id": "MD-01",
+      "canonical_name": "power_driven_mode",
+      "korean_name": "전동 작동 모드",
+      "definition": "Motor 구동력으로 Door를 이동"
+    },
+    {
+      "record_type": "operation_mode",
+      "id": "MD-02",
+      "canonical_name": "manual_mode",
+      "korean_name": "수동 작동 모드",
+      "definition": "사용자 힘으로 Door를 이동"
+    },
+    {
+      "record_type": "operation_mode",
+      "id": "MD-03",
+      "canonical_name": "power_assist_mode",
+      "korean_name": "전동 보조 모드",
+      "definition": "사용자 조작력에 Motor가 보조력을 제공"
+    },
+    {
+      "record_type": "operation_mode",
+      "id": "MD-04",
+      "canonical_name": "emergency_release_mode",
+      "korean_name": "비상 수동 모드",
+      "definition": "고장/전원 이상 시 구동계를 분리하고 수동 조작"
+    }
+  ]
+}

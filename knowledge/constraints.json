@@ -1,0 +1,366 @@
+{
+  "schema_version": "1.0",
+  "knowledge_type": "claim_constraint_vocabulary",
+  "source_document": {
+    "file_name": "PSD_State_Mode_Claim_Constraint_Vocabulary_v1.1.docx",
+    "version": "1.1",
+    "sha256": "1aaf63206314b41767612d4fda5ec6774c87eb159b75acfb5cae05fb12be9f80"
+  },
+  "generated_at": "2026-08-21T01:36:00+09:00",
+  "counts": {
+    "constraint_types": 12,
+    "operators": 18,
+    "context_qualifiers": 8,
+    "upper_groups": 6
+  },
+  "items": [
+    {
+      "id": "CC-PROP",
+      "canonical_name": "property_constraint",
+      "korean_meaning": "Property 한정",
+      "primary_use": "재료, 형상, 두께, 직경, 타입 등"
+    },
+    {
+      "id": "CC-CMP",
+      "canonical_name": "comparison_constraint",
+      "korean_meaning": "비교 한정",
+      "primary_use": "A > B, A ≤ B 등"
+    },
+    {
+      "id": "CC-THR",
+      "canonical_name": "threshold_constraint",
+      "korean_meaning": "임계값 한정",
+      "primary_use": "force > threshold"
+    },
+    {
+      "id": "CC-RNG",
+      "canonical_name": "range_constraint",
+      "korean_meaning": "범위 한정",
+      "primary_use": "value ∈ [min,max]"
+    },
+    {
+      "id": "CC-CND",
+      "canonical_name": "conditional_constraint",
+      "korean_meaning": "조건부 한정",
+      "primary_use": "IF condition THEN consequence"
+    },
+    {
+      "id": "CC-STA",
+      "canonical_name": "state_qualified_constraint",
+      "korean_meaning": "상태 한정",
+      "primary_use": "특정 State에서만 Relation/Function 성립"
+    },
+    {
+      "id": "CC-CARD",
+      "canonical_name": "cardinality_constraint",
+      "korean_meaning": "개수 한정",
+      "primary_use": "exactly 2, at least 1"
+    },
+    {
+      "id": "CC-ALT",
+      "canonical_name": "alternative_constraint",
+      "korean_meaning": "선택/대안 한정",
+      "primary_use": "at least one of A/B"
+    },
+    {
+      "id": "CC-SEQ",
+      "canonical_name": "sequence_constraint",
+      "korean_meaning": "시간/절차 순서",
+      "primary_use": "A before B"
+    },
+    {
+      "id": "CC-NEG",
+      "canonical_name": "negative_constraint",
+      "korean_meaning": "부재/금지 한정",
+      "primary_use": "A not connected to B"
+    },
+    {
+      "id": "CC-CTX",
+      "canonical_name": "context_qualified_constraint",
+      "korean_meaning": "관찰·공간 Context 한정",
+      "primary_use": "axial view에서 overlap"
+    },
+    {
+      "id": "CC-TRF",
+      "canonical_name": "transformation_constraint",
+      "korean_meaning": "상태간 변환 한정",
+      "primary_use": "released 대비 retracted가 축 주위 회전"
+    }
+  ],
+  "operators": [
+    {
+      "operator": "equal_to",
+      "symbol_or_type": "=",
+      "meaning": "동일"
+    },
+    {
+      "operator": "not_equal_to",
+      "symbol_or_type": "≠",
+      "meaning": "비동일"
+    },
+    {
+      "operator": "greater_than",
+      "symbol_or_type": ">",
+      "meaning": "초과"
+    },
+    {
+      "operator": "greater_than_or_equal_to",
+      "symbol_or_type": "≥",
+      "meaning": "이상"
+    },
+    {
+      "operator": "less_than",
+      "symbol_or_type": "<",
+      "meaning": "미만"
+    },
+    {
+      "operator": "less_than_or_equal_to",
+      "symbol_or_type": "≤",
+      "meaning": "이하"
+    },
+    {
+      "operator": "within_range",
+      "symbol_or_type": "∈ range",
+      "meaning": "범위 내부"
+    },
+    {
+      "operator": "outside_range",
+      "symbol_or_type": "∉ range",
+      "meaning": "범위 외부"
+    },
+    {
+      "operator": "exactly_n",
+      "symbol_or_type": "=",
+      "meaning": "정확히 N개"
+    },
+    {
+      "operator": "at_least_n",
+      "symbol_or_type": "≥ N",
+      "meaning": "최소 N개"
+    },
+    {
+      "operator": "at_most_n",
+      "symbol_or_type": "≤ N",
+      "meaning": "최대 N개"
+    },
+    {
+      "operator": "at_least_one_of",
+      "symbol_or_type": "selection",
+      "meaning": "후보 중 최소 하나"
+    },
+    {
+      "operator": "exactly_one_of",
+      "symbol_or_type": "selection",
+      "meaning": "후보 중 정확히 하나"
+    },
+    {
+      "operator": "before",
+      "symbol_or_type": "temporal",
+      "meaning": "~보다 먼저"
+    },
+    {
+      "operator": "after",
+      "symbol_or_type": "temporal",
+      "meaning": "~보다 나중"
+    },
+    {
+      "operator": "during",
+      "symbol_or_type": "temporal",
+      "meaning": "~동안"
+    },
+    {
+      "operator": "rotated_about",
+      "symbol_or_type": "transformation",
+      "meaning": "특정 축 기준 회전"
+    },
+    {
+      "operator": "translated_along",
+      "symbol_or_type": "transformation",
+      "meaning": "특정 방향으로 병진"
+    }
+  ],
+  "context_qualifiers": [
+    {
+      "qualifier": "state",
+      "example": "retracted, engaged",
+      "meaning": "특정 Entity State"
+    },
+    {
+      "qualifier": "operation_mode",
+      "example": "power_driven_mode",
+      "meaning": "시스템 작동 모드"
+    },
+    {
+      "qualifier": "travel_region",
+      "example": "curved_region",
+      "meaning": "도어 이동구간"
+    },
+    {
+      "qualifier": "viewpoint",
+      "example": "axial_view, plan_view",
+      "meaning": "관찰방향/투영"
+    },
+    {
+      "qualifier": "direction_reference",
+      "example": "vehicle_longitudinal, vertical",
+      "meaning": "기준 방향"
+    },
+    {
+      "qualifier": "assembly_stage",
+      "example": "pre_assembly",
+      "meaning": "조립 단계"
+    },
+    {
+      "qualifier": "time_scope",
+      "example": "during_closing",
+      "meaning": "시간 범위"
+    },
+    {
+      "qualifier": "position_context",
+      "example": "front_end, rear_end",
+      "meaning": "관계 발생 위치"
+    }
+  ],
+  "upper_groups": [
+    {
+      "upper_group": "Value Constraint",
+      "constraint_types": [
+        "property / comparison / threshold / range"
+      ],
+      "use": "속성값·비교·수치범위 한정"
+    },
+    {
+      "upper_group": "Logical Constraint",
+      "constraint_types": [
+        "conditional / alternative / negative"
+      ],
+      "use": "IF-THEN, 선택, 배제 조건"
+    },
+    {
+      "upper_group": "Quantity Constraint",
+      "constraint_types": [
+        "cardinality"
+      ],
+      "use": "개수·복수성 한정"
+    },
+    {
+      "upper_group": "Context-qualified Constraint",
+      "constraint_types": [
+        "state_qualified / context_qualified"
+      ],
+      "use": "특정 상태·시점·관찰맥락에서만 성립"
+    },
+    {
+      "upper_group": "Sequence Constraint",
+      "constraint_types": [
+        "sequence"
+      ],
+      "use": "시간·절차 순서"
+    },
+    {
+      "upper_group": "Transformation Constraint",
+      "constraint_types": [
+        "transformation"
+      ],
+      "use": "상태 간 회전·병진 등 변환 관계"
+    }
+  ],
+  "evidence_levels": [
+    {
+      "Level": "E1",
+      "명칭": "Explicit Claim",
+      "정의": "청구항에 상태/조건이 직접 명시",
+      "권장 사용": "Gold / Patent Fact"
+    },
+    {
+      "Level": "E2",
+      "명칭": "Claim-internal entailment",
+      "정의": "동일 Claim의 문법·선행어·구조만으로 필연 도출",
+      "권장 사용": "Gold 가능, 인간 검증"
+    },
+    {
+      "Level": "E3",
+      "명칭": "Specification-supported",
+      "정의": "Description/Embodiment/Figure 설명에서 확인",
+      "권장 사용": "보고서 보조"
+    },
+    {
+      "Level": "E4",
+      "명칭": "Domain inference",
+      "정의": "PSD 일반지식·공학적 상식에 의한 추론",
+      "권장 사용": "Claim Fact 출력 금지"
+    }
+  ],
+  "normalization_examples": [
+    {
+      "표현": "Front Pulley",
+      "분류": "Attribute",
+      "정규화 예": "position=front"
+    },
+    {
+      "표현": "First Cable",
+      "분류": "Instance",
+      "정규화 예": "instance_index=1"
+    },
+    {
+      "표현": "BLDC Motor",
+      "분류": "Subtype",
+      "정규화 예": "Motor subtype"
+    },
+    {
+      "표현": "Door is opening",
+      "분류": "State",
+      "정규화 예": "door_motion_state=opening"
+    },
+    {
+      "표현": "Clutch is engaged",
+      "분류": "State",
+      "정규화 예": "coupling_state=engaged"
+    },
+    {
+      "표현": "Power-driven operation",
+      "분류": "Mode",
+      "정규화 예": "power_driven_mode"
+    },
+    {
+      "표현": "Diameter A > Diameter B",
+      "분류": "Constraint",
+      "정규화 예": "comparison_constraint"
+    },
+    {
+      "표현": "Motor mounted on Base",
+      "분류": "Relation",
+      "정규화 예": "mounted_on"
+    },
+    {
+      "표현": "Motor mounted on Base only in State X",
+      "분류": "Relation + Constraint",
+      "정규화 예": "mounted_on + state-qualified"
+    },
+    {
+      "표현": "Holding Mechanism made of resin",
+      "분류": "Property Constraint",
+      "정규화 예": "property_constraint"
+    },
+    {
+      "표현": "Noise reduction",
+      "분류": "Effect",
+      "정규화 예": "Effect Vocabulary에서 관리"
+    }
+  ],
+  "storage_examples": {
+    "property": "HoldingMechanism_1.material = resin\nJointPortion_1.type = hinge",
+    "comparison": "lhs = DrumDiameterPortion_1.diameter\noperator = greater_than\nrhs = DrumDiameterPortion_2.diameter",
+    "threshold": "operator_force > predetermined_force_threshold\nspeed_difference < predetermined_threshold",
+    "range": "door_speed within_range [Vmin, Vmax]\nrotation_angle within_range [theta_1, theta_2]",
+    "conditional": "IF operator_force > threshold\nTHEN activate_shift_clutch",
+    "state_qualified": "IF BeltBracket_1.posture_state = retracted\nTHEN DoorConnectionPortion_1 --located_above--> BeltConnectionPortion_1",
+    "cardinality": "GuidePulley exactly_n 2\nSensor at_least_n 1\nplurality_of X  =>  X at_least_n 2",
+    "alternative": "at_least_one_of {GuideSurface_1, GuideSurface_2}\nexactly_one_of {Option_A, Option_B}",
+    "sequence": "detect_obstacle before reverse_motion\nrelease_latch before open_door",
+    "negative": "Component_X not_present\nA not_connected_to B",
+    "context_qualified": "context.viewpoint = along_rotation_axis\nEngagementHole_1 --overlaps--> AxisConnectionSegment_1",
+    "transformation": "subject_state = retracted\nreference_state = released\ntransformation = rotated_about\naxis = BeltCircumferentialAxis_1"
+  },
+  "strict_e2_rule": "E2 엄격 규칙 외부 PSD 지식이 조금이라도 필요하면 E2가 아니라 E4로 본다."
+}

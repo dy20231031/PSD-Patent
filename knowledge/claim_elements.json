@@ -1,0 +1,3860 @@
+{
+  "schema_version": "1.0",
+  "knowledge_type": "claim_element_dictionary",
+  "source_document": {
+    "file_name": "PSD_Claim_Element_Component_Dictionary_v1.3.docx",
+    "version": "1.3",
+    "sha256": "11802c6ffc2f10c0871bdd861b747a375560ee5b633fe1b978975b8618a7e8db"
+  },
+  "generated_at": "2026-08-21T01:36:00+09:00",
+  "counts": {
+    "claim_elements": 144,
+    "element_types": 6,
+    "attributes": 9
+  },
+  "element_types": [
+    {
+      "Type": "Component",
+      "정의": "물리적으로 구분 가능한 단품 또는 기능부품",
+      "예": "Motor, Drive Cable, Guide Pulley, Bracket"
+    },
+    {
+      "Type": "Assembly",
+      "정의": "복수 요소가 결합된 Unit/Module",
+      "예": "Drive Unit, Door Module, Pulley Unit, Latch Assembly"
+    },
+    {
+      "Type": "Structural Feature",
+      "정의": "부품에 형성된 구조·형상·공간",
+      "예": "Guide Groove, Recess, Adjustment Slot, Guide Surface"
+    },
+    {
+      "Type": "Portion / Region",
+      "정의": "부품의 특정 영역 또는 부분",
+      "예": "Drum Diameter Portion"
+    },
+    {
+      "Type": "Reference Entity",
+      "정의": "관계·위치를 정의하기 위한 시스템 기준대상",
+      "예": "Sliding Door, Vehicle Body, Door Opening"
+    },
+    {
+      "Type": "Geometric Reference",
+      "정의": "축·평면·방향·중심선 등 기하학적 기준",
+      "예": "Axis, Centerline, Plane, Direction Reference"
+    }
+  ],
+  "normalization_decision_rules": [
+    {
+      "질문": "동일한 기술적 개념인가?",
+      "YES": "같은 Canonical Master로 통합",
+      "NO / 다음 단계": "별도 Master 후보"
+    },
+    {
+      "질문": "수식어가 First/Second인가?",
+      "YES": "instance_index 속성으로 보존",
+      "NO / 다음 단계": "다음 질문"
+    },
+    {
+      "질문": "수식어가 Front/Rear/Upper/Lower/Center인가?",
+      "YES": "position 속성으로 보존",
+      "NO / 다음 단계": "다음 질문"
+    },
+    {
+      "질문": "수식어가 Opening/Closing/Drive 등 역할인가?",
+      "YES": "role 속성으로 보존",
+      "NO / 다음 단계": "다음 질문"
+    },
+    {
+      "질문": "수식어가 구조·기능을 실질적으로 바꾸는가?",
+      "YES": "Subtype 또는 별도 Canonical 검토",
+      "NO / 다음 단계": "일반 Master + attribute"
+    },
+    {
+      "질문": "청구항이 Groove/Slot/Recess 같은 형상을 독립 요소로 요구하는가?",
+      "YES": "Structural Feature로 추출",
+      "NO / 다음 단계": "단순 설명이면 attribute로 처리 가능"
+    }
+  ],
+  "attribute_dictionary": [
+    {
+      "name": "instance_index",
+      "examples": [
+        "first",
+        "second",
+        "third"
+      ],
+      "usage": "동일 type의 청구항 인스턴스 구분"
+    },
+    {
+      "name": "position",
+      "examples": [
+        "front",
+        "rear",
+        "upper",
+        "lower",
+        "center",
+        "inner",
+        "outer"
+      ],
+      "usage": "장착·공간 위치"
+    },
+    {
+      "name": "role",
+      "examples": [
+        "opening",
+        "closing",
+        "drive",
+        "guide",
+        "tension",
+        "cinching",
+        "release"
+      ],
+      "usage": "기능적 역할"
+    },
+    {
+      "name": "mobility",
+      "examples": [
+        "fixed",
+        "movable",
+        "rotatable",
+        "slidable"
+      ],
+      "usage": "Entity 자체의 고유/명시된 이동성. 두 Element 사이 상대운동은 Relation Attribute motion으로 저장"
+    },
+    {
+      "name": "size_or_region",
+      "examples": [
+        "large",
+        "small",
+        "major",
+        "minor"
+      ],
+      "usage": "Portion/Region의 크기·영역"
+    },
+    {
+      "name": "mounting_context_hint",
+      "examples": [
+        "door",
+        "body",
+        "rail",
+        "base",
+        "module"
+      ],
+      "usage": "Dictionary metadata only. 실제 Claim 장착 사실은 mounted_on/fixed_to Relation으로 저장"
+    },
+    {
+      "name": "typical_target_type",
+      "examples": [
+        "cable",
+        "belt",
+        "door",
+        "pulley",
+        "etc."
+      ],
+      "usage": "Dictionary metadata only. 실제 Claim 대상은 Relation 또는 target_instance_id로 저장"
+    },
+    {
+      "name": "claim_instance_id",
+      "examples": [
+        "C1",
+        "C2..."
+      ],
+      "usage": "실제 Claim 내 unique entity id"
+    },
+    {
+      "name": "normalization_status",
+      "examples": [
+        "exact",
+        "synonym",
+        "subtype",
+        "unmapped_candidate"
+      ],
+      "usage": "기존 Master로의 정규화 신뢰/상태"
+    }
+  ],
+  "items": [
+    {
+      "id": "CE-REF-001",
+      "canonical_name": "Sliding Door",
+      "type": "Reference Entity",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "slide door",
+        "sliding door",
+        "door"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position] / intrinsic=[-]",
+        "allowed": [
+          "position"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T1",
+        "T7"
+      ],
+      "taxonomy_hint_raw": "T1/T7",
+      "definition": "PSD에 의해 개폐되는 이동 Door"
+    },
+    {
+      "id": "CE-REF-002",
+      "canonical_name": "Vehicle Body",
+      "type": "Reference Entity",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "vehicle body",
+        "body",
+        "car body"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T1",
+        "A1"
+      ],
+      "taxonomy_hint_raw": "T1/A1",
+      "definition": "Rail·Door·구동계 장착의 기준이 되는 차체"
+    },
+    {
+      "id": "CE-REF-003",
+      "canonical_name": "Door Opening",
+      "type": "Reference Entity",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "door opening",
+        "entrance opening"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position] / intrinsic=[-]",
+        "allowed": [
+          "position"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T1"
+      ],
+      "taxonomy_hint_raw": "T1",
+      "definition": "Sliding Door가 개폐하는 차체 개구"
+    },
+    {
+      "id": "CE-REF-004",
+      "canonical_name": "Door Panel",
+      "type": "Reference Entity",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "door panel"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position] / intrinsic=[-]",
+        "allowed": [
+          "position"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "A1"
+      ],
+      "taxonomy_hint_raw": "A1",
+      "definition": "Sliding Door의 Panel 구조"
+    },
+    {
+      "id": "CE-REF-005",
+      "canonical_name": "Inner Panel",
+      "type": "Reference Entity",
+      "broader_concept_name": "Door Panel",
+      "broader_concept_id": "CE-REF-004",
+      "synonyms": [
+        "inner panel",
+        "inner door panel"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[position=inner]",
+        "allowed": [],
+        "intrinsic": [
+          "position=inner"
+        ],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "A1"
+      ],
+      "taxonomy_hint_raw": "A1",
+      "definition": "Door 내부측 Panel"
+    },
+    {
+      "id": "CE-REF-006",
+      "canonical_name": "Outer Panel",
+      "type": "Reference Entity",
+      "broader_concept_name": "Door Panel",
+      "broader_concept_id": "CE-REF-004",
+      "synonyms": [
+        "outer panel"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[position=outer]",
+        "allowed": [],
+        "intrinsic": [
+          "position=outer"
+        ],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "A1"
+      ],
+      "taxonomy_hint_raw": "A1",
+      "definition": "Door 외측 Panel"
+    },
+    {
+      "id": "CE-ASM-001",
+      "canonical_name": "Door Module",
+      "type": "Assembly",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "slide door module",
+        "door module"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[mounting_context_hint]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "mounting_context_hint"
+        ]
+      },
+      "taxonomy_hints": [
+        "A2"
+      ],
+      "taxonomy_hint_raw": "A2",
+      "definition": "복수 Door 기능을 하나의 Module로 통합한 Assembly"
+    },
+    {
+      "id": "CE-ASM-002",
+      "canonical_name": "Drive Unit",
+      "type": "Assembly",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "drive unit",
+        "power slide unit"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[mounting_context_hint]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "mounting_context_hint"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2",
+        "A3"
+      ],
+      "taxonomy_hint_raw": "T2/A3",
+      "definition": "Motor와 전달계 등을 포함하는 PSD 구동 Assembly"
+    },
+    {
+      "id": "CE-ASM-003",
+      "canonical_name": "Drive Mechanism",
+      "type": "Assembly",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "drive mechanism",
+        "driving mechanism"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2"
+      ],
+      "taxonomy_hint_raw": "T2",
+      "definition": "Motor 및 Transmission을 포함하는 구동기구"
+    },
+    {
+      "id": "CE-ASM-004",
+      "canonical_name": "Motor Unit",
+      "type": "Assembly",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "motor unit",
+        "actuator unit"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[mounting_context_hint]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "mounting_context_hint"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.1",
+        "A3"
+      ],
+      "taxonomy_hint_raw": "T2.1/A3",
+      "definition": "Motor와 주변 전달/지지부가 통합된 Unit"
+    },
+    {
+      "id": "CE-ASM-005",
+      "canonical_name": "Drum Unit",
+      "type": "Assembly",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "drum unit",
+        "winding unit"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.4",
+        "A3"
+      ],
+      "taxonomy_hint_raw": "T2.4/A3",
+      "definition": "Drum과 지지·전달요소를 포함하는 Unit"
+    },
+    {
+      "id": "CE-ASM-006",
+      "canonical_name": "Pulley Unit",
+      "type": "Assembly",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "pulley unit",
+        "guide pulley unit"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position] / intrinsic=[-] / metadata=[mounting_context_hint]",
+        "allowed": [
+          "position"
+        ],
+        "intrinsic": [],
+        "metadata": [
+          "mounting_context_hint"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.5",
+        "A3"
+      ],
+      "taxonomy_hint_raw": "T2.5/A3",
+      "definition": "Pulley와 Holder/Housing 등을 포함하는 Unit"
+    },
+    {
+      "id": "CE-ASM-007",
+      "canonical_name": "Roller Unit",
+      "type": "Assembly",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "roller unit",
+        "roller assembly",
+        "guide roller unit"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position] / intrinsic=[-]",
+        "allowed": [
+          "position"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T1.2"
+      ],
+      "taxonomy_hint_raw": "T1.2",
+      "definition": "복수 Roller 및 지지부가 결합된 Assembly"
+    },
+    {
+      "id": "CE-ASM-008",
+      "canonical_name": "Latch Assembly",
+      "type": "Assembly",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "latch assembly",
+        "latch device"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position] / intrinsic=[-]",
+        "allowed": [
+          "position"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T3.1"
+      ],
+      "taxonomy_hint_raw": "T3.1",
+      "definition": "Door를 체결하는 Latch Assembly"
+    },
+    {
+      "id": "CE-ASM-009",
+      "canonical_name": "Cinching Mechanism",
+      "type": "Assembly",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "cinching mechanism",
+        "pull-in mechanism",
+        "cinching assembly"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T3.2"
+      ],
+      "taxonomy_hint_raw": "T3.2",
+      "definition": "Half-close Door를 완전 폐쇄 위치로 당기는 Assembly"
+    },
+    {
+      "id": "CE-ASM-010",
+      "canonical_name": "Tensioner",
+      "type": "Assembly",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "tensioner",
+        "tensioning device"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.6"
+      ],
+      "taxonomy_hint_raw": "T2.6",
+      "definition": "Cable/Belt 장력 유지·보상 Assembly"
+    },
+    {
+      "id": "CE-ASM-011",
+      "canonical_name": "Power Supply Device",
+      "type": "Assembly",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "power feeding device",
+        "power supply device"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[mounting_context_hint]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "mounting_context_hint"
+        ]
+      },
+      "taxonomy_hints": [
+        "T6.1"
+      ],
+      "taxonomy_hint_raw": "T6.1",
+      "definition": "Door/PSD로 전력을 전달하는 장치"
+    },
+    {
+      "id": "CE-ASM-012",
+      "canonical_name": "Anti-pinch Strip",
+      "type": "Assembly",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "anti-pinch strip",
+        "pinch strip"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position] / intrinsic=[-]",
+        "allowed": [
+          "position"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T4.3"
+      ],
+      "taxonomy_hint_raw": "T4.3",
+      "definition": "Door edge 등에 설치되는 접촉형 끼임 검출 Assembly"
+    },
+    {
+      "id": "CE-KIN-001",
+      "canonical_name": "Guide Rail",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "guide rail",
+        "rail",
+        "track"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position] / intrinsic=[-]",
+        "allowed": [
+          "position"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T1.1"
+      ],
+      "taxonomy_hint_raw": "T1.1",
+      "definition": "Door 또는 Roller 이동 경로를 형성하는 Rail"
+    },
+    {
+      "id": "CE-KIN-002",
+      "canonical_name": "Roller",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "roller",
+        "guide roller"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position, instance_index] / intrinsic=[-]",
+        "allowed": [
+          "position",
+          "instance_index"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T1.2"
+      ],
+      "taxonomy_hint_raw": "T1.2",
+      "definition": "Rail과 접촉하여 Door 이동을 안내·지지"
+    },
+    {
+      "id": "CE-KIN-003",
+      "canonical_name": "Roller Arm",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "roller arm",
+        "support arm"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position] / intrinsic=[-]",
+        "allowed": [
+          "position"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T1.2"
+      ],
+      "taxonomy_hint_raw": "T1.2",
+      "definition": "Roller와 Door를 연결하고 하중·운동을 전달"
+    },
+    {
+      "id": "CE-KIN-004",
+      "canonical_name": "Roller Base Plate",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "roller base plate"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position] / intrinsic=[-]",
+        "allowed": [
+          "position"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T1.2"
+      ],
+      "taxonomy_hint_raw": "T1.2",
+      "definition": "Roller Unit을 지지하는 Plate"
+    },
+    {
+      "id": "CE-KIN-005",
+      "canonical_name": "Stopper",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "stopper",
+        "stop member"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position] / intrinsic=[-]",
+        "allowed": [
+          "position"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T1.4"
+      ],
+      "taxonomy_hint_raw": "T1.4",
+      "definition": "Door 이동 한계를 규정"
+    },
+    {
+      "id": "CE-KIN-006",
+      "canonical_name": "Hold Mechanism",
+      "type": "Assembly",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "hold mechanism",
+        "full-open hold"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position] / intrinsic=[-]",
+        "allowed": [
+          "position"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T1.4"
+      ],
+      "taxonomy_hint_raw": "T1.4",
+      "definition": "특정 Door 위치를 유지"
+    },
+    {
+      "id": "CE-KIN-007",
+      "canonical_name": "Hinge",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "hinge",
+        "door hinge"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position, mobility] / intrinsic=[-]",
+        "allowed": [
+          "position",
+          "mobility"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T1.3"
+      ],
+      "taxonomy_hint_raw": "T1.3",
+      "definition": "Door의 회동 운동을 허용하는 회전 연결부"
+    },
+    {
+      "id": "CE-DRV-001",
+      "canonical_name": "Motor",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "motor",
+        "drive motor",
+        "driving motor",
+        "electric motor"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[role] / intrinsic=[-] / metadata=[mounting_context_hint]",
+        "allowed": [
+          "role"
+        ],
+        "intrinsic": [],
+        "metadata": [
+          "mounting_context_hint"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.1"
+      ],
+      "taxonomy_hint_raw": "T2.1",
+      "definition": "전기에너지를 회전 운동으로 변환하는 구동원"
+    },
+    {
+      "id": "CE-DRV-002",
+      "canonical_name": "DC Motor",
+      "type": "Component",
+      "broader_concept_name": "Motor",
+      "broader_concept_id": "CE-DRV-001",
+      "synonyms": [
+        "DC motor"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[role] / intrinsic=[-]",
+        "allowed": [
+          "role"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.1"
+      ],
+      "taxonomy_hint_raw": "T2.1",
+      "definition": "DC 방식 Motor subtype"
+    },
+    {
+      "id": "CE-DRV-003",
+      "canonical_name": "BLDC Motor",
+      "type": "Component",
+      "broader_concept_name": "Motor",
+      "broader_concept_id": "CE-DRV-001",
+      "synonyms": [
+        "BLDC motor",
+        "brushless motor"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[role] / intrinsic=[-]",
+        "allowed": [
+          "role"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.1"
+      ],
+      "taxonomy_hint_raw": "T2.1",
+      "definition": "Brushless DC Motor subtype"
+    },
+    {
+      "id": "CE-DRV-004",
+      "canonical_name": "Reducer",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "reducer",
+        "speed reducer",
+        "reduction gear unit"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.2"
+      ],
+      "taxonomy_hint_raw": "T2.2",
+      "definition": "회전속도 감속 및 Torque 변환 장치"
+    },
+    {
+      "id": "CE-DRV-005",
+      "canonical_name": "Gear",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "gear"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[role, instance_index] / intrinsic=[-]",
+        "allowed": [
+          "role",
+          "instance_index"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.2"
+      ],
+      "taxonomy_hint_raw": "T2.2",
+      "definition": "치합에 의해 회전을 전달하는 Gear"
+    },
+    {
+      "id": "CE-DRV-006",
+      "canonical_name": "Gear Train",
+      "type": "Assembly",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "gear train",
+        "reduction gear train"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.2"
+      ],
+      "taxonomy_hint_raw": "T2.2",
+      "definition": "복수 Gear로 구성된 전달 Assembly"
+    },
+    {
+      "id": "CE-DRV-007",
+      "canonical_name": "Output Shaft",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "output shaft",
+        "motor output shaft"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.2"
+      ],
+      "taxonomy_hint_raw": "T2.2",
+      "definition": "Motor/Reducer의 회전 출력축"
+    },
+    {
+      "id": "CE-CAB-001",
+      "canonical_name": "Drive Cable",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "cable",
+        "drive cable",
+        "operating cable"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[instance_index, role] / intrinsic=[-]",
+        "allowed": [
+          "instance_index",
+          "role"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.3"
+      ],
+      "taxonomy_hint_raw": "T2.3",
+      "definition": "인장력으로 PSD 구동력을 전달하는 Cable"
+    },
+    {
+      "id": "CE-CAB-002",
+      "canonical_name": "Cable Wire",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "wire",
+        "inner wire"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[instance_index, role] / intrinsic=[-]",
+        "allowed": [
+          "instance_index",
+          "role"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.3"
+      ],
+      "taxonomy_hint_raw": "T2.3",
+      "definition": "Cable 내부의 실제 인장력 전달 Wire"
+    },
+    {
+      "id": "CE-CAB-003",
+      "canonical_name": "Cable Casing",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "casing",
+        "sheath",
+        "outer casing"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[instance_index] / intrinsic=[-]",
+        "allowed": [
+          "instance_index"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.3",
+        "T2.5"
+      ],
+      "taxonomy_hint_raw": "T2.3/T2.5",
+      "definition": "Cable Wire를 둘러싸는 외피/Guide casing"
+    },
+    {
+      "id": "CE-CAB-004",
+      "canonical_name": "Cable End",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "cable end",
+        "terminal"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[instance_index, role] / intrinsic=[-]",
+        "allowed": [
+          "instance_index",
+          "role"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.3.3"
+      ],
+      "taxonomy_hint_raw": "T2.3.3",
+      "definition": "Cable 종단부"
+    },
+    {
+      "id": "CE-CAB-005",
+      "canonical_name": "Cable End Holder",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "cable end holder",
+        "end holder"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.3.3"
+      ],
+      "taxonomy_hint_raw": "T2.3.3",
+      "definition": "Cable End를 Door/Roller Arm 등에 고정하는 Holder"
+    },
+    {
+      "id": "CE-CAB-006",
+      "canonical_name": "Grommet",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "grommet",
+        "rubber cover"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.3.4"
+      ],
+      "taxonomy_hint_raw": "T2.3.4",
+      "definition": "Cable 통과부를 보호·밀봉"
+    },
+    {
+      "id": "CE-DRM-001",
+      "canonical_name": "Drum",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "drum",
+        "output drum",
+        "cable drum",
+        "winding drum"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[instance_index] / intrinsic=[-]",
+        "allowed": [
+          "instance_index"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.4"
+      ],
+      "taxonomy_hint_raw": "T2.4",
+      "definition": "Cable을 권취·해제하는 회전체"
+    },
+    {
+      "id": "CE-DRM-002",
+      "canonical_name": "Drum Support",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "drum support",
+        "drum support panel"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.4",
+        "A3"
+      ],
+      "taxonomy_hint_raw": "T2.4/A3",
+      "definition": "Drum을 회전 가능하게 지지"
+    },
+    {
+      "id": "CE-PUL-001",
+      "canonical_name": "Pulley",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "pulley"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[instance_index, position, role, mobility] / intrinsic=[-]",
+        "allowed": [
+          "instance_index",
+          "position",
+          "role",
+          "mobility"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.5",
+        "T2.6",
+        "T2.7"
+      ],
+      "taxonomy_hint_raw": "T2.5/T2.6/T2.7",
+      "definition": "Cable/Belt과 접촉하여 경로 또는 전달을 형성하는 회전체의 상위개념"
+    },
+    {
+      "id": "CE-PUL-002",
+      "canonical_name": "Guide Pulley",
+      "type": "Component",
+      "broader_concept_name": "Pulley",
+      "broader_concept_id": "CE-PUL-001",
+      "synonyms": [
+        "guide pulley",
+        "guiding pulley",
+        "direction-changing pulley"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[instance_index, position] / intrinsic=[-]",
+        "allowed": [
+          "instance_index",
+          "position"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.5"
+      ],
+      "taxonomy_hint_raw": "T2.5",
+      "definition": "Cable 진행방향/경로 안내에 주된 역할을 하는 Pulley"
+    },
+    {
+      "id": "CE-PUL-003",
+      "canonical_name": "Intermediate Pulley",
+      "type": "Component",
+      "broader_concept_name": "Pulley",
+      "broader_concept_id": "CE-PUL-001",
+      "synonyms": [
+        "intermediate pulley",
+        "relay pulley"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[instance_index, position] / intrinsic=[-]",
+        "allowed": [
+          "instance_index",
+          "position"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.5"
+      ],
+      "taxonomy_hint_raw": "T2.5",
+      "definition": "구동경로 중간에서 Cable/Belt를 중계하는 Pulley"
+    },
+    {
+      "id": "CE-PUL-004",
+      "canonical_name": "Tension Pulley",
+      "type": "Component",
+      "broader_concept_name": "Pulley",
+      "broader_concept_id": "CE-PUL-001",
+      "synonyms": [
+        "tension pulley",
+        "tensioning pulley"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[instance_index, mobility] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [
+          "instance_index",
+          "mobility"
+        ],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.6"
+      ],
+      "taxonomy_hint_raw": "T2.6",
+      "definition": "Cable/Belt 장력 유지에 주된 역할을 하는 Pulley"
+    },
+    {
+      "id": "CE-PUL-005",
+      "canonical_name": "Belt Pulley",
+      "type": "Component",
+      "broader_concept_name": "Pulley",
+      "broader_concept_id": "CE-PUL-001",
+      "synonyms": [
+        "belt pulley",
+        "drive pulley",
+        "driven pulley"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[role, instance_index] / intrinsic=[-]",
+        "allowed": [
+          "role",
+          "instance_index"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.7"
+      ],
+      "taxonomy_hint_raw": "T2.7",
+      "definition": "Belt를 구동·안내하는 Pulley"
+    },
+    {
+      "id": "CE-PUL-006",
+      "canonical_name": "Pulley Holder",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "pulley holder"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.5.2",
+        "A3"
+      ],
+      "taxonomy_hint_raw": "T2.5.2/A3",
+      "definition": "Pulley를 지지하는 Holder"
+    },
+    {
+      "id": "CE-PUL-007",
+      "canonical_name": "Pulley Bracket",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "pulley bracket",
+        "bracket"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[mounting_context_hint, typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "mounting_context_hint",
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.5.2",
+        "A4"
+      ],
+      "taxonomy_hint_raw": "T2.5.2/A4",
+      "definition": "Pulley Unit을 Door/Body/Base 등에 장착·지지"
+    },
+    {
+      "id": "CE-PUL-008",
+      "canonical_name": "Pulley Housing",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "pulley housing",
+        "housing"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.5.2",
+        "A5"
+      ],
+      "taxonomy_hint_raw": "T2.5.2/A5",
+      "definition": "Pulley/Cable을 수용·보호하는 Housing"
+    },
+    {
+      "id": "CE-PUL-009",
+      "canonical_name": "Pulley Cover",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "pulley cover",
+        "cover"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.5.2",
+        "A5"
+      ],
+      "taxonomy_hint_raw": "T2.5.2/A5",
+      "definition": "Pulley/Cable 외부를 덮는 Cover"
+    },
+    {
+      "id": "CE-PUL-010",
+      "canonical_name": "Pulley Shaft",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "pulley shaft",
+        "pin",
+        "axle"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.5.2"
+      ],
+      "taxonomy_hint_raw": "T2.5.2",
+      "definition": "Pulley 회전축"
+    },
+    {
+      "id": "CE-GDE-001",
+      "canonical_name": "Cable Guide",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "cable guide",
+        "casing guide"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.5.4"
+      ],
+      "taxonomy_hint_raw": "T2.5.4",
+      "definition": "Cable 경로를 안내하는 Guide 상위개념"
+    },
+    {
+      "id": "CE-GDE-002",
+      "canonical_name": "Guide Block",
+      "type": "Component",
+      "broader_concept_name": "Cable Guide",
+      "broader_concept_id": "CE-GDE-001",
+      "synonyms": [
+        "guide block"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.5.4",
+        "A5"
+      ],
+      "taxonomy_hint_raw": "T2.5.4/A5",
+      "definition": "별도 Block형 Cable Guide"
+    },
+    {
+      "id": "CE-GDE-003",
+      "canonical_name": "Path-forming Member",
+      "type": "Component",
+      "broader_concept_name": "Cable Guide",
+      "broader_concept_id": "CE-GDE-001",
+      "synonyms": [
+        "path-forming member",
+        "routing member"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.5.4"
+      ],
+      "taxonomy_hint_raw": "T2.5.4",
+      "definition": "Cable 이동경로를 형성하는 부재"
+    },
+    {
+      "id": "CE-GDE-004",
+      "canonical_name": "Cable Protector",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "cable protector",
+        "protector"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.3.4",
+        "T2.5.4",
+        "A5"
+      ],
+      "taxonomy_hint_raw": "T2.3.4/T2.5.4/A5",
+      "definition": "Cable 손상·이탈·오염을 방지하는 보호부품"
+    },
+    {
+      "id": "CE-GDE-005",
+      "canonical_name": "Separation Member",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "partition wall",
+        "separator",
+        "separation wall"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.3.4",
+        "T2.5.4"
+      ],
+      "taxonomy_hint_raw": "T2.3.4/T2.5.4",
+      "definition": "복수 Cable의 접촉·간섭을 억제"
+    },
+    {
+      "id": "CE-GDE-006",
+      "canonical_name": "Guide Frame",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "guide frame",
+        "guide structure"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position] / intrinsic=[-] / metadata=[mounting_context_hint]",
+        "allowed": [
+          "position"
+        ],
+        "intrinsic": [],
+        "metadata": [
+          "mounting_context_hint"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.5",
+        "T2.7",
+        "A3"
+      ],
+      "taxonomy_hint_raw": "T2.5/T2.7/A3",
+      "definition": "Pulley/Belt/Guide 요소를 지지하고 경로·장착 기준을 제공하는 Frame"
+    },
+    {
+      "id": "CE-TEN-001",
+      "canonical_name": "Spring",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "spring",
+        "biasing spring"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.6"
+      ],
+      "taxonomy_hint_raw": "T2.6",
+      "definition": "탄성력으로 장력/복귀력을 제공"
+    },
+    {
+      "id": "CE-TEN-002",
+      "canonical_name": "Elastic Member",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "elastic member",
+        "resilient member"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.6"
+      ],
+      "taxonomy_hint_raw": "T2.6",
+      "definition": "탄성 변형으로 힘을 제공하는 부재"
+    },
+    {
+      "id": "CE-TEN-003",
+      "canonical_name": "Slider",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "slider",
+        "sliding member"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[mobility] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [
+          "mobility"
+        ],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.6"
+      ],
+      "taxonomy_hint_raw": "T2.6",
+      "definition": "Pulley/Guide 등을 이동 가능하게 지지"
+    },
+    {
+      "id": "CE-TEN-004",
+      "canonical_name": "Tension Arm",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "tension arm",
+        "pivot arm"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[mobility] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [
+          "mobility"
+        ],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.6"
+      ],
+      "taxonomy_hint_raw": "T2.6",
+      "definition": "회동을 통해 장력을 부여하는 Arm"
+    },
+    {
+      "id": "CE-BLT-001",
+      "canonical_name": "Drive Belt",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "belt",
+        "drive belt",
+        "powered belt"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[instance_index, role] / intrinsic=[-]",
+        "allowed": [
+          "instance_index",
+          "role"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.7"
+      ],
+      "taxonomy_hint_raw": "T2.7",
+      "definition": "PSD 구동력을 전달하는 Belt"
+    },
+    {
+      "id": "CE-BLT-002",
+      "canonical_name": "Timing Belt",
+      "type": "Component",
+      "broader_concept_name": "Drive Belt",
+      "broader_concept_id": "CE-BLT-001",
+      "synonyms": [
+        "timing belt",
+        "toothed belt"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[instance_index] / intrinsic=[-]",
+        "allowed": [
+          "instance_index"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.7"
+      ],
+      "taxonomy_hint_raw": "T2.7",
+      "definition": "치형 맞물림으로 slip을 억제하는 Belt subtype"
+    },
+    {
+      "id": "CE-BLT-003",
+      "canonical_name": "Belt Bracket",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "belt bracket"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.7.3",
+        "A4"
+      ],
+      "taxonomy_hint_raw": "T2.7.3/A4",
+      "definition": "Belt와 Door/Module을 연결·지지"
+    },
+    {
+      "id": "CE-BLT-004",
+      "canonical_name": "Belt Clamp",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "belt clamp",
+        "clamp arrangement"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.7.3"
+      ],
+      "taxonomy_hint_raw": "T2.7.3",
+      "definition": "Belt와 Door를 선택적/고정적으로 결합"
+    },
+    {
+      "id": "CE-BLT-005",
+      "canonical_name": "Belt Guide",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "belt guide",
+        "belt track"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.7.4",
+        "T2.7.5"
+      ],
+      "taxonomy_hint_raw": "T2.7.4/T2.7.5",
+      "definition": "Belt 경로를 안내·보호"
+    },
+    {
+      "id": "CE-CLU-001",
+      "canonical_name": "Clutch",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "clutch"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[role] / intrinsic=[-]",
+        "allowed": [
+          "role"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.8"
+      ],
+      "taxonomy_hint_raw": "T2.8",
+      "definition": "동력전달 요소 사이를 선택적으로 결합·분리"
+    },
+    {
+      "id": "CE-CLU-002",
+      "canonical_name": "Electromagnetic Clutch",
+      "type": "Component",
+      "broader_concept_name": "Clutch",
+      "broader_concept_id": "CE-CLU-001",
+      "synonyms": [
+        "electromagnetic clutch",
+        "magnetic clutch"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[role] / intrinsic=[-]",
+        "allowed": [
+          "role"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.8.2"
+      ],
+      "taxonomy_hint_raw": "T2.8.2",
+      "definition": "전자기력으로 작동하는 Clutch subtype"
+    },
+    {
+      "id": "CE-CLU-003",
+      "canonical_name": "Serration Clutch",
+      "type": "Component",
+      "broader_concept_name": "Clutch",
+      "broader_concept_id": "CE-CLU-001",
+      "synonyms": [
+        "serration clutch",
+        "toothed positive clutch"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[role] / intrinsic=[-]",
+        "allowed": [
+          "role"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.8.3"
+      ],
+      "taxonomy_hint_raw": "T2.8.3",
+      "definition": "Serration/치형 치합식 Clutch subtype"
+    },
+    {
+      "id": "CE-CLU-004",
+      "canonical_name": "Coupling",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "coupling",
+        "coupling member"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[role] / intrinsic=[-]",
+        "allowed": [
+          "role"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.8"
+      ],
+      "taxonomy_hint_raw": "T2.8",
+      "definition": "Shaft/Drum 등 회전체를 연결하는 Coupling"
+    },
+    {
+      "id": "CE-MNT-001",
+      "canonical_name": "Base",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "base",
+        "resin base"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[mounting_context_hint]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "mounting_context_hint"
+        ]
+      },
+      "taxonomy_hints": [
+        "A2",
+        "A4"
+      ],
+      "taxonomy_hint_raw": "A2/A4",
+      "definition": "Module/부품을 지지하는 기본 구조"
+    },
+    {
+      "id": "CE-MNT-002",
+      "canonical_name": "Base Plate",
+      "type": "Component",
+      "broader_concept_name": "Base",
+      "broader_concept_id": "CE-MNT-001",
+      "synonyms": [
+        "base plate"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[mounting_context_hint]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "mounting_context_hint"
+        ]
+      },
+      "taxonomy_hints": [
+        "A2",
+        "A4"
+      ],
+      "taxonomy_hint_raw": "A2/A4",
+      "definition": "판형 Base subtype"
+    },
+    {
+      "id": "CE-MNT-003",
+      "canonical_name": "Bracket",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "bracket",
+        "mounting bracket"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[mounting_context_hint, typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "mounting_context_hint",
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "A4"
+      ],
+      "taxonomy_hint_raw": "A4",
+      "definition": "다른 부품을 지지·장착하는 Bracket 상위개념"
+    },
+    {
+      "id": "CE-MNT-004",
+      "canonical_name": "Housing",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "housing",
+        "case"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "A3",
+        "A5"
+      ],
+      "taxonomy_hint_raw": "A3/A5",
+      "definition": "부품을 수용·지지·보호하는 Housing"
+    },
+    {
+      "id": "CE-MNT-005",
+      "canonical_name": "Cover",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "cover",
+        "protective cover"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "A5"
+      ],
+      "taxonomy_hint_raw": "A5",
+      "definition": "구성요소 외부를 덮는 Cover"
+    },
+    {
+      "id": "CE-MNT-006",
+      "canonical_name": "Fastener",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "bolt",
+        "screw",
+        "clip",
+        "fastening member"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "A4"
+      ],
+      "taxonomy_hint_raw": "A4",
+      "definition": "부품을 체결하는 요소"
+    },
+    {
+      "id": "CE-MNT-007",
+      "canonical_name": "Temporary Holder",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "temporary holder",
+        "temporary holding member"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "A4"
+      ],
+      "taxonomy_hint_raw": "A4",
+      "definition": "최종 체결 전 부품을 임시 고정"
+    },
+    {
+      "id": "CE-LAT-001",
+      "canonical_name": "Lock Device",
+      "type": "Assembly",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "lock device",
+        "door lock device"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T3.4"
+      ],
+      "taxonomy_hint_raw": "T3.4",
+      "definition": "Door 잠금 기능을 수행하는 장치"
+    },
+    {
+      "id": "CE-LAT-002",
+      "canonical_name": "Striker",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "striker"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position] / intrinsic=[-]",
+        "allowed": [
+          "position"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T3.1"
+      ],
+      "taxonomy_hint_raw": "T3.1",
+      "definition": "Latch가 체결되는 대응 부품"
+    },
+    {
+      "id": "CE-LAT-003",
+      "canonical_name": "Ratchet",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "ratchet"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T3.1"
+      ],
+      "taxonomy_hint_raw": "T3.1",
+      "definition": "Latch 내부 회전 체결 요소"
+    },
+    {
+      "id": "CE-LAT-004",
+      "canonical_name": "Pawl",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "pawl"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T3.1",
+        "T3.4"
+      ],
+      "taxonomy_hint_raw": "T3.1/T3.4",
+      "definition": "Ratchet 위치를 유지·해제하는 요소"
+    },
+    {
+      "id": "CE-LAT-005",
+      "canonical_name": "Release Mechanism",
+      "type": "Assembly",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "release mechanism",
+        "unlatch mechanism"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T3.3"
+      ],
+      "taxonomy_hint_raw": "T3.3",
+      "definition": "Latch 체결을 해제하는 Assembly"
+    },
+    {
+      "id": "CE-LAT-006",
+      "canonical_name": "Release Lever",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "release lever"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T3.3"
+      ],
+      "taxonomy_hint_raw": "T3.3",
+      "definition": "기계적 Latch 해제 입력 요소"
+    },
+    {
+      "id": "CE-LAT-007",
+      "canonical_name": "Release Cable",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "release cable"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[role=release]",
+        "allowed": [],
+        "intrinsic": [
+          "role=release"
+        ],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T3.3"
+      ],
+      "taxonomy_hint_raw": "T3.3",
+      "definition": "Release 힘을 전달하는 Cable"
+    },
+    {
+      "id": "CE-MNT-008",
+      "canonical_name": "Holding Mechanism",
+      "type": "Assembly",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "holding mechanism",
+        "retaining mechanism"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "A4",
+        "T2.7"
+      ],
+      "taxonomy_hint_raw": "A4/T2.7",
+      "definition": "Bracket 또는 다른 부품을 특정 위치·상태로 유지하는 Assembly"
+    },
+    {
+      "id": "CE-SEN-001",
+      "canonical_name": "Position Sensor",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "position sensor"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T4.1"
+      ],
+      "taxonomy_hint_raw": "T4.1",
+      "definition": "위치를 검출하는 Sensor 상위개념"
+    },
+    {
+      "id": "CE-SEN-002",
+      "canonical_name": "Encoder",
+      "type": "Component",
+      "broader_concept_name": "Position Sensor",
+      "broader_concept_id": "CE-SEN-001",
+      "synonyms": [
+        "encoder",
+        "rotary encoder"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T4.1"
+      ],
+      "taxonomy_hint_raw": "T4.1",
+      "definition": "회전/펄스 기반 위치·속도·방향 검출"
+    },
+    {
+      "id": "CE-SEN-003",
+      "canonical_name": "Encoder Wheel",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "encoder wheel",
+        "code wheel"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T4.1"
+      ],
+      "taxonomy_hint_raw": "T4.1",
+      "definition": "Encoder의 회전 검출 대상/패턴 wheel"
+    },
+    {
+      "id": "CE-SEN-004",
+      "canonical_name": "Hall Sensor",
+      "type": "Component",
+      "broader_concept_name": "Position Sensor",
+      "broader_concept_id": "CE-SEN-001",
+      "synonyms": [
+        "hall sensor",
+        "hall element"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T4.1"
+      ],
+      "taxonomy_hint_raw": "T4.1",
+      "definition": "자기장 기반 위치/회전 검출"
+    },
+    {
+      "id": "CE-SEN-005",
+      "canonical_name": "Current Sensor",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "current sensor"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[target_entity=Motor]",
+        "allowed": [],
+        "intrinsic": [
+          "target_entity=Motor"
+        ],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T4.2"
+      ],
+      "taxonomy_hint_raw": "T4.2",
+      "definition": "Motor 전류를 검출"
+    },
+    {
+      "id": "CE-SEN-006",
+      "canonical_name": "Inclination Sensor",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "inclination sensor",
+        "tilt sensor"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[target_entity=Vehicle]",
+        "allowed": [],
+        "intrinsic": [
+          "target_entity=Vehicle"
+        ],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T4.5"
+      ],
+      "taxonomy_hint_raw": "T4.5",
+      "definition": "차량 기울기를 검출"
+    },
+    {
+      "id": "CE-SEN-007",
+      "canonical_name": "Door State Sensor",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "door state sensor",
+        "open/close sensor"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[target_entity=Door]",
+        "allowed": [],
+        "intrinsic": [
+          "target_entity=Door"
+        ],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T4.1"
+      ],
+      "taxonomy_hint_raw": "T4.1",
+      "definition": "Door의 open/close 상태 검출"
+    },
+    {
+      "id": "CE-SEN-008",
+      "canonical_name": "Limit Switch",
+      "type": "Component",
+      "broader_concept_name": "Door State Sensor",
+      "broader_concept_id": "CE-SEN-007",
+      "synonyms": [
+        "limit switch",
+        "end switch"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T4.1"
+      ],
+      "taxonomy_hint_raw": "T4.1",
+      "definition": "End position을 접점으로 검출"
+    },
+    {
+      "id": "CE-SEN-009",
+      "canonical_name": "Anti-pinch Sensor",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "pinch sensor",
+        "obstacle sensor",
+        "edge sensor"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [
+          "position"
+        ],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T4.3"
+      ],
+      "taxonomy_hint_raw": "T4.3",
+      "definition": "접촉/압력 등으로 끼임을 검출"
+    },
+    {
+      "id": "CE-SEN-010",
+      "canonical_name": "Proximity Sensor",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "proximity sensor",
+        "capacitive sensor",
+        "distance sensor"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position] / intrinsic=[-]",
+        "allowed": [
+          "position"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T4.4"
+      ],
+      "taxonomy_hint_raw": "T4.4",
+      "definition": "비접촉 방식으로 물체 접근을 검출"
+    },
+    {
+      "id": "CE-SEN-011",
+      "canonical_name": "Torque Sensor",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "torque sensor",
+        "torque detector"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T4.2"
+      ],
+      "taxonomy_hint_raw": "T4.2",
+      "definition": "구동계의 Torque를 직접 또는 간접 검출"
+    },
+    {
+      "id": "CE-SEN-012",
+      "canonical_name": "Latch State Sensor",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "latch state sensor",
+        "latch switch"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[target_entity=Latch]",
+        "allowed": [],
+        "intrinsic": [
+          "target_entity=Latch"
+        ],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T4.1"
+      ],
+      "taxonomy_hint_raw": "T4.1",
+      "definition": "Latch의 Unlatched/Half/Full 상태를 검출"
+    },
+    {
+      "id": "CE-CTL-001",
+      "canonical_name": "Controller / ECU",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "ECU",
+        "controller",
+        "control unit"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T5",
+        "T6.2"
+      ],
+      "taxonomy_hint_raw": "T5/T6.2",
+      "definition": "PSD 입력을 처리하고 구동·안전 동작을 제어"
+    },
+    {
+      "id": "CE-CTL-002",
+      "canonical_name": "Motor Controller",
+      "type": "Component",
+      "broader_concept_name": "Controller / ECU",
+      "broader_concept_id": "CE-CTL-001",
+      "synonyms": [
+        "motor controller"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[target_entity=Motor]",
+        "allowed": [],
+        "intrinsic": [
+          "target_entity=Motor"
+        ],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T5.1",
+        "T6.2"
+      ],
+      "taxonomy_hint_raw": "T5.1/T6.2",
+      "definition": "Motor 제어 전용 Controller"
+    },
+    {
+      "id": "CE-CTL-003",
+      "canonical_name": "Motor Drive Circuit",
+      "type": "Assembly",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "motor drive circuit",
+        "drive circuit"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[target_entity=Motor]",
+        "allowed": [],
+        "intrinsic": [
+          "target_entity=Motor"
+        ],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T6.2"
+      ],
+      "taxonomy_hint_raw": "T6.2",
+      "definition": "Motor 전력 Switching/구동 회로"
+    },
+    {
+      "id": "CE-CTL-004",
+      "canonical_name": "Relay",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "relay",
+        "switching relay"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[role] / intrinsic=[-]",
+        "allowed": [
+          "role"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T6.2"
+      ],
+      "taxonomy_hint_raw": "T6.2",
+      "definition": "전원/방향 switching 요소"
+    },
+    {
+      "id": "CE-CTL-005",
+      "canonical_name": "FET",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "FET",
+        "field effect transistor",
+        "MOSFET"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[role] / intrinsic=[-]",
+        "allowed": [
+          "role"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T6.2"
+      ],
+      "taxonomy_hint_raw": "T6.2",
+      "definition": "Motor 전력/PWM switching 반도체"
+    },
+    {
+      "id": "CE-ELE-001",
+      "canonical_name": "Power Source",
+      "type": "Reference Entity",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "battery",
+        "vehicle power source"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T6.1"
+      ],
+      "taxonomy_hint_raw": "T6.1",
+      "definition": "차량 전원 공급원"
+    },
+    {
+      "id": "CE-ELE-002",
+      "canonical_name": "Wire Harness",
+      "type": "Assembly",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "wire harness",
+        "harness"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[mounting_context_hint]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "mounting_context_hint"
+        ]
+      },
+      "taxonomy_hints": [
+        "T6.3"
+      ],
+      "taxonomy_hint_raw": "T6.3",
+      "definition": "차체와 Door 사이 전력·신호 전달 Harness"
+    },
+    {
+      "id": "CE-ELE-003",
+      "canonical_name": "Corrugated Tube",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "corrugated tube",
+        "exterior tube"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[target_entity=Harness]",
+        "allowed": [],
+        "intrinsic": [
+          "target_entity=Harness"
+        ],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T6.4"
+      ],
+      "taxonomy_hint_raw": "T6.4",
+      "definition": "Harness 외부를 보호하는 유연 외장"
+    },
+    {
+      "id": "CE-ELE-004",
+      "canonical_name": "Harness Guide",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "harness guide",
+        "wire guide"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[target_entity=Harness]",
+        "allowed": [],
+        "intrinsic": [
+          "target_entity=Harness"
+        ],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T6.4"
+      ],
+      "taxonomy_hint_raw": "T6.4",
+      "definition": "Door 이동에 따른 Harness 경로 안내"
+    },
+    {
+      "id": "CE-ELE-005",
+      "canonical_name": "Harness Holder",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "harness holder",
+        "holding portion"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[target_entity=Harness]",
+        "allowed": [],
+        "intrinsic": [
+          "target_entity=Harness"
+        ],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T6.4"
+      ],
+      "taxonomy_hint_raw": "T6.4",
+      "definition": "Harness 고정·지지"
+    },
+    {
+      "id": "CE-ELE-006",
+      "canonical_name": "Swinging Member",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "swing member",
+        "swinging member"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[mobility] / intrinsic=[target_entity=Harness]",
+        "allowed": [
+          "mobility"
+        ],
+        "intrinsic": [
+          "target_entity=Harness"
+        ],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T6.4"
+      ],
+      "taxonomy_hint_raw": "T6.4",
+      "definition": "Door 이동에 따라 회동하며 Harness 경로 변화"
+    },
+    {
+      "id": "CE-ELE-007",
+      "canonical_name": "Connector",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "connector",
+        "electrical connector"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[role] / intrinsic=[-]",
+        "allowed": [
+          "role"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T6.5"
+      ],
+      "taxonomy_hint_raw": "T6.5",
+      "definition": "전기적 접속을 형성"
+    },
+    {
+      "id": "CE-ELE-008",
+      "canonical_name": "Electric Wire",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "electric wire",
+        "conductor",
+        "electrical cable"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[role] / intrinsic=[-]",
+        "allowed": [
+          "role"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T6.3",
+        "T6.5"
+      ],
+      "taxonomy_hint_raw": "T6.3/T6.5",
+      "definition": "전력/신호를 전달하는 전선"
+    },
+    {
+      "id": "CE-UIF-001",
+      "canonical_name": "Door Switch",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "door switch",
+        "open/close switch",
+        "operation switch"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[role] / intrinsic=[-]",
+        "allowed": [
+          "role"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T7.1"
+      ],
+      "taxonomy_hint_raw": "T7.1",
+      "definition": "사용자 Open/Close 입력을 받는 Switch"
+    },
+    {
+      "id": "CE-UIF-002",
+      "canonical_name": "Door Handle",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "door handle",
+        "inner handle",
+        "outer handle"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position, role] / intrinsic=[-]",
+        "allowed": [
+          "position",
+          "role"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T7.1"
+      ],
+      "taxonomy_hint_raw": "T7.1",
+      "definition": "사용자 Door 조작 입력을 제공"
+    },
+    {
+      "id": "CE-UIF-003",
+      "canonical_name": "Remote Controller",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "remote controller",
+        "remote key"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T7.2"
+      ],
+      "taxonomy_hint_raw": "T7.2",
+      "definition": "원격 PSD 입력 장치"
+    },
+    {
+      "id": "CE-UIF-004",
+      "canonical_name": "Smart Key",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "smart key",
+        "intelligent key"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T7.2",
+        "T7.3"
+      ],
+      "taxonomy_hint_raw": "T7.2/T7.3",
+      "definition": "인증/근접 기반 Remote input 장치"
+    },
+    {
+      "id": "CE-UIF-005",
+      "canonical_name": "Warning Lamp",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "warning lamp",
+        "indicator lamp"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T7.4"
+      ],
+      "taxonomy_hint_raw": "T7.4",
+      "definition": "시각적 상태/경고 제공"
+    },
+    {
+      "id": "CE-UIF-006",
+      "canonical_name": "Buzzer",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "buzzer",
+        "warning buzzer"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T7.4"
+      ],
+      "taxonomy_hint_raw": "T7.4",
+      "definition": "청각적 경고 제공"
+    },
+    {
+      "id": "CE-FTR-001",
+      "canonical_name": "Recess",
+      "type": "Structural Feature",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "recess",
+        "recessed portion",
+        "cavity"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "A2",
+        "A5"
+      ],
+      "taxonomy_hint_raw": "A2/A5",
+      "definition": "다른 부품을 수용하기 위해 형성된 함몰 공간"
+    },
+    {
+      "id": "CE-FTR-002",
+      "canonical_name": "Winding Groove",
+      "type": "Structural Feature",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "winding groove",
+        "cable groove"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[instance_index] / intrinsic=[-]",
+        "allowed": [
+          "instance_index"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.4.2"
+      ],
+      "taxonomy_hint_raw": "T2.4.2",
+      "definition": "Drum에 형성된 Cable 권취 홈"
+    },
+    {
+      "id": "CE-FTR-003",
+      "canonical_name": "Guide Groove",
+      "type": "Structural Feature",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "guide groove",
+        "routing groove"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[instance_index] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [
+          "instance_index"
+        ],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.5.4"
+      ],
+      "taxonomy_hint_raw": "T2.5.4",
+      "definition": "Cable/Belt 경로를 형성하는 홈"
+    },
+    {
+      "id": "CE-FTR-004",
+      "canonical_name": "Guide Surface",
+      "type": "Structural Feature",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "guide surface"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T1",
+        "T2.5"
+      ],
+      "taxonomy_hint_raw": "T1/T2.5",
+      "definition": "다른 요소의 이동을 유도하는 표면"
+    },
+    {
+      "id": "CE-FTR-005",
+      "canonical_name": "Adjustment Slot",
+      "type": "Structural Feature",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "elongated hole",
+        "adjustment slot",
+        "long hole"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "A4",
+        "T2.5.3"
+      ],
+      "taxonomy_hint_raw": "A4/T2.5.3",
+      "definition": "부품 위치 조정을 허용하는 장공"
+    },
+    {
+      "id": "CE-FTR-006",
+      "canonical_name": "Arc-shaped Slot",
+      "type": "Structural Feature",
+      "broader_concept_name": "Adjustment Slot",
+      "broader_concept_id": "CE-FTR-005",
+      "synonyms": [
+        "arcuate slot",
+        "arc-shaped elongated hole"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "A4",
+        "T2.5.3"
+      ],
+      "taxonomy_hint_raw": "A4/T2.5.3",
+      "definition": "회전중심 기준 원호형 위치 조정 Slot"
+    },
+    {
+      "id": "CE-FTR-007",
+      "canonical_name": "Positioning Feature",
+      "type": "Structural Feature",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "positioning projection",
+        "positioning recess",
+        "locating feature"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "A4"
+      ],
+      "taxonomy_hint_raw": "A4",
+      "definition": "조립 상대위치를 결정하는 돌기/홈/면"
+    },
+    {
+      "id": "CE-FTR-008",
+      "canonical_name": "Support Portion",
+      "type": "Structural Feature",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "support portion",
+        "bearing portion"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "A4"
+      ],
+      "taxonomy_hint_raw": "A4",
+      "definition": "다른 부품을 지지하도록 형성된 부분"
+    },
+    {
+      "id": "CE-FTR-009",
+      "canonical_name": "Mounting Hole",
+      "type": "Structural Feature",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "mounting hole",
+        "fastening hole"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "A4"
+      ],
+      "taxonomy_hint_raw": "A4",
+      "definition": "Fastener 체결을 위한 Hole"
+    },
+    {
+      "id": "CE-PRT-001",
+      "canonical_name": "Drum Diameter Portion",
+      "type": "Portion / Region",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "diameter portion",
+        "drum portion"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[size_or_region, instance_index] / intrinsic=[-]",
+        "allowed": [
+          "size_or_region",
+          "instance_index"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.4.3"
+      ],
+      "taxonomy_hint_raw": "T2.4.3",
+      "definition": "Drum의 특정 유효직경 영역; large/small은 attribute로 표현"
+    },
+    {
+      "id": "CE-PRT-002",
+      "canonical_name": "Door Edge Portion",
+      "type": "Portion / Region",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "door edge",
+        "front edge",
+        "rear edge"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position] / intrinsic=[-]",
+        "allowed": [
+          "position"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T4.3"
+      ],
+      "taxonomy_hint_raw": "T4.3",
+      "definition": "Sensor/Seal 등이 배치되는 Door 가장자리 영역"
+    },
+    {
+      "id": "CE-FTR-010",
+      "canonical_name": "Pulley Groove",
+      "type": "Structural Feature",
+      "broader_concept_name": "Guide Groove",
+      "broader_concept_id": "CE-FTR-003",
+      "synonyms": [
+        "pulley groove",
+        "pulley channel"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[instance_index] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [
+          "instance_index"
+        ],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.5",
+        "T2.6",
+        "T2.7"
+      ],
+      "taxonomy_hint_raw": "T2.5/T2.6/T2.7",
+      "definition": "Pulley 표면에 형성되어 Cable/Belt를 수용·안내하는 홈"
+    },
+    {
+      "id": "CE-FTR-011",
+      "canonical_name": "Cable Entrance Portion",
+      "type": "Structural Feature",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "cable entrance portion",
+        "cable inlet",
+        "cable entry"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [
+          "position"
+        ],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.5"
+      ],
+      "taxonomy_hint_raw": "T2.5",
+      "definition": "Cable이 Case/Housing/Guide 내부로 진입하는 형상 또는 개구부"
+    },
+    {
+      "id": "CE-FTR-012",
+      "canonical_name": "Engagement Recess",
+      "type": "Structural Feature",
+      "broader_concept_name": "Recess",
+      "broader_concept_id": "CE-FTR-001",
+      "synonyms": [
+        "engagement recess",
+        "engaging recess"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "A4",
+        "T2.7"
+      ],
+      "taxonomy_hint_raw": "A4/T2.7",
+      "definition": "다른 Element가 계합·삽입되는 Recess"
+    },
+    {
+      "id": "CE-FTR-013",
+      "canonical_name": "Slit",
+      "type": "Structural Feature",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "slit",
+        "slot opening"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[direction] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [
+          "direction"
+        ],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "A4",
+        "T2.7"
+      ],
+      "taxonomy_hint_raw": "A4/T2.7",
+      "definition": "다른 Element의 삽입 또는 이동을 허용하는 좁은 개구"
+    },
+    {
+      "id": "CE-PRT-003",
+      "canonical_name": "Flange Portion",
+      "type": "Portion / Region",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "flange portion",
+        "flange"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position, role, instance_index] / intrinsic=[-]",
+        "allowed": [
+          "position",
+          "role",
+          "instance_index"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T2.5",
+        "T2.6"
+      ],
+      "taxonomy_hint_raw": "T2.5/T2.6",
+      "definition": "Pulley/Drum 등의 가장자리에서 이탈 방지·지지 기능을 하는 영역"
+    },
+    {
+      "id": "CE-PRT-004",
+      "canonical_name": "Connection Portion",
+      "type": "Portion / Region",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "connection portion",
+        "connecting portion",
+        "belt connection part",
+        "door connection part"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[role, position, instance_index] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [
+          "role",
+          "position",
+          "instance_index"
+        ],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "T2.7",
+        "A4"
+      ],
+      "taxonomy_hint_raw": "T2.7/A4",
+      "definition": "Belt/Door/부품과의 연결을 위해 형성된 부분; role로 belt/door 등을 구분"
+    },
+    {
+      "id": "CE-PRT-005",
+      "canonical_name": "Holding Portion",
+      "type": "Portion / Region",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "holding portion",
+        "retaining portion"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [
+          "position"
+        ],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "A4",
+        "T2.7"
+      ],
+      "taxonomy_hint_raw": "A4/T2.7",
+      "definition": "다른 Element를 유지·고정하기 위해 형성된 부분"
+    },
+    {
+      "id": "CE-PRT-006",
+      "canonical_name": "Fixing Portion",
+      "type": "Portion / Region",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "fixing portion",
+        "fixed portion"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [
+          "position"
+        ],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "A4",
+        "T2.7"
+      ],
+      "taxonomy_hint_raw": "A4/T2.7",
+      "definition": "다른 Element를 고정하기 위해 형성된 부분"
+    },
+    {
+      "id": "CE-PRT-007",
+      "canonical_name": "Joint Portion",
+      "type": "Portion / Region",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "joint portion",
+        "joining portion"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[position] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [
+          "position"
+        ],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [
+        "A4",
+        "T2.7"
+      ],
+      "taxonomy_hint_raw": "A4/T2.7",
+      "definition": "두 부분 또는 Component를 접합하기 위한 영역"
+    },
+    {
+      "id": "CE-GEO-001",
+      "canonical_name": "Axis",
+      "type": "Geometric Reference",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "axis",
+        "rotational axis",
+        "shaft axis"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[direction] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [
+          "direction"
+        ],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [],
+      "taxonomy_hint_raw": "Geometric",
+      "definition": "회전·정렬·위치 관계의 기준이 되는 축"
+    },
+    {
+      "id": "CE-GEO-002",
+      "canonical_name": "Centerline",
+      "type": "Geometric Reference",
+      "broader_concept_name": "Axis",
+      "broader_concept_id": "CE-GEO-001",
+      "synonyms": [
+        "centerline",
+        "center line"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[direction] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [
+          "direction"
+        ],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [],
+      "taxonomy_hint_raw": "Geometric",
+      "definition": "Component/Feature의 중심을 나타내는 기준선"
+    },
+    {
+      "id": "CE-GEO-003",
+      "canonical_name": "Plane",
+      "type": "Geometric Reference",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "plane",
+        "reference plane"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[direction] / intrinsic=[-] / metadata=[typical_target_type]",
+        "allowed": [
+          "direction"
+        ],
+        "intrinsic": [],
+        "metadata": [
+          "typical_target_type"
+        ]
+      },
+      "taxonomy_hints": [],
+      "taxonomy_hint_raw": "Geometric",
+      "definition": "상대 위치·방향을 정의하기 위한 기준 평면"
+    },
+    {
+      "id": "CE-GEO-004",
+      "canonical_name": "Direction Reference",
+      "type": "Geometric Reference",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "longitudinal direction",
+        "radial direction",
+        "axial direction"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[direction] / intrinsic=[-]",
+        "allowed": [
+          "direction"
+        ],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [],
+      "taxonomy_hint_raw": "Geometric",
+      "definition": "연장·배치 방향을 표현하기 위한 기하학적 기준"
+    },
+    {
+      "id": "CE-APS-001",
+      "canonical_name": "Sensor Carrier Base",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "sensor carrier base",
+        "carrier base"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[target_entity=Sensor]",
+        "allowed": [],
+        "intrinsic": [
+          "target_entity=Sensor"
+        ],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T4.3",
+        "A5"
+      ],
+      "taxonomy_hint_raw": "T4.3/A5",
+      "definition": "Anti-pinch sensor를 지지하는 Base"
+    },
+    {
+      "id": "CE-APS-002",
+      "canonical_name": "Sensor Carrier Cover",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "sensor carrier cover",
+        "carrier cover"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[target_entity=Sensor]",
+        "allowed": [],
+        "intrinsic": [
+          "target_entity=Sensor"
+        ],
+        "metadata": []
+      },
+      "taxonomy_hints": [
+        "T4.3",
+        "A5"
+      ],
+      "taxonomy_hint_raw": "T4.3/A5",
+      "definition": "Sensor 외부를 덮는 Cover"
+    },
+    {
+      "id": "CE-ADJ-001",
+      "canonical_name": "Window Regulator",
+      "type": "Assembly",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "window regulator"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [],
+      "taxonomy_hint_raw": "Adjacent",
+      "definition": "Door Module claim에서 필수일 수 있는 인접 Door Assembly"
+    },
+    {
+      "id": "CE-ADJ-002",
+      "canonical_name": "Window Glass",
+      "type": "Component",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "window glass",
+        "door glass"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [],
+      "taxonomy_hint_raw": "Adjacent",
+      "definition": "Door Module claim의 인접 Component"
+    },
+    {
+      "id": "CE-ADJ-003",
+      "canonical_name": "Speaker Unit",
+      "type": "Assembly",
+      "broader_concept_name": null,
+      "broader_concept_id": null,
+      "synonyms": [
+        "speaker unit",
+        "speaker"
+      ],
+      "attribute_schema": {
+        "raw": "allowed=[-] / intrinsic=[-]",
+        "allowed": [],
+        "intrinsic": [],
+        "metadata": []
+      },
+      "taxonomy_hints": [],
+      "taxonomy_hint_raw": "Adjacent",
+      "definition": "Door Module claim에 포함될 수 있는 인접 Assembly"
+    }
+  ],
+  "normalization_examples": [
+    {
+      "기존 표현": "First Cable / Second Cable",
+      "v1.3 처리": "Master=Drive Cable; instance_index로 이동",
+      "예": "Drive Cable(instance=1), Drive Cable(instance=2)"
+    },
+    {
+      "기존 표현": "Front / Rear Guide Pulley",
+      "v1.3 처리": "Master=Guide Pulley; position으로 이동",
+      "예": "Guide Pulley(position=front)"
+    },
+    {
+      "기존 표현": "Upper / Center / Lower Guide Rail",
+      "v1.3 처리": "Master=Guide Rail; position으로 이동",
+      "예": "Guide Rail(position=center)"
+    },
+    {
+      "기존 표현": "Large / Small Diameter Portion",
+      "v1.3 처리": "Master=Drum Diameter Portion; size_or_region으로 이동",
+      "예": "Drum Diameter Portion(size=large)"
+    },
+    {
+      "기존 표현": "Drive / Driven Pulley",
+      "v1.3 처리": "Master=Belt Pulley; role로 이동",
+      "예": "Belt Pulley(role=drive)"
+    },
+    {
+      "기존 표현": "Tension Pulley duplicated in Pulley/Tension sections",
+      "v1.3 처리": "Master ID 하나만 유지",
+      "예": "CE-PUL-004; taxonomy=T2.6"
+    },
+    {
+      "기존 표현": "Guide Block duplicated in Guide/Mounting sections",
+      "v1.3 처리": "Master ID 하나만 유지",
+      "예": "CE-GDE-002; architecture=A5"
+    },
+    {
+      "기존 표현": "Anti-pinch Strip duplicated",
+      "v1.3 처리": "Assembly Master 하나만 유지",
+      "예": "CE-ASM-012"
+    },
+    {
+      "기존 표현": "새 표현이 기존 Master와 확실히 일치하지 않음",
+      "v1.3 처리": "normalization_status=unmapped_candidate",
+      "예": "유사 개념에 억지 매핑하지 않고 Review Queue로 보냄"
+    }
+  ],
+  "instance_schema_examples": [
+    {
+      "Field": "master_id",
+      "Instance C1 예": "CE-CAB-001 (Drive Cable)",
+      "Instance C2 예": "CE-CAB-001 (Drive Cable)"
+    },
+    {
+      "Field": "original_expression",
+      "Instance C1 예": "first opening cable",
+      "Instance C2 예": "second closing cable"
+    },
+    {
+      "Field": "instance_index",
+      "Instance C1 예": "1",
+      "Instance C2 예": "2"
+    },
+    {
+      "Field": "role",
+      "Instance C1 예": "opening",
+      "Instance C2 예": "closing"
+    },
+    {
+      "Field": "claim_id",
+      "Instance C1 예": "Claim 1",
+      "Instance C2 예": "Claim 1"
+    },
+    {
+      "Field": "evidence",
+      "Instance C1 예": "원문 근거구문 저장",
+      "Instance C2 예": "원문 근거구문 저장"
+    },
+    {
+      "Field": "normalization_status",
+      "Instance C1 예": "exact",
+      "Instance C2 예": "exact / synonym / subtype / unmapped_candidate"
+    }
+  ],
+  "normalization_rules": [
+    {
+      "Rule": "E-R1",
+      "원칙": "Strict 평가에서는 Canonical Master + 청구범위를 구분하는 instance/role/position을 함께 비교한다."
+    },
+    {
+      "Rule": "E-R2",
+      "원칙": "\"First Cable\"과 \"Second Cable\"을 모델이 Cable 1개로 합치면 Instance Merge Error로 처리한다."
+    },
+    {
+      "Rule": "E-R3",
+      "원칙": "Front Guide Pulley를 Guide Pulley(position=front)로 출력하면 정답으로 인정한다."
+    },
+    {
+      "Rule": "E-R4",
+      "원칙": "Guide Pulley를 단순 Pulley로만 출력하면 상위개념 Generalization Error로 기록한다."
+    },
+    {
+      "Rule": "E-R5",
+      "원칙": "Claim에 독립적으로 요구된 Groove/Slot/Recess는 Structural Feature Claim Element로 평가한다."
+    },
+    {
+      "Rule": "E-R6",
+      "원칙": "Window Regulator처럼 PSD Core 밖의 요소라도 분석 대상 Claim의 필수요소이면 Gold에서 제외하지 않는다."
+    },
+    {
+      "Rule": "EVAL-07",
+      "원칙": "Main metric은 Claim Element Extraction Precision / Recall / F1로 명명하고, 필요 시 Core Component F1을 보조지표로 보고"
+    }
+  ],
+  "dictionary_governance_rules": [
+    {
+      "Rule": "D-Q1 Master uniqueness",
+      "설명": "하나의 기술개념은 하나의 Master ID만 갖는다."
+    },
+    {
+      "Rule": "D-Q2 Evidence preservation",
+      "설명": "Original expression과 Claim evidence를 반드시 저장한다."
+    },
+    {
+      "Rule": "D-Q3 No forced specificity",
+      "설명": "원문이 pulley이면 근거 없이 guide pulley로 구체화하지 않는다."
+    },
+    {
+      "Rule": "D-Q4 Multilingual source",
+      "설명": "Canonical은 영어, Original expression은 원문 언어 그대로 저장한다."
+    },
+    {
+      "Rule": "D-Q5 Controlled expansion",
+      "설명": "새 Master는 기존 Master+attribute로 표현할 수 없는 경우에만 추가한다."
+    },
+    {
+      "Rule": "D-Q6 Versioning",
+      "설명": "Master merge/split 시 이전 ID와 migration rule을 기록한다."
+    },
+    {
+      "Rule": "D-Q7",
+      "설명": "unmapped_candidate는 자동 강제 정규화하지 않고 신규 Master 후보로 검토한다."
+    }
+  ],
+  "cross_vocabulary_storage_rules": [
+    {
+      "Rule": "CE-R11",
+      "원칙": "state는 Claim Element Attribute로 저장하지 않는다.",
+      "저장 위치": "State Vocabulary의 state_type/state_value"
+    },
+    {
+      "Rule": "CE-R12",
+      "원칙": "Entity mobility는 요소 자체의 고유/명시된 이동성만 저장한다.",
+      "저장 위치": "상대운동은 Relation Attribute motion"
+    },
+    {
+      "Rule": "CE-R13",
+      "원칙": "typical_target_type / mounting_context_hint는 Dictionary metadata이며 Patent Fact가 아니다.",
+      "저장 위치": "실제 대상/장착은 Relation 또는 target_instance_id"
+    },
+    {
+      "Rule": "CE-R14",
+      "원칙": "Typical / Compatible Taxonomy는 자동 Patent Technology 분류에 사용하지 않는다.",
+      "저장 위치": "Patent technology_labels는 Claim 핵심구조 기준 별도 판정"
+    }
+  ]
+}

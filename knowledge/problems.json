@@ -1,0 +1,950 @@
+{
+  "schema_version": "1.0",
+  "knowledge_type": "problem_vocabulary",
+  "source_document": {
+    "file_name": "PSD_Problem_Vocabulary_v1.1.docx",
+    "version": "1.1",
+    "sha256": "ff99e936b8fad8296dc20d5d16ad0c172fc826feca6d28d19b8bab4f4c2af89d"
+  },
+  "generated_at": "2026-08-21T01:36:00+09:00",
+  "counts": {
+    "problems": 47,
+    "categories": 7
+  },
+  "items": [
+    {
+      "id": "P-FLX-01",
+      "canonical_name": "tension_loss_or_slack",
+      "korean_name": "장력 저하 / 처짐",
+      "category": "Flexible Transmission",
+      "definition": "Cable/Belt의 장력이 필요한 수준보다 낮아져 느슨해지거나 여유 길이가 발생하는 문제.",
+      "typical_targets": [
+        "Drive Cable",
+        "Drive Belt",
+        "Tensioner"
+      ],
+      "typical_cause_expression": "elongation, tolerance, wear, temperature",
+      "distinction_rule": "원인은 elongation 등으로 별도 저장. 문제는 slack/tension loss 자체."
+    },
+    {
+      "id": "P-FLX-02",
+      "canonical_name": "flexible_member_interference",
+      "korean_name": "케이블·벨트 간섭",
+      "category": "Flexible Transmission",
+      "definition": "Cable/Belt가 다른 Cable, 주변 구조물 또는 부품과 불필요하게 접촉하거나 간섭하는 문제.",
+      "typical_targets": [
+        "Drive Cable",
+        "Drive Belt",
+        "Housing"
+      ],
+      "typical_cause_expression": "routing proximity, packaging",
+      "distinction_rule": "정상 경로 이탈이 핵심이면 derailment를 우선."
+    },
+    {
+      "id": "P-FLX-03",
+      "canonical_name": "flexible_member_derailment",
+      "korean_name": "케이블·벨트 이탈",
+      "category": "Flexible Transmission",
+      "definition": "Cable/Belt가 Pulley Groove, Guide 또는 정상 주행경로에서 벗어나는 문제.",
+      "typical_targets": [
+        "Drive Cable",
+        "Drive Belt",
+        "Pulley"
+      ],
+      "typical_cause_expression": "insufficient retention, slack",
+      "distinction_rule": "interference보다 구체적인 경로 이탈 문제."
+    },
+    {
+      "id": "P-FLX-04",
+      "canonical_name": "unstable_routing",
+      "korean_name": "불안정한 배선·주행 경로",
+      "category": "Flexible Transmission",
+      "definition": "Cable/Belt의 작동 중 경로가 일관되게 유지되지 않거나 위치가 흔들리는 문제.",
+      "typical_targets": [
+        "Drive Cable",
+        "Drive Belt",
+        "Cable Guide"
+      ],
+      "typical_cause_expression": "guide variation, deformation",
+      "distinction_rule": "조립 시 어려움은 routing_or_installation_difficulty."
+    },
+    {
+      "id": "P-FLX-05",
+      "canonical_name": "excessive_bending",
+      "korean_name": "과도한 굽힘",
+      "category": "Flexible Transmission",
+      "definition": "Cable/Belt/Harness가 작은 곡률반경 또는 반복 굽힘으로 과도한 기계적 부담을 받는 문제.",
+      "typical_targets": [
+        "Drive Cable",
+        "Drive Belt",
+        "Wire Harness"
+      ],
+      "typical_cause_expression": "tight routing radius, repeated flex",
+      "distinction_rule": "결과가 마모로 나타나도 원 문제는 bending일 수 있음."
+    },
+    {
+      "id": "P-FLX-06",
+      "canonical_name": "flexible_member_wear",
+      "korean_name": "케이블·벨트 마모",
+      "category": "Flexible Transmission",
+      "definition": "반복 접촉과 마찰로 Cable/Belt 표면 또는 내부 구조가 마모되는 문제.",
+      "typical_targets": [
+        "Drive Cable",
+        "Drive Belt"
+      ],
+      "typical_cause_expression": "friction, contamination, misalignment",
+      "distinction_rule": "일반적 내구 저하는 durability_degradation."
+    },
+    {
+      "id": "P-FLX-07",
+      "canonical_name": "end_connection_instability",
+      "korean_name": "종단 연결 불안정",
+      "category": "Flexible Transmission",
+      "definition": "Cable End/Belt Connection Portion과 Door/Roller Arm 등의 연결이 불안정하거나 복잡한 문제.",
+      "typical_targets": [
+        "Cable End",
+        "Belt Connection Portion",
+        "Roller Arm"
+      ],
+      "typical_cause_expression": "retention weakness, assembly variation",
+      "distinction_rule": "경로 문제와 구분하고 종단부 interface에 초점."
+    },
+    {
+      "id": "P-FLX-08",
+      "canonical_name": "routing_or_installation_difficulty",
+      "korean_name": "배선·설치 곤란",
+      "category": "Flexible Transmission",
+      "definition": "조립 시 Cable/Belt를 Pulley, Groove, Guide 등에 통과시키거나 배치하기 어려운 문제.",
+      "typical_targets": [
+        "Drive Cable",
+        "Pulley",
+        "Guide Groove"
+      ],
+      "typical_cause_expression": "complex path, limited access",
+      "distinction_rule": "작동 중 경로 안정성은 unstable_routing."
+    },
+    {
+      "id": "P-DRV-01",
+      "canonical_name": "insufficient_drive_torque",
+      "korean_name": "구동 토크 부족",
+      "category": "Drive & Power Transmission",
+      "definition": "Door를 요구 조건에 따라 움직이는 데 필요한 Torque가 부족한 문제.",
+      "typical_targets": [
+        "Motor",
+        "Reducer",
+        "Drum"
+      ],
+      "typical_cause_expression": "high door load, unsuitable ratio",
+      "distinction_rule": "과부하는 motor_overload, 시스템 출력 부족은 본 항목."
+    },
+    {
+      "id": "P-DRV-02",
+      "canonical_name": "excessive_drive_load",
+      "korean_name": "과도한 구동 부하",
+      "category": "Drive & Power Transmission",
+      "definition": "Motor/Gear/Drum 등 구동계에 요구되는 기계적 부하가 지나치게 큰 문제.",
+      "typical_targets": [
+        "Motor",
+        "Gear Train",
+        "Drum"
+      ],
+      "typical_cause_expression": "high friction, heavy door",
+      "distinction_rule": "Motor 자체의 한계 초과는 motor_overload."
+    },
+    {
+      "id": "P-DRV-03",
+      "canonical_name": "low_transmission_efficiency",
+      "korean_name": "낮은 동력전달 효율",
+      "category": "Drive & Power Transmission",
+      "definition": "Motor 출력이 Door까지 전달되는 과정에서 불필요한 손실이 큰 문제.",
+      "typical_targets": [
+        "Reducer",
+        "Gear",
+        "Drum",
+        "Cable",
+        "Belt"
+      ],
+      "typical_cause_expression": "friction, backlash, deformation",
+      "distinction_rule": "토크 절대량 부족과 구분."
+    },
+    {
+      "id": "P-DRV-04",
+      "canonical_name": "unsuitable_transmission_ratio",
+      "korean_name": "부적절한 전달비",
+      "category": "Drive & Power Transmission",
+      "definition": "Door 위치/운전조건에 비해 Speed-Torque 전달비가 적절하지 않은 문제.",
+      "typical_targets": [
+        "Reducer",
+        "Gear Train",
+        "Multi-diameter Drum"
+      ],
+      "typical_cause_expression": "fixed ratio mismatch",
+      "distinction_rule": "변속/다직경 구조의 직접적인 문제축."
+    },
+    {
+      "id": "P-DRV-05",
+      "canonical_name": "coupling_disconnection_instability",
+      "korean_name": "동력 연결·분리 불안정",
+      "category": "Drive & Power Transmission",
+      "definition": "Clutch/Coupling이 적절한 시점에 동력을 연결 또는 분리하지 못하는 문제.",
+      "typical_targets": [
+        "Clutch",
+        "Coupling"
+      ],
+      "typical_cause_expression": "timing error, engagement wear",
+      "distinction_rule": "Manual difficulty의 원인이 될 수 있으나 별도 Problem."
+    },
+    {
+      "id": "P-DRV-06",
+      "canonical_name": "motor_overload",
+      "korean_name": "모터 과부하",
+      "category": "Drive & Power Transmission",
+      "definition": "부하 증가로 Motor Current/Torque/열 부담이 허용 수준을 넘는 문제.",
+      "typical_targets": [
+        "Motor",
+        "Motor Driver"
+      ],
+      "typical_cause_expression": "door resistance, stall",
+      "distinction_rule": "시스템 부하 자체는 excessive_drive_load."
+    },
+    {
+      "id": "P-KIN-01",
+      "canonical_name": "door_motion_instability",
+      "korean_name": "도어 운동 불안정",
+      "category": "Door Motion & Guidance",
+      "definition": "개폐 중 Door의 속도, 자세 또는 운동이 안정적으로 유지되지 않는 문제.",
+      "typical_targets": [
+        "Sliding Door",
+        "Roller",
+        "Rail"
+      ],
+      "typical_cause_expression": "load variation, guide variation",
+      "distinction_rule": "궤적 자체 이탈이면 trajectory_deviation."
+    },
+    {
+      "id": "P-KIN-02",
+      "canonical_name": "trajectory_deviation",
+      "korean_name": "도어 궤적 이탈",
+      "category": "Door Motion & Guidance",
+      "definition": "Door가 Rail/Roller가 의도한 경로를 정확히 따라가지 못하는 문제.",
+      "typical_targets": [
+        "Sliding Door",
+        "Guide Rail",
+        "Roller"
+      ],
+      "typical_cause_expression": "misalignment, wear",
+      "distinction_rule": "motion instability보다 경로 정확도에 초점."
+    },
+    {
+      "id": "P-KIN-03",
+      "canonical_name": "excessive_motion_resistance",
+      "korean_name": "과도한 이동 저항",
+      "category": "Door Motion & Guidance",
+      "definition": "Sliding/Pivot Motion에 불필요하게 큰 저항이 발생하는 문제.",
+      "typical_targets": [
+        "Sliding Door",
+        "Roller",
+        "Rail"
+      ],
+      "typical_cause_expression": "friction, contamination, geometry",
+      "distinction_rule": "토크 부족의 원인이 될 수 있음."
+    },
+    {
+      "id": "P-KIN-04",
+      "canonical_name": "curve_section_load_variation",
+      "korean_name": "곡선구간 부하 변동",
+      "category": "Door Motion & Guidance",
+      "definition": "Rail의 곡선구간 등에서 Door 저항 또는 요구 Torque가 크게 변하는 문제.",
+      "typical_targets": [
+        "Guide Rail",
+        "Roller",
+        "Sliding Door"
+      ],
+      "typical_cause_expression": "curved geometry",
+      "distinction_rule": "일반 부하 변동보다 곡선구간 특화."
+    },
+    {
+      "id": "P-KIN-05",
+      "canonical_name": "end_region_shock",
+      "korean_name": "단부 충격",
+      "category": "Door Motion & Guidance",
+      "definition": "Full-open/Full-close 부근에서 Door 또는 구동계에 충격이 발생하는 문제.",
+      "typical_targets": [
+        "Sliding Door",
+        "Stopper",
+        "Drive System"
+      ],
+      "typical_cause_expression": "high terminal speed",
+      "distinction_rule": "holding instability와 구분."
+    },
+    {
+      "id": "P-KIN-06",
+      "canonical_name": "door_holding_instability",
+      "korean_name": "도어 위치 유지 불안정",
+      "category": "Door Motion & Guidance",
+      "definition": "Door가 특정 위치에서 안정적으로 유지되지 않거나 의도하지 않게 이동하는 문제.",
+      "typical_targets": [
+        "Sliding Door",
+        "Hold Mechanism"
+      ],
+      "typical_cause_expression": "slope, weak retention",
+      "distinction_rule": "unintended movement와 겹치면 구조적 유지 문제일 때 본 항목."
+    },
+    {
+      "id": "P-PKG-01",
+      "canonical_name": "installation_space_constraint",
+      "korean_name": "설치 공간 제약",
+      "category": "Packaging / Assembly / Manufacturing",
+      "definition": "PSD 부품/모듈을 장착할 공간이 부족하거나 주변 부품과 공간 경쟁이 발생하는 문제.",
+      "typical_targets": [
+        "Drive Unit",
+        "Door Module",
+        "Rail"
+      ],
+      "typical_cause_expression": "limited door-panel space",
+      "distinction_rule": "Effect 후보는 E-PKG-01 reduce_installation_space / E-PKG-02 improve_packaging_efficiency."
+    },
+    {
+      "id": "P-PKG-02",
+      "canonical_name": "component_interference",
+      "korean_name": "부품 간 구조적 간섭",
+      "category": "Packaging / Assembly / Manufacturing",
+      "definition": "PSD 부품들이 Door 내부/주변에서 서로 또는 인접 부품과 물리적으로 간섭하는 문제.",
+      "typical_targets": [
+        "Motor",
+        "Pulley",
+        "Bracket",
+        "Module"
+      ],
+      "typical_cause_expression": "crowded packaging",
+      "distinction_rule": "Cable 자체 간섭은 P-FLX-02 우선."
+    },
+    {
+      "id": "P-PKG-03",
+      "canonical_name": "structural_complexity",
+      "korean_name": "구조 복잡성",
+      "category": "Packaging / Assembly / Manufacturing",
+      "definition": "Component 형상 또는 시스템 구조가 지나치게 복잡한 문제.",
+      "typical_targets": [
+        "Cover",
+        "Housing",
+        "Module"
+      ],
+      "typical_cause_expression": "many paths, many parts",
+      "distinction_rule": "제조 곤란은 별도 P-PKG-04."
+    },
+    {
+      "id": "P-PKG-04",
+      "canonical_name": "manufacturing_or_forming_difficulty",
+      "korean_name": "제조·성형 곤란",
+      "category": "Packaging / Assembly / Manufacturing",
+      "definition": "Groove/Housing/Cover 등의 형상 때문에 사출, 성형, 가공이 어려운 문제.",
+      "typical_targets": [
+        "Cover",
+        "Housing",
+        "Structural Feature"
+      ],
+      "typical_cause_expression": "complex geometry",
+      "distinction_rule": "구조 복잡성이 원인이 될 수 있음."
+    },
+    {
+      "id": "P-PKG-05",
+      "canonical_name": "assembly_difficulty",
+      "korean_name": "조립 곤란",
+      "category": "Packaging / Assembly / Manufacturing",
+      "definition": "여러 Claim Element를 원하는 위치와 순서로 조립하기 어려운 문제.",
+      "typical_targets": [
+        "Bracket",
+        "Module",
+        "Pulley Unit"
+      ],
+      "typical_cause_expression": "accessibility, sequence",
+      "distinction_rule": "정확한 위치를 잡는 문제는 positioning_difficulty."
+    },
+    {
+      "id": "P-PKG-06",
+      "canonical_name": "positioning_difficulty",
+      "korean_name": "부품 위치결정 곤란",
+      "category": "Packaging / Assembly / Manufacturing",
+      "definition": "조립 중 Component의 정확한 상대위치를 잡거나 유지하기 어려운 문제.",
+      "typical_targets": [
+        "Bracket",
+        "Pulley",
+        "Motor"
+      ],
+      "typical_cause_expression": "tolerance, no datum",
+      "distinction_rule": "조립 전반이 아니라 위치 결정에 초점."
+    },
+    {
+      "id": "P-PKG-07",
+      "canonical_name": "adjustment_difficulty",
+      "korean_name": "위치·장력 조정 곤란",
+      "category": "Packaging / Assembly / Manufacturing",
+      "definition": "조립 후 Pulley 위치, Cable Tension, Bracket 위치 등을 조정하기 어려운 문제.",
+      "typical_targets": [
+        "Tensioner",
+        "Pulley",
+        "Bracket"
+      ],
+      "typical_cause_expression": "limited adjustment mechanism",
+      "distinction_rule": "조립 자체와 구분."
+    },
+    {
+      "id": "P-PKG-08",
+      "canonical_name": "module_integration_difficulty",
+      "korean_name": "모듈 통합 곤란",
+      "category": "Packaging / Assembly / Manufacturing",
+      "definition": "Drive Unit, Window Regulator 등 여러 기능을 제한된 Door 구조에 통합하기 어려운 문제.",
+      "typical_targets": [
+        "Door Module",
+        "Base Plate",
+        "Drive Unit"
+      ],
+      "typical_cause_expression": "functional crowding",
+      "distinction_rule": "일반 설치공간보다 다기능 통합 관점."
+    },
+    {
+      "id": "P-REL-01",
+      "canonical_name": "noise_or_vibration",
+      "korean_name": "소음·진동",
+      "category": "Reliability / Durability / Environment",
+      "definition": "Motor, Gear, Cable, Pulley, Door 작동 중 불필요한 Noise/Vibration이 발생하는 문제.",
+      "typical_targets": [
+        "Motor",
+        "Gear",
+        "Pulley",
+        "Cable"
+      ],
+      "typical_cause_expression": "impact, friction, resonance",
+      "distinction_rule": "Effect 후보는 E-REL-04 reduce_noise / E-REL-05 reduce_vibration."
+    },
+    {
+      "id": "P-REL-02",
+      "canonical_name": "durability_degradation",
+      "korean_name": "내구성 저하",
+      "category": "Reliability / Durability / Environment",
+      "definition": "반복 작동으로 Component 또는 System의 성능·수명이 저하되는 일반 문제.",
+      "typical_targets": [
+        "PSD Components"
+      ],
+      "typical_cause_expression": "wear, fatigue, contamination",
+      "distinction_rule": "구체적 wear가 확인되면 P-FLX-06 등 우선."
+    },
+    {
+      "id": "P-REL-03",
+      "canonical_name": "foreign_material_contamination",
+      "korean_name": "이물질 유입·오염",
+      "category": "Reliability / Durability / Environment",
+      "definition": "먼지, 모래 등 이물이 Drive/Guide 부품에 들어가 작동을 방해하는 문제.",
+      "typical_targets": [
+        "Pulley",
+        "Rail",
+        "Cable",
+        "Drive Unit"
+      ],
+      "typical_cause_expression": "open exposure",
+      "distinction_rule": "Sealing/침투 자체는 environmental_ingress."
+    },
+    {
+      "id": "P-REL-04",
+      "canonical_name": "environmental_ingress",
+      "korean_name": "수분·먼지 침투",
+      "category": "Reliability / Durability / Environment",
+      "definition": "Water/Dust가 Housing, Connector, Electrical Component 내부로 침투하는 문제.",
+      "typical_targets": [
+        "Housing",
+        "Connector",
+        "ECU"
+      ],
+      "typical_cause_expression": "insufficient sealing",
+      "distinction_rule": "오염 결과보다 ingress/sealing 관점."
+    },
+    {
+      "id": "P-REL-05",
+      "canonical_name": "fatigue_or_deformation",
+      "korean_name": "피로·변형",
+      "category": "Reliability / Durability / Environment",
+      "definition": "반복 하중/굽힘으로 Bracket, Cable, Harness, Spring 등이 변형되거나 피로 손상되는 문제.",
+      "typical_targets": [
+        "Bracket",
+        "Spring",
+        "Harness",
+        "Cable"
+      ],
+      "typical_cause_expression": "cyclic loading",
+      "distinction_rule": "일반 durability보다 물리적 손상 모드가 명확."
+    },
+    {
+      "id": "P-SAF-01",
+      "canonical_name": "pinch_or_collision_risk",
+      "korean_name": "끼임·충돌 위험",
+      "category": "Safety / Manual / Closure",
+      "definition": "Closing Door와 사용자/장애물이 충돌하거나 끼일 위험이 있는 문제.",
+      "typical_targets": [
+        "Sliding Door",
+        "Anti-pinch System"
+      ],
+      "typical_cause_expression": "obstacle in path",
+      "distinction_rule": "Detection error와 구분: 위험 자체가 Problem."
+    },
+    {
+      "id": "P-SAF-02",
+      "canonical_name": "unintended_door_movement",
+      "korean_name": "의도하지 않은 도어 이동",
+      "category": "Safety / Manual / Closure",
+      "definition": "Door가 사용자 의도와 다르게 움직이거나 정지 상태에서 움직이는 문제.",
+      "typical_targets": [
+        "Sliding Door",
+        "Controller"
+      ],
+      "typical_cause_expression": "control fault, slope, retention failure",
+      "distinction_rule": "구조적 hold 문제는 P-KIN-06 우선 가능."
+    },
+    {
+      "id": "P-SAF-03",
+      "canonical_name": "manual_operation_difficulty",
+      "korean_name": "수동 조작 곤란",
+      "category": "Safety / Manual / Closure",
+      "definition": "사용자가 수동으로 Door를 열고 닫을 때 과도한 힘이 필요하거나 조작감이 나쁜 문제.",
+      "typical_targets": [
+        "Sliding Door",
+        "Clutch",
+        "Drive System"
+      ],
+      "typical_cause_expression": "drive drag, heavy door",
+      "distinction_rule": "비상상황 전용이면 emergency_release_difficulty."
+    },
+    {
+      "id": "P-SAF-04",
+      "canonical_name": "emergency_release_difficulty",
+      "korean_name": "비상 해제 곤란",
+      "category": "Safety / Manual / Closure",
+      "definition": "전원/구동 이상 시 Drive를 해제하고 Door를 수동 조작하기 어려운 문제.",
+      "typical_targets": [
+        "Clutch",
+        "Manual Release"
+      ],
+      "typical_cause_expression": "power failure, stuck drive",
+      "distinction_rule": "일반 수동 조작과 구분."
+    },
+    {
+      "id": "P-SAF-05",
+      "canonical_name": "incomplete_closure_or_latching",
+      "korean_name": "불완전 폐쇄·래칭",
+      "category": "Safety / Manual / Closure",
+      "definition": "Door가 Full-close에 도달하지 못하거나 Latch가 완전 체결되지 않는 문제.",
+      "typical_targets": [
+        "Latch",
+        "Cinching Mechanism",
+        "Door"
+      ],
+      "typical_cause_expression": "seal resistance, misalignment",
+      "distinction_rule": "Door motion 문제보다 closure state에 초점."
+    },
+    {
+      "id": "P-SAF-06",
+      "canonical_name": "unsafe_operation_without_interlock",
+      "korean_name": "안전조건 미충족 작동 위험",
+      "category": "Safety / Manual / Closure",
+      "definition": "차속/변속/도어상태 등 안전조건 미충족인데 PSD가 작동할 수 있는 문제.",
+      "typical_targets": [
+        "Controller / ECU",
+        "PSD System"
+      ],
+      "typical_cause_expression": "missing interlock",
+      "distinction_rule": "pinch/collision과 다른 시스템 안전 로직 문제."
+    },
+    {
+      "id": "P-CTL-01",
+      "canonical_name": "position_detection_error",
+      "korean_name": "위치 검출 오류",
+      "category": "Sensing / Control / Electrical",
+      "definition": "Door 또는 Motor의 실제 위치를 정확히 판단하지 못하는 문제.",
+      "typical_targets": [
+        "Encoder",
+        "Position Sensor",
+        "Door"
+      ],
+      "typical_cause_expression": "sensor error, calibration",
+      "distinction_rule": "State/direction detection과 구분."
+    },
+    {
+      "id": "P-CTL-02",
+      "canonical_name": "state_or_direction_detection_error",
+      "korean_name": "상태·방향 검출 오류",
+      "category": "Sensing / Control / Electrical",
+      "definition": "Door의 Open/Close State 또는 이동방향을 잘못 판단하는 문제.",
+      "typical_targets": [
+        "Encoder",
+        "Door State Sensor"
+      ],
+      "typical_cause_expression": "ambiguous signal",
+      "distinction_rule": "위치 수치 오차와 별도."
+    },
+    {
+      "id": "P-CTL-03",
+      "canonical_name": "load_or_obstacle_detection_error",
+      "korean_name": "부하·장애물 검출 오류",
+      "category": "Sensing / Control / Electrical",
+      "definition": "Motor Load 또는 Obstacle/Pinch 상태를 정확하게 판단하지 못하는 문제.",
+      "typical_targets": [
+        "Current Sensor",
+        "Anti-pinch Sensor"
+      ],
+      "typical_cause_expression": "noise, threshold issue",
+      "distinction_rule": "위험 자체는 P-SAF-01."
+    },
+    {
+      "id": "P-CTL-04",
+      "canonical_name": "unstable_or_inappropriate_control",
+      "korean_name": "부적절한 동작 제어",
+      "category": "Sensing / Control / Electrical",
+      "definition": "Door Speed, Torque, Position 등을 운전상황에 맞게 제어하지 못하는 문제.",
+      "typical_targets": [
+        "Controller / ECU",
+        "Motor"
+      ],
+      "typical_cause_expression": "poor control logic",
+      "distinction_rule": "v1.1에서는 speed/torque/position 문제를 통합."
+    },
+    {
+      "id": "P-CTL-05",
+      "canonical_name": "fault_detection_or_protection_failure",
+      "korean_name": "고장 검출·보호 실패",
+      "category": "Sensing / Control / Electrical",
+      "definition": "Motor/Sensor/Drive 이상을 검출하거나 보호동작을 수행하지 못하는 문제.",
+      "typical_targets": [
+        "Controller / ECU",
+        "Motor Driver"
+      ],
+      "typical_cause_expression": "diagnostic insufficiency",
+      "distinction_rule": "고장 상태 자체보다 검출/보호 기능 실패."
+    },
+    {
+      "id": "P-ELE-01",
+      "canonical_name": "power_supply_interruption",
+      "korean_name": "전원 공급 불안정",
+      "category": "Sensing / Control / Electrical",
+      "definition": "Door 이동 중 PSD 또는 Door 부품에 전력이 안정적으로 공급되지 않는 문제.",
+      "typical_targets": [
+        "Power Source",
+        "Wire Harness"
+      ],
+      "typical_cause_expression": "moving interface, contact loss",
+      "distinction_rule": "신호 실패와 구분."
+    },
+    {
+      "id": "P-ELE-02",
+      "canonical_name": "wire_harness_routing_or_fatigue",
+      "korean_name": "하네스 배선·반복굽힘 문제",
+      "category": "Sensing / Control / Electrical",
+      "definition": "Moving Door-Body 사이 Harness가 반복적으로 굽혀지거나 경로가 불안정해지는 문제.",
+      "typical_targets": [
+        "Wire Harness",
+        "Harness Guide"
+      ],
+      "typical_cause_expression": "repeated motion",
+      "distinction_rule": "일반 flexible member 문제보다 전장 하네스 특화."
+    },
+    {
+      "id": "P-ELE-03",
+      "canonical_name": "electrical_signal_or_connection_failure",
+      "korean_name": "전기신호·접속 신뢰성 문제",
+      "category": "Sensing / Control / Electrical",
+      "definition": "Connector/Harness/Signal Line의 접촉 또는 신호 전달이 불안정한 문제.",
+      "typical_targets": [
+        "Connector",
+        "Wire Harness",
+        "ECU"
+      ],
+      "typical_cause_expression": "contact resistance, disconnection",
+      "distinction_rule": "Power interruption과 분리."
+    }
+  ],
+  "normalization_rules": [],
+  "reference_problem_effect_links": [
+    {
+      "problem_canonical_name": "tension_loss_or_slack",
+      "possible_effect_examples": [
+        {
+          "effect_id": "E-FLX-01",
+          "canonical_name": "stabilize_tension"
+        },
+        {
+          "effect_id": "E-REL-01",
+          "canonical_name": "improve_operational_reliability"
+        }
+      ],
+      "automatic_inference_allowed": false
+    },
+    {
+      "problem_canonical_name": "flexible_member_interference",
+      "possible_effect_examples": [
+        {
+          "effect_id": "E-FLX-03",
+          "canonical_name": "stabilize_routing"
+        },
+        {
+          "effect_id": "E-FLX-07",
+          "canonical_name": "reduce_flexible_member_wear"
+        }
+      ],
+      "automatic_inference_allowed": false
+    },
+    {
+      "problem_canonical_name": "flexible_member_derailment",
+      "possible_effect_examples": [
+        {
+          "effect_id": "E-FLX-04",
+          "canonical_name": "prevent_derailment"
+        },
+        {
+          "effect_id": "E-REL-01",
+          "canonical_name": "improve_operational_reliability"
+        }
+      ],
+      "automatic_inference_allowed": false
+    },
+    {
+      "problem_canonical_name": "insufficient_drive_torque",
+      "possible_effect_examples": [
+        {
+          "effect_id": "E-DRV-01",
+          "canonical_name": "increase_drive_torque"
+        }
+      ],
+      "automatic_inference_allowed": false
+    },
+    {
+      "problem_canonical_name": "installation_space_constraint",
+      "possible_effect_examples": [
+        {
+          "effect_id": "E-PKG-01",
+          "canonical_name": "reduce_installation_space"
+        },
+        {
+          "effect_id": "E-PKG-02",
+          "canonical_name": "improve_packaging_efficiency"
+        }
+      ],
+      "automatic_inference_allowed": false
+    },
+    {
+      "problem_canonical_name": "structural_complexity",
+      "possible_effect_examples": [
+        {
+          "effect_id": "E-PKG-03",
+          "canonical_name": "simplify_structure"
+        }
+      ],
+      "automatic_inference_allowed": false
+    },
+    {
+      "problem_canonical_name": "manufacturing_or_forming_difficulty",
+      "possible_effect_examples": [
+        {
+          "effect_id": "E-ASM-05",
+          "canonical_name": "simplify_manufacturing"
+        },
+        {
+          "effect_id": "E-ASM-06",
+          "canonical_name": "improve_formability"
+        }
+      ],
+      "automatic_inference_allowed": false
+    },
+    {
+      "problem_canonical_name": "assembly_difficulty",
+      "possible_effect_examples": [
+        {
+          "effect_id": "E-ASM-01",
+          "canonical_name": "facilitate_assembly"
+        }
+      ],
+      "automatic_inference_allowed": false
+    },
+    {
+      "problem_canonical_name": "noise_or_vibration",
+      "possible_effect_examples": [
+        {
+          "effect_id": "E-REL-04",
+          "canonical_name": "reduce_noise"
+        },
+        {
+          "effect_id": "E-REL-05",
+          "canonical_name": "reduce_vibration"
+        }
+      ],
+      "automatic_inference_allowed": false
+    },
+    {
+      "problem_canonical_name": "durability_degradation",
+      "possible_effect_examples": [
+        {
+          "effect_id": "E-REL-02",
+          "canonical_name": "improve_durability"
+        }
+      ],
+      "automatic_inference_allowed": false
+    },
+    {
+      "problem_canonical_name": "pinch_or_collision_risk",
+      "possible_effect_examples": [
+        {
+          "effect_id": "E-SAF-01",
+          "canonical_name": "reduce_pinch_or_collision_risk"
+        }
+      ],
+      "automatic_inference_allowed": false
+    },
+    {
+      "problem_canonical_name": "manual_operation_difficulty",
+      "possible_effect_examples": [
+        {
+          "effect_id": "E-SAF-03",
+          "canonical_name": "improve_manual_operability"
+        },
+        {
+          "effect_id": "E-SAF-04",
+          "canonical_name": "reduce_manual_operating_force"
+        }
+      ],
+      "automatic_inference_allowed": false
+    },
+    {
+      "problem_canonical_name": "position_detection_error",
+      "possible_effect_examples": [
+        {
+          "effect_id": "E-CTL-01",
+          "canonical_name": "improve_position_detection_accuracy"
+        }
+      ],
+      "automatic_inference_allowed": false
+    },
+    {
+      "problem_canonical_name": "power_supply_interruption",
+      "possible_effect_examples": [
+        {
+          "effect_id": "E-ELE-01",
+          "canonical_name": "improve_power_supply_reliability"
+        }
+      ],
+      "automatic_inference_allowed": false
+    }
+  ],
+  "evidence_levels": [
+    {
+      "Level": "PE1",
+      "명칭": "Explicit Problem",
+      "판정 기준": "명세서가 문제/과제를 직접 명시",
+      "Patent Fact 사용": "사용"
+    },
+    {
+      "Level": "PE2",
+      "명칭": "Explicit Prior-art Deficiency",
+      "판정 기준": "종래기술의 단점/불편을 직접 명시",
+      "Patent Fact 사용": "사용"
+    },
+    {
+      "Level": "PE3",
+      "명칭": "Specification-supported Interpretation",
+      "판정 기준": "명세서 문맥상 문제를 직접적으로 해석 가능",
+      "Patent Fact 사용": "사용 - 주의 표시 가능"
+    },
+    {
+      "Level": "PE4",
+      "명칭": "Domain Inference",
+      "판정 기준": "PSD 일반지식이나 외부 공학지식으로 추론",
+      "Patent Fact 사용": "Patent Fact 사용 금지"
+    }
+  ],
+  "problem_statuses": [
+    {
+      "Status": "explicit",
+      "의미": "PE1/PE2 수준으로 문제 표현이 명확함"
+    },
+    {
+      "Status": "supported",
+      "의미": "PE3 수준으로 명세서 내 근거가 충분함"
+    },
+    {
+      "Status": "unclear",
+      "의미": "가능한 문제는 있으나 근거가 충분하지 않음"
+    },
+    {
+      "Status": "not_identified",
+      "의미": "문제를 구조적으로 특정하지 않음"
+    }
+  ],
+  "normalization_statuses": [
+    {
+      "Status": "exact",
+      "의미": "원문 표현이 Canonical Problem과 직접 일치"
+    },
+    {
+      "Status": "synonym",
+      "의미": "표현은 다르지만 동일 문제로 명확히 정규화"
+    },
+    {
+      "Status": "broader_or_narrower",
+      "의미": "상위/하위 Problem 매핑이 필요한 경우"
+    },
+    {
+      "Status": "unmapped_candidate",
+      "의미": "기존 47개에 안정적으로 매핑할 수 없는 신규 Problem 후보"
+    }
+  ],
+  "related_patent_features": [
+    {
+      "Feature": "Problem overlap",
+      "활용": "동일/인접 문제를 해결하는가"
+    },
+    {
+      "Feature": "Function overlap",
+      "활용": "같은 기술 기능을 수행하는가"
+    },
+    {
+      "Feature": "Claim Element overlap",
+      "활용": "유사 구성요소를 사용하는가"
+    },
+    {
+      "Feature": "Relation overlap",
+      "활용": "구성요소 연결구조가 유사한가"
+    },
+    {
+      "Feature": "Constraint overlap",
+      "활용": "핵심 청구조건이 유사한가"
+    },
+    {
+      "Feature": "Architecture overlap",
+      "활용": "Door-mounted, Rail-integrated 등 구조축이 유사한가"
+    }
+  ],
+  "version_summary": [
+    {
+      "항목": "Canonical Problem",
+      "v1.1 기준": "47개"
+    },
+    {
+      "항목": "상위 Category",
+      "v1.1 기준": "7개"
+    },
+    {
+      "항목": "저장 방식",
+      "v1.1 기준": "Multi-label + 보고서용 Primary 선택 가능"
+    },
+    {
+      "항목": "Problem Evidence",
+      "v1.1 기준": "PE1-PE4"
+    },
+    {
+      "항목": "Unknown 처리",
+      "v1.1 기준": "unmapped_candidate 허용"
+    },
+    {
+      "항목": "핵심 분리 원칙",
+      "v1.1 기준": "Cause ≠ Problem ≠ Effect"
+    }
+  ],
+  "cause_policy": "Cause expressions are evidence-supported free expressions, not controlled vocabulary nodes in v1.1."
+}
