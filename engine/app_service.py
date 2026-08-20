@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from engine.llm.openai_client import LLMResponseError, OpenAIJsonClient
+from engine.llm.gemini_client import GeminiJsonClient, LLMResponseError
 from engine.modules.module1 import build_module1_placeholder
 from engine.modules.module2 import build_module2_placeholder
 from engine.modules.module3 import build_module3_placeholder
@@ -78,14 +78,14 @@ def analyze_patent(
     uploaded_file_name: str | None,
     uploaded_file_bytes: bytes | None = None,
     *,
-    openai_api_key: str | None = None,
-    openai_model: str = "gpt-5.6-luna",
+    gemini_api_key: str | None = None,
+    gemini_model: str = "gemini-3.7-flash",
     report_model: str | None = None,
 ) -> dict:
     """PDF -> Raw Patent -> Ontology -> Module 1 report service entry point.
 
     Without an API key, the PDF parser still works and returns Raw Patent JSON.
-    With an API key, v0.2 runs three structured extraction calls plus a report
+    With a Gemini API key, v0.3 runs three structured extraction calls plus a report
     generation call, then post-validates every selected canonical ID against the
     frozen PSD JSON Knowledge Base.
     """
@@ -128,13 +128,13 @@ def analyze_patent(
         f"{source.get('text_char_count') or 0:,} characters, claims {diagnostics.get('claim_count', 0)}개."
     )
 
-    if not openai_api_key:
+    if not gemini_api_key:
         return {
             "title": f"{parsed_id} · PSD Patent Analysis",
             "patent_number": parsed_id,
             "primary_technology": "Ontology analysis requires API key",
             "status": "PDF Parsed · LLM not configured",
-            "overview": parser_overview + " OpenAI API Key를 Streamlit Secrets에 설정하면 Ontology 분석과 Module 1 설명 보고서가 활성화됩니다.",
+            "overview": parser_overview + " Gemini API Key를 Streamlit Secrets에 설정하면 Ontology 분석과 Module 1 설명 보고서가 활성화됩니다.",
             "raw_patent": raw_patent,
             "structured_patent": None,
             "module1_report": None,
@@ -154,11 +154,11 @@ def analyze_patent(
             "analysis_error": None,
         }
 
-    llm = OpenAIJsonClient(openai_api_key, model=openai_model)
+    llm = GeminiJsonClient(gemini_api_key, model=gemini_model)
     kb = load_all_knowledge()
     try:
         structured, trace = extract_structured_patent(raw_patent=raw_patent, knowledge_base=kb, llm=llm)
-        report_llm = llm if not report_model or report_model == openai_model else OpenAIJsonClient(openai_api_key, model=report_model)
+        report_llm = llm if not report_model or report_model == gemini_model else GeminiJsonClient(gemini_api_key, model=report_model)
         try:
             module1_report = generate_module1_report(structured_patent=structured, llm=report_llm)
             report_mode = "LLM explanation"

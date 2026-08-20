@@ -22,9 +22,9 @@ def _secret(name: str, default=None):
         return default
 
 
-api_key = _secret("OPENAI_API_KEY")
-openai_model = _secret("OPENAI_MODEL", "gpt-5.6-luna")
-report_model = _secret("OPENAI_REPORT_MODEL", openai_model)
+api_key = _secret("GEMINI_API_KEY")
+gemini_model = _secret("GEMINI_MODEL", "gemini-3.7-flash")
+report_model = _secret("GEMINI_REPORT_MODEL", gemini_model)
 
 with st.sidebar:
     st.header("Patent Input")
@@ -41,11 +41,11 @@ with st.sidebar:
     st.divider()
     st.markdown("**Analysis Engine**")
     if api_key:
-        st.success(f"LLM configured · {openai_model}")
+        st.success(f"Gemini configured · {gemini_model}")
         st.caption("PDF Parser + PSD Ontology Extraction + Module 1 Explanation")
     else:
-        st.warning("OpenAI API Key 미설정")
-        st.caption("현재는 PDF Parser까지만 동작합니다. Streamlit Secrets에 OPENAI_API_KEY를 설정하면 Module 1 분석이 활성화됩니다.")
+        st.warning("Gemini API Key 미설정")
+        st.caption("현재는 PDF Parser까지만 동작합니다. Streamlit Secrets에 GEMINI_API_KEY를 설정하면 Module 1 분석이 활성화됩니다.")
     analyze_clicked = st.button("특허 분석 시작", type="primary", use_container_width=True)
 
 if "analysis_result" not in st.session_state:
@@ -73,8 +73,8 @@ if analyze_clicked:
                     patent_number=patent_number.strip() or None,
                     uploaded_file_name=uploaded_file.name if uploaded_file else None,
                     uploaded_file_bytes=uploaded_bytes,
-                    openai_api_key=api_key,
-                    openai_model=openai_model,
+                    gemini_api_key=api_key,
+                    gemini_model=gemini_model,
                     report_model=report_model,
                 )
                 st.session_state.analysis_result = result
@@ -156,7 +156,7 @@ else:
     with tabs[1]:
         report = result.get("module1_report")
         if not report:
-            st.info("Ontology 기반 Module 1 보고서는 OpenAI API Key를 설정하면 생성됩니다.")
+            st.info("Ontology 기반 Module 1 보고서는 Gemini API Key를 설정하면 생성됩니다.")
             m1 = result["module1"]
             st.markdown("### Parser에서 확인된 기본정보")
             st.json(m1["basic_info"], expanded=False)

@@ -9,7 +9,7 @@ PSD-Patent-Intelligence/
 │   ├── schemas.py
 │   ├── llm/
 │   │   ├── __init__.py
-│   │   └── openai_client.py
+│   │   └── gemini_client.py
 │   ├── modules/
 │   │   ├── module1.py
 │   │   ├── module2.py
@@ -28,7 +28,7 @@ PSD-Patent-Intelligence/
 ├── knowledge/
 ├── sample_data/
 ├── tests/
-├── MODULE1_V02_IMPLEMENTATION_REPORT.md
+├── MODULE1_V03_GEMINI_IMPLEMENTATION_REPORT.md
 ├── STREAMLIT_SECRETS_SETUP.md
 ├── README.md
 ├── requirements.txt

@@ -9,7 +9,7 @@ from engine.analysis_models import (
     ProblemEffectExtraction,
     TechnologyExtraction,
 )
-from engine.llm.openai_client import OpenAIJsonClient
+from engine.llm.gemini_client import GeminiJsonClient
 from engine.ontology.mapper import normalize_ontology_extraction
 from engine.ontology.prompt_context import (
     build_claim_knowledge_context,
@@ -126,9 +126,9 @@ def extract_structured_patent(
     *,
     raw_patent: dict,
     knowledge_base: dict[str, dict],
-    llm: OpenAIJsonClient,
+    llm: GeminiJsonClient,
 ) -> tuple[dict, dict[str, Any]]:
-    """Run the v0.2 ontology extraction pipeline.
+    """Run the v0.3 Gemini ontology extraction pipeline.
 
     Returns `(structured_patent, trace)` where trace records context sizes and
     provider/model metadata for debugging without storing secrets.
@@ -201,7 +201,7 @@ def extract_structured_patent(
     return normalized, trace
 
 
-def generate_module1_report(*, structured_patent: dict, llm: OpenAIJsonClient) -> dict:
+def generate_module1_report(*, structured_patent: dict, llm: GeminiJsonClient) -> dict:
     report_input = json.dumps(structured_patent, ensure_ascii=False)
     data = llm.generate_json(
         instructions=REPORT_INSTRUCTIONS,

@@ -9,7 +9,7 @@ def test_required_files_exist():
         root / "knowledge" / "ontology_meta.json",
         root / "engine" / "schemas.py",
         root / "engine" / "analysis_models.py",
-        root / "engine" / "llm" / "openai_client.py",
+        root / "engine" / "llm" / "gemini_client.py",
         root / "engine" / "ontology" / "extractor.py",
         root / "engine" / "ontology" / "prompt_context.py",
         root / "engine" / "modules" / "module1.py",

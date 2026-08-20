@@ -2,11 +2,11 @@
 
 Ontology-based Power Sliding Door patent analysis web application.
 
-## Current version: v0.2 — Module 1 End-to-End MVP
+## Current version: v0.3 — Gemini Module 1 End-to-End MVP
 
-The deployed Streamlit app can now process a text-based patent PDF through:
+The deployed Streamlit app can process a text-based patent PDF through:
 
-`PDF → Raw Patent JSON → Context Router → PSD Ontology Extraction → Canonical Validation → Structured Patent JSON → Module 1 Explanation Report`
+`PDF → Raw Patent JSON → Context Router → PSD Ontology Extraction (Gemini) → Canonical Validation → Structured Patent JSON → Module 1 Explanation Report (Gemini)`
 
 ### User-facing philosophy
 
@@ -25,11 +25,19 @@ The PSD Ontology is an internal reasoning/normalization layer. The default repor
 - Effect / Design Attribute v1.1
 - Core Ontology v1.0
 
-## LLM setup
+## Gemini LLM setup
 
 Copy the values from `.streamlit/secrets.toml.example` into Streamlit Community Cloud **App settings → Secrets**. Never commit a real API key.
 
-Default model: `gpt-5.6-luna` (configurable through `OPENAI_MODEL`).
+Default model: `gemini-3.7-flash` (configurable through `GEMINI_MODEL`).
+
+```toml
+GEMINI_API_KEY = "YOUR_GEMINI_API_KEY"
+GEMINI_MODEL = "gemini-3.7-flash"
+GEMINI_REPORT_MODEL = "gemini-3.7-flash"
+```
+
+The app uses Google's official `google-genai` SDK with JSON-schema constrained output.
 
 ## Run locally / Codespaces
 
@@ -50,4 +58,4 @@ python -m pytest
 - OCR for image-only PDF: not implemented
 - Module 2: placeholder
 - Module 3: placeholder
-- Ontology extraction needs real-patent mapping tests and later v1.1 refinement
+- Ontology extraction still needs real-patent mapping tests and later ontology refinement

@@ -1,0 +1,7 @@
+unzip -o PSD-Patent-Intelligence-v0.3-gemini-update.zip -d .
+rm PSD-Patent-Intelligence-v0.3-gemini-update.zip
+pip install -r requirements.txt pytest
+python -m pytest
+git add .
+git commit -m "Migrate Module 1 analysis to Gemini API"
+git push
