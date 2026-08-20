@@ -6,6 +6,7 @@ import streamlit as st
 from engine.app_service import analyze_patent, analyze_related_patents
 from engine.patent.parser import PatentParseError
 from engine.patent.retriever import PatentRetrievalError
+from engine.reports.figures import select_representative_figures
 
 st.set_page_config(
     page_title="PSD Patent Intelligence",
@@ -14,26 +15,54 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-# Deployment UI: keep the public page report-first and hide implementation details.
+# Deployment UI: report-first, visual, and readable on desktop/mobile.
 st.markdown(
     """
     <style>
-      .block-container {max-width: 1120px; padding-top: 2.2rem; padding-bottom: 4rem;}
-      .psd-hero {padding: 1.6rem 1.8rem; border: 1px solid rgba(128,128,128,.22); border-radius: 18px; margin-bottom: 1.2rem;}
-      .psd-kicker {font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; opacity: .68; margin-bottom: .3rem;}
-      .psd-hero h1 {margin: 0 0 .35rem 0; font-size: 2.15rem;}
-      .psd-hero p {margin: 0; opacity: .78;}
-      .summary-card {padding: 1rem 1.1rem; border: 1px solid rgba(128,128,128,.22); border-radius: 14px; height: 100%;}
-      .summary-card b {display:block; margin-bottom:.35rem;}
-      .meta-card {padding: .75rem 1rem; border-radius: 12px; background: rgba(128,128,128,.07); min-height: 76px;}
-      .meta-label {font-size: .78rem; opacity: .65; margin-bottom:.2rem;}
-      .meta-value {font-weight: 650; line-height: 1.3;}
-      .section-gap {height:.35rem;}
-      div[data-testid="stDataFrame"] {border-radius: 12px; overflow: hidden;}
+      :root {--psd-blue:#2563eb; --psd-blue2:#0ea5e9; --psd-line:rgba(100,116,139,.20);}
+      #MainMenu, footer {visibility:hidden;}
+      .block-container {max-width:1180px; padding-top:1.7rem; padding-bottom:5rem;}
+      .psd-hero {
+        position:relative; overflow:hidden; padding:2.05rem 2.2rem;
+        border:1px solid rgba(37,99,235,.16); border-radius:24px; margin-bottom:1.25rem;
+        background:linear-gradient(135deg, rgba(37,99,235,.10), rgba(14,165,233,.04) 52%, rgba(255,255,255,.02));
+        box-shadow:0 14px 42px rgba(15,23,42,.07);
+      }
+      .psd-hero:after {content:""; position:absolute; width:230px; height:230px; border-radius:50%; right:-70px; top:-100px; background:rgba(37,99,235,.08);}
+      .psd-kicker {font-size:.76rem; font-weight:750; letter-spacing:.11em; text-transform:uppercase; color:var(--psd-blue); margin-bottom:.55rem;}
+      .psd-hero h1 {margin:0 0 .45rem 0; font-size:2.35rem; letter-spacing:-.035em;}
+      .psd-hero p {margin:0; opacity:.72; font-size:1rem; max-width:760px; line-height:1.65;}
+      .summary-card {padding:1.22rem 1.25rem; border:1px solid var(--psd-line); border-radius:18px; min-height:164px; height:100%; background:rgba(148,163,184,.045);}
+      .summary-icon {font-size:1.28rem; margin-bottom:.55rem;}
+      .summary-card b {display:block; margin-bottom:.42rem; font-size:.93rem;}
+      .summary-card span {font-size:.94rem; line-height:1.62; opacity:.88;}
+      .meta-card {padding:.9rem 1rem; border:1px solid var(--psd-line); border-radius:15px; background:rgba(148,163,184,.045); min-height:84px;}
+      .meta-label {font-size:.73rem; opacity:.60; margin-bottom:.25rem; letter-spacing:.02em;}
+      .meta-value {font-weight:680; line-height:1.38; font-size:.94rem;}
+      .quality-strip {display:flex; gap:.45rem; flex-wrap:wrap; margin:.95rem 0 1.25rem;}
+      .quality-chip {display:inline-flex; align-items:center; gap:.3rem; padding:.38rem .67rem; border-radius:999px; font-size:.78rem; border:1px solid rgba(34,197,94,.20); background:rgba(34,197,94,.07);}
+      .section-title {display:flex; align-items:center; gap:.72rem; margin:2.25rem 0 .9rem;}
+      .section-no {width:2rem; height:2rem; display:inline-flex; align-items:center; justify-content:center; border-radius:10px; background:rgba(37,99,235,.10); color:var(--psd-blue); font-size:.82rem; font-weight:800;}
+      .section-title h2 {margin:0; font-size:1.34rem; letter-spacing:-.02em;}
+      .figure-caption {font-size:.79rem; line-height:1.48; opacity:.72; margin-top:.32rem;}
+      .claim-label {display:inline-block; padding:.28rem .58rem; border-radius:8px; background:rgba(37,99,235,.10); color:var(--psd-blue); font-size:.76rem; font-weight:750; margin-bottom:.35rem;}
+      .related-badge {display:inline-block; padding:.28rem .58rem; border-radius:999px; background:rgba(37,99,235,.10); color:var(--psd-blue); font-size:.78rem; font-weight:750;}
+      .muted-note {font-size:.8rem; opacity:.65; line-height:1.5;}
+      div[data-testid="stDataFrame"] {border-radius:14px; overflow:hidden; border:1px solid var(--psd-line);}
+      div[data-testid="stForm"] {border-radius:20px !important; border-color:var(--psd-line) !important; padding:1.15rem 1.2rem .8rem !important;}
+      div[data-testid="stVerticalBlockBorderWrapper"] {border-radius:18px !important;}
+      .stButton>button, .stLinkButton>a {border-radius:11px !important;}
+      @media (max-width: 700px) {
+        .block-container {padding-left:1rem; padding-right:1rem; padding-top:1rem;}
+        .psd-hero {padding:1.45rem 1.25rem; border-radius:19px;}
+        .psd-hero h1 {font-size:1.85rem;}
+        .summary-card {min-height:auto;}
+      }
     </style>
     """,
     unsafe_allow_html=True,
 )
+
 
 
 def _secret(name: str, default=None):
@@ -55,6 +84,52 @@ def _render_meta_card(label: str, value: str) -> None:
         f'<div class="meta-card"><div class="meta-label">{escape(label)}</div><div class="meta-value">{escape(_safe(value))}</div></div>',
         unsafe_allow_html=True,
     )
+
+
+def _section_header(number: str, title: str) -> None:
+    st.markdown(
+        f'<div class="section-title"><span class="section-no">{escape(str(number))}</span><h2>{escape(title)}</h2></div>',
+        unsafe_allow_html=True,
+    )
+
+
+def _render_quality_strip(result: dict) -> None:
+    q = result.get("quality") or {}
+    chips = []
+    if q.get("source_ready"):
+        chips.append("✓ 공개 원문 확인")
+    if q.get("independent_claim_count"):
+        chips.append(f"✓ 독립청구항 {q.get('independent_claim_count')}개")
+    if q.get("grounded_fact_count"):
+        chips.append(f"✓ 원문 근거 {q.get('grounded_fact_count')}건")
+    if q.get("figure_count"):
+        chips.append(f"✓ 특허 도면 {q.get('figure_count')}개")
+    if result.get("cache_hit"):
+        chips.append("⚡ 검증된 분석 캐시 사용")
+    if chips:
+        html = ''.join(f'<span class="quality-chip">{escape(x)}</span>' for x in chips)
+        st.markdown(f'<div class="quality-strip">{html}</div>', unsafe_allow_html=True)
+
+
+def _render_patent_figures(result: dict, *, limit: int = 3) -> None:
+    figures = select_representative_figures(result, limit=limit)
+    if not figures:
+        return
+    st.markdown("#### 도면으로 보는 핵심 구조")
+    st.caption("해당 특허의 실제 공개 도면입니다. 도면 선택은 명세서의 FIG 설명과 분석된 핵심 구성요소를 기준으로 하며, 청구범위 판단은 청구항 원문을 우선합니다.")
+    cols = st.columns(min(3, len(figures)))
+    for idx, figure in enumerate(figures):
+        with cols[idx % len(cols)]:
+            try:
+                st.image(figure.get("image_url"), use_container_width=True)
+            except Exception:
+                st.caption("도면을 불러오지 못했습니다.")
+            st.markdown(f"**{_safe(figure.get('label'), 'Patent Figure')}**")
+            if figure.get("caption"):
+                st.markdown(
+                    f'<div class="figure-caption">{escape(_safe(figure.get("caption")))}</div>',
+                    unsafe_allow_html=True,
+                )
 
 
 def _render_evidence(evidence: list[dict]) -> None:
@@ -88,8 +163,8 @@ def _render_report(result: dict) -> None:
     metadata = raw_patent.get("metadata") or {}
 
     if not report:
-        if result.get("status") == "Claim parsing failed":
-            st.error("청구항을 안정적으로 식별하지 못해 전체 특허 분석을 중단했습니다. 다른 특허번호를 입력하거나 텍스트형 PDF를 업로드해 주세요.")
+        if result.get("status") in {"Claim parsing failed", "Independent claim validation failed"}:
+            st.error("독립청구항을 안정적으로 확인하지 못해 전체 특허 분석을 중단했습니다. 다른 특허번호를 입력하거나 텍스트형 PDF를 업로드해 주세요.")
         elif not api_key:
             st.error("분석 서비스의 Gemini API 설정이 완료되지 않았습니다.")
         else:
@@ -111,6 +186,8 @@ def _render_report(result: dict) -> None:
     if source_url:
         st.link_button("공개 특허 원문 보기", source_url)
 
+    _render_quality_strip(result)
+
     if "deterministic fallback" in (result.get("overview") or ""):
         st.warning("설명 생성 모델이 일시적으로 응답하지 않아, 구조화된 특허 분석 결과를 바탕으로 기본 설명을 표시하고 있습니다.")
 
@@ -119,21 +196,21 @@ def _render_report(result: dict) -> None:
     s1, s2, s3 = st.columns(3)
     with s1:
         st.markdown(
-            f'<div class="summary-card"><b>이 특허는 무엇인가?</b>{escape(_safe(summary.get("what_is_patent")))}</div>',
+            f'<div class="summary-card"><div class="summary-icon">◉</div><b>이 특허는 무엇인가?</b><span>{escape(_safe(summary.get("what_is_patent")))}</span></div>',
             unsafe_allow_html=True,
         )
     with s2:
         st.markdown(
-            f'<div class="summary-card"><b>어떻게 해결하는가?</b>{escape(_safe(summary.get("how_it_solves")))}</div>',
+            f'<div class="summary-card"><div class="summary-icon">↳</div><b>어떻게 해결하는가?</b><span>{escape(_safe(summary.get("how_it_solves")))}</span></div>',
             unsafe_allow_html=True,
         )
     with s3:
         st.markdown(
-            f'<div class="summary-card"><b>무엇이 핵심인가?</b>{escape(_safe(summary.get("key_point")))}</div>',
+            f'<div class="summary-card"><div class="summary-icon">◆</div><b>무엇이 핵심인가?</b><span>{escape(_safe(summary.get("key_point")))}</span></div>',
             unsafe_allow_html=True,
         )
 
-    st.markdown("## 1. 특허 기본정보")
+    _section_header("01", "특허 기본정보")
     basic_rows = [
         {"항목": "공개/등록번호", "내용": _safe(metadata.get("publication_number") or result.get("patent_number"))},
         {"항목": "특허명", "내용": _safe(metadata.get("title"))},
@@ -151,16 +228,18 @@ def _render_report(result: dict) -> None:
             basic_rows.append({"항목": label, "내용": value})
     st.dataframe(basic_rows, use_container_width=True, hide_index=True)
 
-    st.markdown("## 2. 핵심 과제")
+    _section_header("02", "핵심 과제")
     st.write(_safe(report.get("core_problem")))
 
-    st.markdown("## 3. 독립청구항 핵심구성")
+    _section_header("03", "독립청구항 핵심구성")
+    _render_patent_figures(result)
     independent_claims = report.get("independent_claims") or []
     if not independent_claims:
         st.write("독립청구항 설명이 생성되지 않았습니다.")
     for claim in independent_claims:
         claim_no = claim.get("claim_number")
         with st.container(border=True):
+            st.markdown(f'<span class="claim-label">Independent Claim {claim_no}</span>', unsafe_allow_html=True)
             st.markdown(f"### 청구항 {claim_no}")
             st.write(_safe(claim.get("plain_explanation")))
 
@@ -194,24 +273,25 @@ def _render_report(result: dict) -> None:
             if claim.get("scope_note"):
                 st.caption(claim.get("scope_note"))
 
-    st.markdown("## 4. 종속청구항의 추가조건")
+    _section_header("04", "종속청구항의 추가조건")
     st.write(_safe(report.get("dependent_claims")))
 
-    st.markdown("## 5. 작동원리")
+    _section_header("05", "작동원리")
     steps = report.get("operation_principle_steps") or []
     if steps:
         for idx, step in enumerate(steps, start=1):
-            st.markdown(f"**{idx}.** {step}")
+            with st.container(border=True):
+                st.markdown(f"**STEP {idx:02d}**  ·  {step}")
     else:
         st.write("작동 순서를 명확히 구성하지 못했습니다.")
 
-    st.markdown("## 6. 기술 효과")
+    _section_header("06", "기술 효과")
     st.write(_safe(report.get("technical_effects")))
 
-    st.markdown("## 7. PSD 기술분류")
+    _section_header("07", "PSD 기술분류")
     st.write(_safe(report.get("technology_classification")))
 
-    st.markdown("## 8. 핵심 기술 요약")
+    _section_header("08", "핵심 기술 요약")
     st.info(_safe(report.get("core_technology_summary")))
 
     st.markdown("---")
@@ -252,7 +332,8 @@ def _render_module2(module2: dict | None) -> None:
             [
                 {
                     "순위": idx,
-                    "관련도": f"{float(item.get('score', 0)):.1f}%",
+                    "기술 관련도": item.get("relatedness_level") or "-",
+                    "구조 유사도": f"{float(item.get('score', 0)):.0f}/100",
                     "공개번호": item.get("publication_number") or "-",
                     "특허명": item.get("title") or "-",
                     "출원인": item.get("applicant") or "-",
@@ -269,19 +350,32 @@ def _render_module2(module2: dict | None) -> None:
         number = item.get("publication_number") or f"Related Patent {idx}"
         title = item.get("title") or "특허명 확인되지 않음"
         with st.container(border=True):
-            c1, c2 = st.columns([4, 1])
+            c1, c2 = st.columns([3.6, 1.4])
             with c1:
                 st.markdown(f"### {idx}. {number} · {title}")
                 if item.get("applicant"):
                     st.caption(f"출원인: {item.get('applicant')}")
             with c2:
-                st.metric("관련도", f"{float(item.get('score', 0)):.1f}%")
+                st.markdown(f'<span class="related-badge">기술 관련도 {escape(_safe(item.get("relatedness_level"), "-") )}</span>', unsafe_allow_html=True)
+                st.caption(f"구조 유사도 {float(item.get('score', 0)):.0f}/100")
 
             if item.get("source_url"):
                 st.link_button("공개 특허 원문 보기", item.get("source_url"))
 
-            st.markdown("**왜 관련된 특허인가?**")
-            st.write(_safe(item.get("selection_reason")))
+            figure = item.get("representative_figure") or {}
+            if figure.get("image_url"):
+                img_col, text_col = st.columns([1, 2.15])
+                with img_col:
+                    st.image(figure.get("image_url"), use_container_width=True)
+                    st.caption(figure.get("label") or "Patent Figure")
+                with text_col:
+                    st.markdown("**왜 관련된 특허인가?**")
+                    st.write(_safe(item.get("selection_reason")))
+                    if item.get("psd_relevance_reason"):
+                        st.caption("PSD 관련성: " + item.get("psd_relevance_reason"))
+            else:
+                st.markdown("**왜 관련된 특허인가?**")
+                st.write(_safe(item.get("selection_reason")))
 
             if item.get("solution_summary"):
                 st.markdown("**관련 특허의 해결 방식**")
@@ -330,6 +424,11 @@ def _render_module2(module2: dict | None) -> None:
 api_key = _secret("GEMINI_API_KEY")
 gemini_model = _secret("GEMINI_MODEL", "gemini-3.7-flash")
 report_model = _secret("GEMINI_REPORT_MODEL", gemini_model)
+fallback_model = _secret("GEMINI_FALLBACK_MODEL", "gemini-3.6-flash")
+try:
+    max_retries = int(_secret("GEMINI_MAX_RETRIES", 2))
+except Exception:
+    max_retries = 2
 show_developer_tools = bool(_secret("SHOW_DEVELOPER_TOOLS", False))
 
 st.markdown(
@@ -337,7 +436,7 @@ st.markdown(
     <div class="psd-hero">
       <div class="psd-kicker">Power Sliding Door Patent Analysis</div>
       <h1>PSD Patent Intelligence</h1>
-      <p>공개 특허를 입력하면 핵심 과제와 청구구조를 설명하고, 관련 공개 특허까지 PSD Ontology 기준으로 비교합니다.</p>
+      <p>특허번호 하나로 원문·청구항·실제 도면을 함께 읽고, 핵심 기술과 관련 공개 특허를 이해하기 쉬운 엔지니어링 보고서로 정리합니다.</p>
     </div>
     """,
     unsafe_allow_html=True,
@@ -389,11 +488,13 @@ if analyze_clicked:
                     gemini_api_key=api_key,
                     gemini_model=gemini_model,
                     report_model=report_model,
+                    fallback_model=fallback_model,
+                    max_retries=max_retries,
                 )
                 st.session_state.analysis_result = result
                 st.session_state.module2_result = None
                 st.session_state.module2_for_patent = None
-                if result.get("analysis_error") or result.get("status") == "Claim parsing failed":
+                if result.get("analysis_error") or result.get("status") in {"Claim parsing failed", "Independent claim validation failed"}:
                     status.update(label="분석을 완료하지 못했습니다.", state="error", expanded=False)
                 else:
                     status.update(label="특허 분석이 완료되었습니다.", state="complete", expanded=False)
@@ -444,6 +545,8 @@ else:
                             gemini_api_key=api_key,
                             gemini_model=gemini_model,
                             report_model=report_model,
+                            fallback_model=fallback_model,
+                            max_retries=max_retries,
                             top_n=5,
                         )
                         st.session_state.module2_result = module2_result

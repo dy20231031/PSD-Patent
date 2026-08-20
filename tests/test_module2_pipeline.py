@@ -35,7 +35,7 @@ CANDIDATE_RAW = {
 
 
 class FakeGemini:
-    def __init__(self, api_key, model=None):
+    def __init__(self, api_key, model=None, **kwargs):
         self.model = model
 
     def generate_json(self, *, schema_name, **kwargs):
@@ -44,6 +44,8 @@ class FakeGemini:
                 "candidates": [
                     {
                         "publication_number": "US12345678B2",
+                        "psd_relevance": "high",
+                        "psd_relevance_reason": "차량 슬라이딩 도어의 케이블 장력 장치이다.",
                         "technology_ids": ["T2.6"],
                         "architecture_ids": [],
                         "problem_ids": ["P-FLX-01"],

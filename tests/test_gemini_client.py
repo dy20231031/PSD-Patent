@@ -75,3 +75,75 @@ def test_gemini_generate_json_wraps_provider_error(monkeypatch):
             schema_name="z",
             json_schema={"type": "object"},
         )
+
+
+def test_gemini_retries_transient_then_succeeds(monkeypatch):
+    calls = []
+
+    class FakeResponse:
+        parsed = {"ok": True}
+        text = '{"ok": true}'
+
+    class FakeModels:
+        def generate_content(self, **kwargs):
+            calls.append(kwargs["model"])
+            if len(calls) == 1:
+                raise RuntimeError("503 UNAVAILABLE high demand")
+            return FakeResponse()
+
+    class FakeClient:
+        def __init__(self, api_key=None):
+            self.models = FakeModels()
+
+    fake_genai = types.ModuleType("genai")
+    fake_genai.Client = FakeClient
+    fake_google = types.ModuleType("google")
+    fake_google.genai = fake_genai
+    monkeypatch.setitem(sys.modules, "google", fake_google)
+    monkeypatch.setitem(sys.modules, "google.genai", fake_genai)
+
+    client = GeminiJsonClient("secret", model="primary", max_retries=1, base_delay=0)
+    out = client.generate_json(
+        instructions="x", input_text="y", schema_name="z",
+        json_schema={"type": "object", "properties": {"ok": {"type": "boolean"}}},
+    )
+    assert out == {"ok": True}
+    assert calls == ["primary", "primary"]
+    assert client.last_attempt_count == 2
+
+
+def test_gemini_uses_fallback_after_transient_exhaustion(monkeypatch):
+    calls = []
+
+    class FakeResponse:
+        parsed = {"ok": True}
+        text = '{"ok": true}'
+
+    class FakeModels:
+        def generate_content(self, **kwargs):
+            calls.append(kwargs["model"])
+            if kwargs["model"] == "primary":
+                raise RuntimeError("503 UNAVAILABLE")
+            return FakeResponse()
+
+    class FakeClient:
+        def __init__(self, api_key=None):
+            self.models = FakeModels()
+
+    fake_genai = types.ModuleType("genai")
+    fake_genai.Client = FakeClient
+    fake_google = types.ModuleType("google")
+    fake_google.genai = fake_genai
+    monkeypatch.setitem(sys.modules, "google", fake_google)
+    monkeypatch.setitem(sys.modules, "google.genai", fake_genai)
+
+    client = GeminiJsonClient(
+        "secret", model="primary", fallback_model="fallback", max_retries=1, base_delay=0
+    )
+    out = client.generate_json(
+        instructions="x", input_text="y", schema_name="z",
+        json_schema={"type": "object", "properties": {"ok": {"type": "boolean"}}},
+    )
+    assert out == {"ok": True}
+    assert calls == ["primary", "primary", "fallback"]
+    assert client.last_model_used == "fallback"

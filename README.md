@@ -2,40 +2,59 @@
 
 Ontology-based Power Sliding Door patent analysis web application.
 
-## Current version: v0.6 — Module 2 Related Patent Analysis MVP
+## Current version: v0.7 — Reliability + Visual Report UI
 
-The Streamlit app now supports two input paths:
+The public Streamlit app supports:
 
-1. **Patent publication/grant number** → public Google Patents page retrieval
+1. **Patent publication/grant number** → Google Patents public full text, claims, metadata, patent family ID, and available patent drawings
 2. **Patent PDF upload** → embedded-text extraction
 
-Both paths produce a Raw Patent JSON. When claims are successfully identified and Gemini is configured, the flow continues as:
+Main flow:
 
-`Raw Patent JSON → Context Router → PSD Ontology Extraction → Canonical Validation → Structured Patent JSON → Module 1 Explanation Report → Module 2 Related Patent Search / Ontology Reranking / Comparison`
+`Patent → Claim Validation → PSD Ontology Extraction → Evidence Grounding → Module 1 Explanation + Patent Figures → Module 2 Search / Family Dedup / PSD Filter / Ontology Reranking`
 
-### User-facing philosophy
+### Public report philosophy
 
-The PSD Ontology is an internal reasoning/normalization layer. The default report does **not** expose vocabulary IDs. Instead, it explains what the patent solves, which elements are essential, how the elements interact, how the mechanism works, and what technical effects follow. The public deployment shows a clean explanation report. Raw/Structured JSON diagnostics are hidden by default; evidence remains available through a compact “분석 근거 보기” expander.
+The PSD Ontology remains an internal reasoning/normalization layer. The public page is report-first and does not expose ontology IDs or raw JSON. The report focuses on:
 
-## Claim parser v0.4
+- what problem the patent addresses,
+- which independent-claim elements are required,
+- how the elements interact,
+- how the mechanism works,
+- what effects are actually supported by the specification,
+- representative **real patent drawings**, and
+- related public patents with technical differences.
 
-PDF/text claim detection uses three stages:
+A compact `분석 근거 보기` expander remains available for source-grounding checks.
 
-- explicit `CLAIMS` / `CLAIMS (n)` / claim-heading detection
-- embedded preamble detection such as `THE INVENTION CLAIMED IS`
-- tail numbered-sequence fallback when headings are lost by PDF extraction
+## v0.7 reliability safeguards
 
-If zero claims are detected, Claim-based Ontology analysis is blocked rather than generating a misleading full report.
+- Gemini temporary errors (429 / 500 / 502 / 503 / 504 / high demand) → short exponential retry
+- Primary model exhausted → automatic fallback model
+- `claims = 0` **or** `independent_claims = 0` → Claim Ontology / full Module 1 blocked
+- E4 / PE4 / EE4 and assertions without source evidence are removed before report generation
+- successful patent-number analyses are cached in memory for 6 hours
+- patent-number input normalization accepts common spaces/hyphens/punctuation variants
 
-## Patent number retrieval
+## Patent drawings
 
-Examples:
+For patent-number input, Google Patents drawing assets are collected from the public patent result and stored as figure metadata (`FIG. N`, image URL, specification caption). The report chooses a small representative set using figure-description text + already-grounded Module 1 terms. It does **not** infer new patent facts from the pixels.
 
-- `US10774572B2`
-- `US20190093412A1`
-- `JP7604988B2`
+Drawing availability depends on the public source. PDF-only input does not currently segment drawings from PDF pages.
 
-The public `/en` page is requested from Google Patents. Claims are preferentially extracted from structured HTML.
+## Module 2 v0.7 quality filters
+
+Module 2 keeps the v0.6 multi-query search and adds:
+
+- exact Google Patents family-ID dedup when available,
+- fallback priority-date/title family heuristic,
+- duplicate-family removal among Top candidates,
+- independent-claim requirement for candidate analysis,
+- PSD relevance classifier (`high / medium / low`), with `low` candidates removed,
+- public UI showing `기술 관련도 높음/중간/낮음` plus a secondary `구조 유사도 n/100`, instead of presenting the score as a probability,
+- representative patent drawing in related-patent cards when available.
+
+The similarity signal is engineering-oriented and is **not** an infringement, novelty, validity, or FTO opinion.
 
 ## Knowledge Base
 
@@ -58,6 +77,8 @@ Store the real key only in Streamlit Community Cloud **App settings → Secrets*
 GEMINI_API_KEY = "YOUR_GEMINI_API_KEY"
 GEMINI_MODEL = "gemini-3.7-flash"
 GEMINI_REPORT_MODEL = "gemini-3.7-flash"
+GEMINI_FALLBACK_MODEL = "gemini-3.6-flash"
+GEMINI_MAX_RETRIES = 2
 SHOW_DEVELOPER_TOOLS = false
 ```
 
@@ -72,41 +93,8 @@ streamlit run streamlit_app.py
 ## Current limitations
 
 - OCR for image-only PDF: not implemented
-- Public patent retrieval depends on an external Google Patents web page and may be affected by network/rate-limit/HTML changes
-- Module 2 search uses the public Google Patents search/XHR interface as a best-effort external source and may break if that interface changes
-- Module 2 MVP analyzes a limited candidate set to control latency/API usage; it is not a legal prior-art search
-- Module 3: placeholder
-- Ontology extraction still needs real-patent mapping tests and later ontology refinement
-
-
-## Deployment UI v0.5
-
-The default public UI is report-first:
-
-- Patent number / PDF input
-- Three-part core summary
-- Patent basic information
-- Core problem
-- Independent-claim elements / relations / conditions
-- Dependent-claim additions
-- Operation principle
-- Technical effects
-- PSD technology classification
-- Core technology summary
-- Evidence expander
-
-Implementation details such as Raw Patent JSON, Structured Patent JSON, parser diagnostics, ontology IDs, validation traces, and internal model status are hidden unless `SHOW_DEVELOPER_TOOLS = true`.
-
-
-## Module 2 v0.6
-
-The **관련 특허** tab is lazy-loaded so a normal Module 1 analysis does not spend extra API calls. When the user starts Module 2, the service:
-
-1. builds up to three recall-oriented search queries from the target patent's Technology / Problem / Function / Claim Element / Relation facts,
-2. searches public Google Patents candidates,
-3. retrieves a limited set of candidate patent pages and independent claims,
-4. performs one lightweight Gemini ontology-fingerprint batch,
-5. reranks candidates with Relation 25%, Problem 20%, Function 20%, Technology 15%, Claim Element 15%, Architecture 5%, and
-6. generates a user-facing Top-5 comparison report.
-
-The relatedness score is a technical ontology-similarity signal only. It is not an infringement, novelty, validity, or freedom-to-operate opinion.
+- PDF-upload path does not yet extract individual figure images
+- Google Patents retrieval/search is an external best-effort dependency and can be affected by rate limits or HTML/XHR changes
+- Module 2 analyzes a limited candidate set to control latency/API use; it is not a comprehensive legal prior-art search
+- representative figure selection is caption/text based; multimodal pixel-level figure reasoning is not yet enabled
+- Module 3 remains a placeholder

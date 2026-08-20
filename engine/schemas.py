@@ -30,6 +30,15 @@ class RawPatentMetadata(BaseModel):
     publication_date: str | None = None
     inventors: list[str] = Field(default_factory=list)
     legal_status: str | None = None
+    family_id: str | None = None
+
+
+class PatentFigure(BaseModel):
+    figure_number: int | None = None
+    label: str
+    image_url: str
+    caption: str | None = None
+    source_url: str | None = None
 
 
 class RawClaim(BaseModel):
@@ -50,6 +59,7 @@ class RawPatent(BaseModel):
     figure_description: str = ""
     description: str = ""
     claims: list[RawClaim] = Field(default_factory=list)
+    figures: list[PatentFigure] = Field(default_factory=list)
     parser_diagnostics: dict[str, Any] = Field(default_factory=dict)
     raw_text: str = ""
 
