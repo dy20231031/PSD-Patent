@@ -72,7 +72,6 @@ class GeminiJsonClient:
                     "system_instruction": system_instruction,
                     "response_mime_type": "application/json",
                     "response_json_schema": json_schema,
-                    "temperature": 0.1,
                 },
             )
         except Exception as exc:  # SDK/provider exceptions vary by version/status
