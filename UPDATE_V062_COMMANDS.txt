@@ -1,0 +1,8 @@
+# If you already have the project in GitHub/Codespaces
+# 1) replace streamlit_app.py with the updated version
+# 2) optionally add V062_STAGE12_VISUAL_REPORT.md
+# 3) commit and push
+
+git add streamlit_app.py V062_STAGE12_VISUAL_REPORT.md UPDATE_V062_COMMANDS.txt
+git commit -m "Add Stage 1 and Stage 2 report visualizations"
+git push
