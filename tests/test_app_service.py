@@ -63,3 +63,55 @@ def test_service_blocks_claim_ontology_when_claims_zero(monkeypatch):
     assert result["status"] == "Claim parsing failed"
     assert result["structured_patent"] is None
     assert result["module1_report"] is None
+
+
+def test_successful_module1_result_is_cached(monkeypatch):
+    from engine import app_service
+
+    app_service.clear_analysis_cache()
+    calls = {"retrieve": 0, "extract": 0, "report": 0}
+
+    def fake_retrieve(number):
+        calls["retrieve"] += 1
+        return RAW_RETRIEVED
+
+    class DummyClient:
+        def __init__(self, api_key, model=None):
+            self.model = model or "dummy"
+
+    structured = {
+        "independent_claims": [],
+        "dependent_claims": [],
+        "problem_assertions": [],
+        "effect_assertions": [],
+        "technology_assignments": [
+            {"technology_id": "T2.6", "technology_name": "Tension / Slack Management", "role": "primary", "rationale": "test"}
+        ],
+        "architecture_assignments": [],
+        "validation_warnings": [],
+    }
+
+    def fake_extract(**kwargs):
+        calls["extract"] += 1
+        return structured, {"pipeline": "integrated_2_call_module1", "model": "dummy"}
+
+    def fake_report(**kwargs):
+        calls["report"] += 1
+        return {"three_line_summary": {}, "independent_claims": []}
+
+    monkeypatch.setattr(app_service, "retrieve_patent_by_number", fake_retrieve)
+    monkeypatch.setattr(app_service, "GeminiJsonClient", DummyClient)
+    monkeypatch.setattr(app_service, "extract_structured_patent", fake_extract)
+    monkeypatch.setattr(app_service, "generate_module1_report", fake_report)
+
+    first = app_service.analyze_patent(
+        "US10774572B2", None, gemini_api_key="fake", gemini_model="gemini-a", report_model="gemini-b"
+    )
+    second = app_service.analyze_patent(
+        "US 10774572 B2", None, gemini_api_key="fake", gemini_model="gemini-a", report_model="gemini-b"
+    )
+
+    assert first["cache_hit"] is False
+    assert second["cache_hit"] is True
+    assert calls == {"retrieve": 1, "extract": 1, "report": 1}
+    app_service.clear_analysis_cache()

@@ -7,8 +7,12 @@ from tests.test_patent_parser import SAMPLE_PATENT_TEXT
 class FakeLLM:
     model = "fake-model"
 
+    def __init__(self):
+        self.calls = []
+
     def generate_json(self, *, schema_name, **kwargs):
-        if schema_name == "psd_claim_ontology_extraction":
+        self.calls.append(schema_name)
+        if schema_name == "psd_integrated_patent_extraction":
             return {
                 "independent_claims": [
                     {
@@ -94,9 +98,6 @@ class FakeLLM:
                         "evidence": [{"source_section": "Claim", "claim_id": "C2", "evidence_text": "tension pulley is movably supported by a holder", "evidence_level": "E1"}],
                     }
                 ],
-            }
-        if schema_name == "psd_problem_effect_extraction":
-            return {
                 "problems": [
                     {
                         "problem_assertion_id": "PA-001",
@@ -124,9 +125,6 @@ class FakeLLM:
                         "evidence": {"source_section": "Summary", "claim_id": None, "evidence_text": "cable tension can be maintained", "evidence_level": "EE1"},
                     }
                 ],
-            }
-        if schema_name == "psd_technology_assignment":
-            return {
                 "technology_assignments": [
                     {"technology_id": "T2.6", "technology_name": "Tension / Slack Management", "role": "primary", "rationale": "케이블 장력 보상 구조가 발명의 중심이다."}
                 ],
@@ -162,15 +160,19 @@ class FakeLLM:
         raise AssertionError(schema_name)
 
 
-def test_fake_llm_exercises_v02_pipeline():
+def test_integrated_pipeline_uses_two_module1_llm_calls():
     raw = parse_patent_text(SAMPLE_PATENT_TEXT, filename="sample.pdf")
     kb = load_all_knowledge()
     llm = FakeLLM()
+
     structured, trace = extract_structured_patent(raw_patent=raw, knowledge_base=kb, llm=llm)
     assert structured["independent_claims"][0]["claim_elements"][0]["canonical_name"] == "Drive Cable"
     assert structured["problem_assertions"][0]["problem_id"] == "P-FLX-01"
     assert structured["technology_assignments"][0]["technology_id"] == "T2.6"
     assert trace["model"] == "fake-model"
+    assert trace["pipeline"] == "integrated_2_call_module1"
+    assert llm.calls == ["psd_integrated_patent_extraction"]
 
     report = generate_module1_report(structured_patent=structured, llm=llm)
     assert "케이블 장력" in report["three_line_summary"]["what_is_patent"]
+    assert llm.calls == ["psd_integrated_patent_extraction", "psd_module1_explanation_report"]

@@ -1,0 +1,7 @@
+unzip -o PSD-Patent-Intelligence-v0.6.1-two-call-update.zip -d .
+rm PSD-Patent-Intelligence-v0.6.1-two-call-update.zip
+pip install -r requirements.txt pytest
+python -m pytest
+git add .
+git commit -m "Optimize Module 1 to two Gemini calls"
+git push

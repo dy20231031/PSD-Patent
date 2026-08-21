@@ -2,7 +2,7 @@
 
 Ontology-based Power Sliding Door patent analysis web application.
 
-## Current version: v0.6 — Module 2 Related Patent Analysis MVP
+## Current version: v0.6.1 — Module 1 Two-Call Optimization + Cache
 
 The Streamlit app now supports two input paths:
 
@@ -68,6 +68,28 @@ pip install -r requirements.txt
 python -m pytest
 streamlit run streamlit_app.py
 ```
+
+## Module 1 v0.6.1 quota optimization
+
+The public UI/report format remains the v0.6 design. Only the Module 1 internal LLM pipeline changes.
+
+Legacy v0.6 used four Gemini calls for a normal Module 1 analysis:
+
+1. Claim ontology extraction
+2. Problem / Effect extraction
+3. Technology classification
+4. Final explanation report
+
+v0.6.1 uses **two calls**:
+
+1. **Integrated Structured Extraction** — claims/relations/functions/constraints + problems/effects + technology/architecture in one schema-constrained response
+2. **Explanation Report** — normalized Structured Patent JSON to the same user-facing report format
+
+The deterministic `Context Router → Canonical Normalization → Ontology Validation` layer is unchanged. Claim extraction has explicit priority in the integrated prompt, and the pipeline refuses to continue if parsed independent claims collapse to zero in the integrated extraction.
+
+Successful full Module 1 results are cached in-process for 6 hours. Reanalyzing the same patent/PDF with the same extraction/report models therefore uses **0 additional Gemini calls** while that Streamlit process remains alive. Reboot/redeploy or changing the model invalidates the cache. Temporary deterministic-fallback reports are not cached.
+
+`analysis_trace.pipeline = integrated_2_call_module1` records the optimized path for developer diagnostics.
 
 ## Current limitations
 

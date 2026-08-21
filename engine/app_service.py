@@ -2,6 +2,11 @@ from __future__ import annotations
 
 from typing import Any
 
+from copy import deepcopy
+import hashlib
+import re
+import time
+
 from engine.llm.gemini_client import GeminiJsonClient, LLMResponseError
 from engine.modules.module1 import build_module1_placeholder
 from engine.modules.module2 import analyze_related_patents as _analyze_related_patents, build_module2_placeholder
@@ -11,6 +16,75 @@ from engine.ontology.loader import load_all_knowledge
 from engine.patent.parser import PatentParseError, parse_patent_pdf
 from engine.patent.retriever import retrieve_patent_by_number
 from engine.reports.generator import build_fallback_module1_report
+
+
+# Successful Module 1 analyses are cached in-process so repeated Streamlit
+# reruns of the same patent do not spend Gemini quota again. The cache is
+# deliberately model-aware and short-lived; a redeploy/reboot naturally clears it.
+_ANALYSIS_CACHE: dict[str, tuple[float, dict]] = {}
+_ANALYSIS_CACHE_TTL_SECONDS = 6 * 60 * 60
+_ANALYSIS_PIPELINE_VERSION = "module1-integrated-v0.6.1"
+
+
+def _analysis_cache_key(
+    patent_number: str | None,
+    uploaded_file_bytes: bytes | None,
+    *,
+    gemini_model: str,
+    report_model: str | None,
+) -> str | None:
+    if uploaded_file_bytes is not None:
+        source_key = "pdf:" + hashlib.sha256(uploaded_file_bytes).hexdigest()
+    elif patent_number:
+        normalized = re.sub(r"[^A-Za-z0-9]", "", patent_number).upper()
+        if not normalized:
+            return None
+        source_key = "patent:" + normalized
+    else:
+        return None
+    return "|".join(
+        [
+            _ANALYSIS_PIPELINE_VERSION,
+            source_key,
+            (gemini_model or "").strip(),
+            (report_model or gemini_model or "").strip(),
+        ]
+    )
+
+
+def _analysis_cache_get(key: str | None) -> dict | None:
+    if not key:
+        return None
+    item = _ANALYSIS_CACHE.get(key)
+    if item is None:
+        return None
+    created_at, result = item
+    if time.time() - created_at > _ANALYSIS_CACHE_TTL_SECONDS:
+        _ANALYSIS_CACHE.pop(key, None)
+        return None
+    cached = deepcopy(result)
+    cached["cache_hit"] = True
+    trace = cached.get("analysis_trace")
+    if isinstance(trace, dict):
+        trace["cache_hit"] = True
+    return cached
+
+
+def _analysis_cache_put(key: str | None, result: dict) -> None:
+    if not key or result.get("status") != "Module 1 analyzed":
+        return
+    # Do not freeze a temporary report-model failure. A later retry should still
+    # have a chance to replace the deterministic fallback with the full report.
+    if "Report mode: LLM explanation" not in (result.get("overview") or ""):
+        return
+    stored = deepcopy(result)
+    stored["cache_hit"] = False
+    _ANALYSIS_CACHE[key] = (time.time(), stored)
+
+
+def clear_analysis_cache() -> None:
+    """Test/admin helper; normal Streamlit users never need to call this."""
+    _ANALYSIS_CACHE.clear()
 
 
 def _module1_with_parsed_basics(parsed: dict, fallback_id: str) -> dict:
@@ -90,6 +164,18 @@ def analyze_patent(
     patent to the frozen PSD vocabulary and generates an explanation report.
     """
     display_id = patent_number or uploaded_file_name or "Uploaded Patent"
+
+    cache_key = None
+    if gemini_api_key:
+        cache_key = _analysis_cache_key(
+            patent_number,
+            uploaded_file_bytes,
+            gemini_model=gemini_model,
+            report_model=report_model,
+        )
+        cached = _analysis_cache_get(cache_key)
+        if cached is not None:
+            return cached
 
     # PDF takes precedence when both inputs are supplied; otherwise retrieve the
     # public patent page directly from the publication/grant number.
@@ -192,7 +278,7 @@ def analyze_patent(
             primary = next((x for x in structured.get("technology_assignments", []) if x.get("technology_name")), None)
         primary_technology = primary.get("technology_name") if primary else "분류 미확정"
 
-        return {
+        result = {
             "title": f"{parsed_id} · PSD Patent Analysis",
             "patent_number": parsed_id,
             "primary_technology": primary_technology,
@@ -211,7 +297,10 @@ def analyze_patent(
             "evidence": _collect_evidence(structured),
             "analysis_trace": trace,
             "analysis_error": None,
+            "cache_hit": False,
         }
+        _analysis_cache_put(cache_key, result)
+        return result
     except LLMResponseError as exc:
         return {
             "title": f"{parsed_id} · PSD Patent Analysis",

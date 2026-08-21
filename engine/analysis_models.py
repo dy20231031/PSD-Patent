@@ -159,6 +159,21 @@ class TechnologyExtraction(StrictModel):
     architecture_assignments: list[ArchitectureAssignmentAnalysis]
 
 
+class IntegratedPatentExtraction(StrictModel):
+    """Single-call Module 1 extraction contract.
+
+    The sections intentionally mirror the legacy 3-call contracts so the
+    existing canonical normalization/validation layer can be reused unchanged.
+    """
+
+    independent_claims: list[IndependentClaimAnalysis]
+    dependent_claims: list[DependentClaimAnalysis]
+    problems: list[ProblemAnalysis]
+    effects: list[EffectAnalysis]
+    technology_assignments: list[TechnologyAssignmentAnalysis]
+    architecture_assignments: list[ArchitectureAssignmentAnalysis]
+
+
 class ReportClaimElement(StrictModel):
     name: str
     original_expression: str
